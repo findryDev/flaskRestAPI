@@ -16,20 +16,7 @@ def create_table():
 
 
 class TemperatureView(Resource):
-    def get(self):
-        temperatures = TemperatureModel.query.all()
-        return {'temperatures' : list(x.json() for x in temperatures)}
-
-    def post(self):
-        data = request.get_json(force=True)
-        new_temperature = TemperatureModel(data['crDate'], data['temperature'])
-        db.session.add(new_temperature)
-        db.session.commit()
-        return new_temperature.json()
 
 
-api.add_resource(TemperatureView, '/temperatures')
-
-app.debug = True
 if __name__ == '__main__':
     app.run(host='localhost', port='5000')

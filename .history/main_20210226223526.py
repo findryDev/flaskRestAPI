@@ -21,15 +21,9 @@ class TemperatureView(Resource):
         return {'temperatures' : list(x.json() for x in temperatures)}
 
     def post(self):
-        data = request.get_json(force=True)
+        data = request.get_json()
         new_temperature = TemperatureModel(data['crDate'], data['temperature'])
-        db.session.add(new_temperature)
-        db.session.commit()
-        return new_temperature.json()
+        db.session
 
-
-api.add_resource(TemperatureView, '/temperatures')
-
-app.debug = True
 if __name__ == '__main__':
     app.run(host='localhost', port='5000')
