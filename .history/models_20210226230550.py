@@ -15,4 +15,4 @@ class TemperatureModel(db.Model):
         self.temperature = temperature
 
     def json(self):
-        return {'date': self.crDate, 'temperature': self.temperature}
+        return {'date' : self.crDate, 'temperature' : self.temperature}

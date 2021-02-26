@@ -19,7 +19,7 @@ def create_table():
 class TemperatureView(Resource):
     def get(self):
         temperatures = TemperatureModel.query.all()
-        return {'temperatures': list(x.json() for x in temperatures)}
+        return {'temperatures' : list(x.json() for x in temperatures)}
 
     def post(self):
         data = request.get_json(force=True)
