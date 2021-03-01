@@ -1,7 +1,7 @@
 {
     "python.pythonPath": "C:\\Users\\filip\\.virtualenvs\\apiFlask-EUzw1Egn\\Scripts\\python.exe",
     "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.pycodestyleEnabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pycodestyleEnabled": true,
     "python.linting.enabled": true
 }
