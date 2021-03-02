@@ -9,7 +9,6 @@ verify_ssl = true
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flake8 = "*"
-pylint = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.7.9"

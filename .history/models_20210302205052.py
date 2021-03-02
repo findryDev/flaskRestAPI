@@ -10,8 +10,8 @@ class TemperatureModel(db.Model):
     crDate = db.Column(db.String)
     temperature = db.Column(db.Float)
 
-    def __init__(self, DateTime, temperature) -> None:
-        self.crDate = DateTime
+    def __init__(self, crDate, temperature) -> None:
+        self.crDate = crDate
         self.temperature = temperature
 
     def json(self):
