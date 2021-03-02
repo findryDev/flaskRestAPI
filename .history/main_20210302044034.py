@@ -37,8 +37,7 @@ class TemperaturesView(Resource):
 
 class TemperatureView(Resource):
     def get(self):
-        temperature = TemperatureModel.query.order_by(
-            sqlalchemy.desc(TemperatureModel.id)).first()
+        temperature = TemperatureModel.query.order_by(sqlalchemy.desc(TemperatureModel.id)).first()
         dictDateTemp = {}
         temporDict = temperature.json()
         dictDateTemp.update({temporDict['date']: temporDict['temperature']})

@@ -1,7 +1,6 @@
 from operator import add
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
-import sqlalchemy
 from models import db, TemperatureModel
 import os
 
@@ -37,18 +36,17 @@ class TemperaturesView(Resource):
 
 class TemperatureView(Resource):
     def get(self):
-        temperature = TemperatureModel.query.order_by(
-            sqlalchemy.desc(TemperatureModel.id)).first()
+        temperatures = TemperatureModel.query.all()
         dictDateTemp = {}
-        temporDict = temperature.json()
-        dictDateTemp.update({temporDict['date']: temporDict['temperature']})
+        for x in temperatures:
+            temporDict = x.json()
+            dictDateTemp.update({temporDict['date']: temporDict['temperature']})
         return dictDateTemp
 
 
 
 
 api.add_resource(TemperaturesView, '/temperatures')
-api.add_resource(TemperatureView, '/temperature')
 
 app.debug = True
 if __name__ == '__main__':

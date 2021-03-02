@@ -1,7 +1,6 @@
 from operator import add
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
-import sqlalchemy
 from models import db, TemperatureModel
 import os
 
@@ -19,13 +18,14 @@ def create_table():
     db.create_all()
 
 
-class TemperaturesView(Resource):
+class TemperatureView(Resource):
     def get(self):
         temperatures = TemperatureModel.query.all()
         dictDateTemp = {}
         for x in temperatures:
             temporDict = x.json()
-            dictDateTemp.update({temporDict['date']: temporDict['temperature']})
+            dictDateTemp.update({temporDict['crDate']: temporDict['temperature']})
+
         return dictDateTemp
 
     def post(self):
@@ -35,20 +35,8 @@ class TemperaturesView(Resource):
         db.session.commit()
         return new_temperature.json()
 
-class TemperatureView(Resource):
-    def get(self):
-        temperature = TemperatureModel.query.order_by(
-            sqlalchemy.desc(TemperatureModel.id)).first()
-        dictDateTemp = {}
-        temporDict = temperature.json()
-        dictDateTemp.update({temporDict['date']: temporDict['temperature']})
-        return dictDateTemp
 
-
-
-
-api.add_resource(TemperaturesView, '/temperatures')
-api.add_resource(TemperatureView, '/temperature')
+api.add_resource(TemperatureView, '/temperatures')
 
 app.debug = True
 if __name__ == '__main__':
