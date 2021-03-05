@@ -31,7 +31,15 @@ class TemperaturesView(Resource):
 
     def post(self):
         # date format dd.mm.yyyy hh:mm:ss
-        data = request.get_json(force=True)
+        date = request.get_json(force=True)
+        strDT = data['DateTime']
+        dateTime = dt.datetime(year= strDT[],
+                               month= strDT[],
+                               day= strDT[],
+                               hour= strDT[],
+                               minute= strDT[],
+                               second= strDT[])
+
         new_temperature = TemperatureModel(data['DateTime'], data['temperature'])
         db.session.add(new_temperature)
         db.session.commit()
@@ -51,7 +59,7 @@ class TemperatureView(Resource):
 api.add_resource(TemperaturesView, '/temperatures')
 api.add_resource(TemperatureView, '/temperature')
 
-app.debug = os.environ.get('DEBUG_VALUE', 'True')
+app.debug = True
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

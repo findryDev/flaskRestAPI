@@ -51,7 +51,7 @@ class TemperatureView(Resource):
 api.add_resource(TemperaturesView, '/temperatures')
 api.add_resource(TemperatureView, '/temperature')
 
-app.debug = os.environ.get('DEBUG_VALUE', 'True')
+app.debug = True
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
