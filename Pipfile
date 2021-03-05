@@ -11,6 +11,7 @@ flask-sqlalchemy = "*"
 flake8 = "*"
 pylint = "*"
 requests = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
