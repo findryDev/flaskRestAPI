@@ -7,7 +7,7 @@ class TemperatureModel(db.Model):
     __tablename__ = 'temperature'
 
     id = db.Column(db.Integer, primary_key=True)
-    Date = db.Column(db.String)
+    Date = db.Column(db.DateTime)
     temperature = db.Column(db.Float)
 
     def __init__(self, DateTime, temperature) -> None:

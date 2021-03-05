@@ -31,7 +31,15 @@ class TemperaturesView(Resource):
 
     def post(self):
         # date format dd.mm.yyyy hh:mm:ss
-        data = request.get_json(force=True)
+        date = request.get_json(force=True)
+        strDT = data['DateTime']
+        dateTime = dt.datetime(year= strDT[],
+                               month= strDT[],
+                               day= strDT[],
+                               hour= strDT[],
+                               minute= strDT[],
+                               second= strDT[])
+
         new_temperature = TemperatureModel(data['DateTime'], data['temperature'])
         db.session.add(new_temperature)
         db.session.commit()

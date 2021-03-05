@@ -10,6 +10,7 @@ flask-restful = "*"
 flask-sqlalchemy = "*"
 flake8 = "*"
 pylint = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
