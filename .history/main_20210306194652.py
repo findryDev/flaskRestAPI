@@ -1,18 +1,25 @@
+from dotenv import load_dotenv
 from flask import Flask, request
 from flask_restful import Api, Resource
 import sqlalchemy
 from models import db, TemperatureModel
+from flask_migrate import Migrate
 import os
-import datetime as dt
+load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{os.getenv("DBUSERNAME")}:'\
+                                        f'{os.getenv("PASSWORD")}@'\
+                                        f'{os.getenv("SERVER")}:{os.getenv("PORT")}/'\
+                                        f'{os.getenv("DATABASE")}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 api = Api(app)
 db.init_app(app)
-
+db.init_app(app)
+migrate = Migrate(app,db)
 
 @app.before_first_request
 def create_table():
