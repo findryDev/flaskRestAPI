@@ -85,7 +85,6 @@ class TemperatureDelete(Resource):
 
 api.add_resource(TemperaturesView, '/temperatures')
 api.add_resource(TemperatureView, '/temperature')
-api.add_resource(TemperatureDelete, '/deleteAll')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))

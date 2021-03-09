@@ -19,20 +19,20 @@ class Apicheck:
     def chekingApiKey():
         try:
             if request.headers['keyApi'] == Config.APIAUTH:
-                return {'check': True}
+                return (True)
             else:
-                return {'check': False, 'text': 'ACCESS DENY', 'status': 400}
+                return (False, "ACCESS DENY", 400)
         except KeyError as e:
             if e.args[0] == 'HTTP_KEYAPI':
-                return {'check': False, 'text': 'ACCESS DENY', 'status': 400}
+                return (False, "ACCESS DENY", 400)
             else:
-                return {'check': False, 'text': 'KEY ERROR', 'status': 400}
+                return (False, 'KEY ERROR', 400)
 
 
 class TemperaturesView(Resource, Apicheck):
     def get(self):
-        checkDict = Apicheck.chekingApiKey()
-        if checkDict['check']:
+        checkTuple = Apicheck.chekingApiKey()
+        if checkTuple[0]:
             temperatures = TemperatureModel.query.all()
             dictDateTemp = {}
             for x in temperatures:
@@ -41,12 +41,12 @@ class TemperaturesView(Resource, Apicheck):
                     {temporeDict['date']: temporeDict['temperature']})
             return dictDateTemp
         else:
-            return checkDict['text'], checkDict['status']
+            return checkTuple[1], checkTuple[2]
 
     def post(self):
         # date format dd.mm.yyyy hh:mm:ss
-        checkDict = Apicheck.chekingApiKey()
-        if checkDict['check']:
+        checkTuple = Apicheck.chekingApiKey()
+        if checkTuple[0]:
             data = request.get_json(force=True)
             new_temperature = TemperatureModel(data['DateTime'],
                                                data['temperature'])
@@ -54,13 +54,13 @@ class TemperaturesView(Resource, Apicheck):
             db.session.commit()
             return new_temperature.json()
         else:
-            return checkDict['text'], checkDict['status']
+            return checkTuple[1], checkTuple[2]
 
 
 class TemperatureView(Resource):
     def get(self):
-        checkDict = Apicheck.chekingApiKey()
-        if checkDict['check']:
+        checkTuple = Apicheck.chekingApiKey()
+        if checkTuple[0]:
             temperature = TemperatureModel.query.order_by(
                 sqlalchemy.desc(TemperatureModel.id)).first()
             dictDateTemp = {}
@@ -69,23 +69,11 @@ class TemperatureView(Resource):
                                 temporeDict['temperature']})
             return dictDateTemp
         else:
-            return checkDict['text'], checkDict['status']
-
-
-class TemperatureDelete(Resource):
-    def get(self):
-        checkDict = Apicheck.chekingApiKey()
-        if checkDict['check']:
-            delCount = db.session.query(TemperatureModel).delete()
-            db.session.commit()
-            return f"number of delete rows: {delCount}"
-        else:
-            return checkDict['text'], checkDict['status']
+            return checkTuple[1], checkTuple[2]
 
 
 api.add_resource(TemperaturesView, '/temperatures')
 api.add_resource(TemperatureView, '/temperature')
-api.add_resource(TemperatureDelete, '/deleteAll')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))

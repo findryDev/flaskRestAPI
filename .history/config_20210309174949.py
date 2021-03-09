@@ -12,7 +12,7 @@ class Config:
                             f'{getenv("DATABASE")}'
     SQLALCHEMY_TRACK_MODIFICATIONS = 'False'
     APIAUTH = getenv("APIAUTH")
-
+    
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'

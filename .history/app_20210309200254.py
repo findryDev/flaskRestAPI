@@ -76,16 +76,19 @@ class TemperatureDelete(Resource):
     def get(self):
         checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
-            delCount = db.session.query(TemperatureModel).delete()
-            db.session.commit()
-            return f"number of delete rows: {delCount}"
+            temperature = TemperatureModel.query.order_by(
+                sqlalchemy.desc(TemperatureModel.id)).first()
+            dictDateTemp = {}
+            temporeDict = temperature.json()
+            dictDateTemp.update({temporeDict['date']:
+                                temporeDict['temperature']})
+            return dictDateTemp
         else:
             return checkDict['text'], checkDict['status']
 
 
 api.add_resource(TemperaturesView, '/temperatures')
 api.add_resource(TemperatureView, '/temperature')
-api.add_resource(TemperatureDelete, '/deleteAll')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
