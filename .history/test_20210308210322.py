@@ -12,4 +12,3 @@ r = requests.post('http://localhost:5432/temperatures',
                 json=sendDate, headers= {'APIkey': '1234'})
 print(r.text)
 print(r.headers)
-print(r)

@@ -17,7 +17,7 @@ migrate = Migrate(app, db)
 
 class TemperaturesView(Resource):
     def get(self):
-        try:
+        try :
             if request.headers['keyApi'] == Config.APIAUTH:
                 temperatures = TemperatureModel.query.all()
                 dictDateTemp = {}

@@ -17,23 +17,16 @@ migrate = Migrate(app, db)
 
 class TemperaturesView(Resource):
     def get(self):
-        try:
-            if request.headers['keyApi'] == Config.APIAUTH:
-                temperatures = TemperatureModel.query.all()
-                dictDateTemp = {}
-                for x in temperatures:
-                    temporeDict = x.json()
-                    dictDateTemp.update(
-                        {temporeDict['date']: temporeDict['temperature']})
-                return dictDateTemp
-            else:
-                return "ACCESS DENY", 400
-        except KeyError as e:
-            print(e.args[0])
-            if e.args[0] == 'HTTP_KEYAPI':
-                return "ACCESS DENY", 400
-            else:
-                return 'KEY ERROR', 400
+        if request.headers['keyApi'] == Config.APIAUTH:
+            temperatures = TemperatureModel.query.all()
+            dictDateTemp = {}
+            for x in temperatures:
+                temporeDict = x.json()
+                dictDateTemp.update(
+                    {temporeDict['date']: temporeDict['temperature']})
+            return dictDateTemp
+        else:
+            return "ACCESS DENY", 400
 
     def post(self):
         # date format dd.mm.yyyy hh:mm:ss
