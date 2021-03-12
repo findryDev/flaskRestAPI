@@ -78,10 +78,10 @@ class TemperatureView(Resource):
                     sqlalchemy.desc(TemperatureModelSensor1.id)).first()
             if request.endpoint == "temperature/sensor2":
                 temperature = TemperatureModelSensor2.query.order_by(
-                    sqlalchemy.desc(TemperatureModelSensor2.id)).first()
+                    sqlalchemy.desc(TemperatureModelSensor1.id)).first()
             if request.endpoint == "temperature/sensor3":
                 temperature = TemperatureModelSensor3.query.order_by(
-                    sqlalchemy.desc(TemperatureModelSensor3.id)).first()
+                    sqlalchemy.desc(TemperatureModelSensor1.id)).first()
             dictDateTemp = {}
             temporeDict = temperature.json()
             dictDateTemp.update({temporeDict['date']:
@@ -107,24 +107,15 @@ class TemperaturesDelete(Resource):
             return checkDict['text'], checkDict['status']
 
 
-api.add_resource(TemperaturesView, '/temperatures/sensor1',
-                 endpoint="temperatures/sensor1")
-api.add_resource(TemperaturesView, '/temperatures/sensor2',
-                 endpoint="temperatures/sensor2")
-api.add_resource(TemperaturesView, '/temperatures/sensor3',
-                 endpoint="temperatures/sensor3")
-api.add_resource(TemperatureView, '/temperature/sensor1',
-                 endpoint="temperature/sensor1")
-api.add_resource(TemperatureView, '/temperature/sensor2',
-                 endpoint="temperature/sensor2")
-api.add_resource(TemperatureView, '/temperature/sensor3',
-                 endpoint="temperature/sensor3")
-api.add_resource(TemperaturesDelete, '/deleteAll/sensor1',
-                 endpoint="deleteAll/sensor1")
-api.add_resource(TemperaturesDelete, '/deleteAll/sensor2',
-                 endpoint="deleteAll/sensor2")
-api.add_resource(TemperaturesDelete, '/deleteAll/sensor3',
-                 endpoint="deleteAll/sensor3")
+api.add_resource(TemperaturesView, '/temperatures/sensor1', endpoint = "temperatures/sensor1")
+api.add_resource(TemperaturesView, '/temperatures/sensor2', endpoint = "temperatures/sensor2")
+api.add_resource(TemperaturesView, '/temperatures/sensor3', endpoint = "temperatures/sensor3")
+api.add_resource(TemperatureView, '/temperature/sensor1', endpoint = "temperature/sensor1")
+api.add_resource(TemperatureView, '/temperature/sensor2', endpoint = "temperature/sensor2")
+api.add_resource(TemperatureView, '/temperature/sensor3', endpoint = "temperature/sensor3")
+api.add_resource(TemperaturesDelete, '/deleteAll/sensor1', endpoint = "deleteAll/sensor1")
+api.add_resource(TemperaturesDelete, '/deleteAll/sensor2', endpoint = "deleteAll/sensor2")
+api.add_resource(TemperaturesDelete, '/deleteAll/sensor3', endpoint = "deleteAll/sensor3")
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))

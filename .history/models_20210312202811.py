@@ -17,7 +17,6 @@ class TemperatureModelSensor1(db.Model):
     def json(self):
         return {'date': self.Date, 'temperature': self.temperature}
 
-
 class TemperatureModelSensor2(db.Model):
     __tablename__ = 'temperature_sensor2'
 
