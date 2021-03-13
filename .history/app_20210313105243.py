@@ -110,10 +110,6 @@ class TemperaturesDelete(Resource):
         else:
             return checkDict['text'], checkDict['status']
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 
 api.add_resource(TemperaturesView, '/temperatures/sensor1',
                  endpoint="temperatures/sensor1")

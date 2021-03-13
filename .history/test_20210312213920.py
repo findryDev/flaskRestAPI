@@ -10,7 +10,7 @@ for _ in range(25):
                 "temperature": symTemp}
     headers = {'APIkey': '1234'}
     r = requests.post('http://localhost:5432/temperatures',
-                      json=sendDate, headers={'keyApi': '1234'})
+                    json=sendDate, headers= {'keyApi': '1234'})
     print(r.text)
     print(r)
     time.sleep(10)

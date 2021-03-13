@@ -112,7 +112,7 @@ class TemperaturesDelete(Resource):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("web/index.html")
 
 
 api.add_resource(TemperaturesView, '/temperatures/sensor1',

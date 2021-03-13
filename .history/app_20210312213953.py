@@ -5,7 +5,6 @@ from models import db, TemperatureModelSensor1
 from models import TemperatureModelSensor2
 from models import TemperatureModelSensor3
 from flask_migrate import Migrate
-from flask import render_template
 from config import Config
 import os
 
@@ -109,10 +108,6 @@ class TemperaturesDelete(Resource):
             return f"number of delete rows: {delCount}"
         else:
             return checkDict['text'], checkDict['status']
-
-@app.route("/")
-def index():
-    return render_template("index.html")
 
 
 api.add_resource(TemperaturesView, '/temperatures/sensor1',

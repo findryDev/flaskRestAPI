@@ -5,7 +5,6 @@ from models import db, TemperatureModelSensor1
 from models import TemperatureModelSensor2
 from models import TemperatureModelSensor3
 from flask_migrate import Migrate
-from flask import render_template
 from config import Config
 import os
 
@@ -110,10 +109,6 @@ class TemperaturesDelete(Resource):
         else:
             return checkDict['text'], checkDict['status']
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 
 api.add_resource(TemperaturesView, '/temperatures/sensor1',
                  endpoint="temperatures/sensor1")
@@ -137,3 +132,4 @@ api.add_resource(TemperaturesDelete, '/deleteAll/sensor3',
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
     app.run(host='127.0.0.1', port=port)
+
