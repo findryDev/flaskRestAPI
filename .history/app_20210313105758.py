@@ -1,10 +1,11 @@
-from flask import Flask, request, render_template
+from flask import Flask, request
 from flask_restful import Api, Resource
 import sqlalchemy
 from models import db, TemperatureModelSensor1
 from models import TemperatureModelSensor2
 from models import TemperatureModelSensor3
 from flask_migrate import Migrate
+from flask import render_template
 from config import Config
 import os
 
