@@ -117,18 +117,15 @@ def index():
 @app.route("/web/temperature")
 def temperature():
     temperatureS1 = (TemperatureModelSensor1.
-                     query.order_by(sqlalchemy.desc(TemperatureModelSensor1.id)).first()).json()
+                     query.order_by(sqlalchemy.desc(TemperatureModelSensor1.id)).first())
     temperatureS2 = (TemperatureModelSensor2.
-                     query.order_by(sqlalchemy.desc(TemperatureModelSensor2.id)).first()).json()
+                     query.order_by(sqlalchemy.desc(TemperatureModelSensor2.id)).first())
     temperatureS3 = (TemperatureModelSensor3.
-                     query.order_by(sqlalchemy.desc(TemperatureModelSensor3.id)).first()).json()
+                     query.order_by(sqlalchemy.desc(TemperatureModelSensor3.id)).first())
     return render_template("temperature.html",
-                           temperatureS1=(f'{temperatureS1["date"]}:\
-                                           {temperatureS1["temperature"]}'),
-                           temperatureS2=(f'{temperatureS2["date"]}:\
-                                           {temperatureS2["temperature"]}'),
-                           temperatureS3=(f'{temperatureS3["date"]}:\
-                                           {temperatureS3["temperature"]}'))
+                            temperatureS1=temperatureS1,
+                            temperatureS2=temperatureS2,
+                            temperatureS3=temperatureS3)
 
 
 

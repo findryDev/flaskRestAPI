@@ -123,12 +123,10 @@ def temperature():
     temperatureS3 = (TemperatureModelSensor3.
                      query.order_by(sqlalchemy.desc(TemperatureModelSensor3.id)).first()).json()
     return render_template("temperature.html",
-                           temperatureS1=(f'{temperatureS1["date"]}:\
+                            temperatureS1=(f'{temperatureS1["date"]}:\
                                            {temperatureS1["temperature"]}'),
-                           temperatureS2=(f'{temperatureS2["date"]}:\
-                                           {temperatureS2["temperature"]}'),
-                           temperatureS3=(f'{temperatureS3["date"]}:\
-                                           {temperatureS3["temperature"]}'))
+                            temperatureS2=temperatureS2,
+                            temperatureS3=temperatureS3)
 
 
 
