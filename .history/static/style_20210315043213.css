@@ -10,7 +10,6 @@ body
     height: 80%;
     margin-right: auto;
     margin-left: auto;
-    background-color: rgb(18, 22, 83);
   }
 
 #title
@@ -20,9 +19,7 @@ body
     text-align: center;
     color: wheat;
     font-size: 35px;
-  }
+    background-color: rgb(18, 22, 83);
 
-.temperatureList
-{
-  float: left;
-}
+
+  }
