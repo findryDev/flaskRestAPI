@@ -140,6 +140,7 @@ def temperature():
                                            {temperatureS3["temperature"]}'))
 
 
+
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
                  endpoint="temperatures/sensor1")
 api.add_resource(TemperaturesView, '/api/temperatures/sensor2',
@@ -158,6 +159,8 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor2',
                  endpoint="deleteAll/sensor2")
 api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
                  endpoint="deleteAll/sensor3")
+
+
 
 
 if __name__ == '__main__':

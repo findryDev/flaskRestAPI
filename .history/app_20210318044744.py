@@ -160,6 +160,8 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
                  endpoint="deleteAll/sensor3")
 
 
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
     #app.run(host='192.168.0.2', port=port)

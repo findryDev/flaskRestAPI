@@ -123,14 +123,12 @@ def temperature():
                      query.order_by(sqlalchemy.
                                     desc(TemperatureModelSensor1.id)).first()).
                      json())
-    temperatureS2 = ((TemperatureModelSensor2.
+    temperatureS2 = (TemperatureModelSensor2.
                      query.order_by(sqlalchemy.
-                                    desc(TemperatureModelSensor2.id)).first()).
-                     json())
-    temperatureS3 = ((TemperatureModelSensor3.
+                                    desc(TemperatureModelSensor2.id)).first()).json()
+    temperatureS3 = (TemperatureModelSensor3.
                      query.order_by(sqlalchemy.
-                                    desc(TemperatureModelSensor3.id)).first()).
-                     json())
+                                    desc(TemperatureModelSensor3.id)).first()).json()
     return render_template("temperature.html",
                            temperatureS1=(f'{temperatureS1["date"]}:\
                                            {temperatureS1["temperature"]}'),
@@ -138,6 +136,7 @@ def temperature():
                                            {temperatureS2["temperature"]}'),
                            temperatureS3=(f'{temperatureS3["date"]}:\
                                            {temperatureS3["temperature"]}'))
+
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
@@ -158,6 +157,8 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor2',
                  endpoint="deleteAll/sensor2")
 api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
                  endpoint="deleteAll/sensor3")
+
+
 
 
 if __name__ == '__main__':

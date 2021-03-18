@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+import datetime as dt
 db = SQLAlchemy()
 
 
@@ -14,14 +15,14 @@ class TemperatureModelSensor1(db.Model):
         self.temperature = temperature
 
     def json(self):
-        return {'date': self.Date, 'temperature': self.temperature}
+        return {'date': self.Date.strftime('%d-%m-%y %I:%M %S %p'), 'temperature': self.temperature}
 
 
 class TemperatureModelSensor2(db.Model):
     __tablename__ = 'temperature_sensor2'
 
     id = db.Column(db.Integer, primary_key=True)
-    Date = db.Column(db.DateTime)
+    Date = db.Column(db.String)
     temperature = db.Column(db.Float)
 
     def __init__(self, DateTime, temperature) -> None:
@@ -36,7 +37,7 @@ class TemperatureModelSensor3(db.Model):
     __tablename__ = 'temperature_sensor3'
 
     id = db.Column(db.Integer, primary_key=True)
-    Date = db.Column(db.DateTime)
+    Date = db.Column(db.String)
     temperature = db.Column(db.Float)
 
     def __init__(self, DateTime, temperature) -> None:
