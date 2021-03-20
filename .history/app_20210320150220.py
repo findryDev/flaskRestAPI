@@ -34,7 +34,7 @@ class Apicheck:
 class TemperaturesView(Resource, Apicheck):
     def get(self):
 
-        checkDict = Apicheck.checkingApiKey()
+        checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             if request.endpoint == "temperatures/sensor1":
                 temperatures = TemperatureModelSensor1.query.all()

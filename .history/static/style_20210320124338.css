@@ -1,6 +1,7 @@
 body
   {
-    background-color: aquamarine;
+    background-image: url("../static/oriental-tiles.png");
+    background-repeat: repeat;
   }
 
 #container
@@ -29,5 +30,4 @@ body
 .squerTemp
 {
   float: left;
-  border: solid 1px;
 }

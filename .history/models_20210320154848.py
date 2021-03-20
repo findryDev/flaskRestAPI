@@ -45,8 +45,7 @@ class TemperatureModelSensor2(db.Model):
         self.temperature = temperature
 
     def json(self):
-        date = timeZoneConverting(self.Date)
-        return {'date': date, 'temperature': self.temperature}
+        return {'date': str(self.Date), 'temperature': self.temperature}
 
 
 class TemperatureModelSensor3(db.Model):
@@ -62,5 +61,4 @@ class TemperatureModelSensor3(db.Model):
         self.temperature = temperature
 
     def json(self):
-        date = timeZoneConverting(self.Date)
-        return {'date': date, 'temperature': self.temperature}
+        return {'date': str(self.Date), 'temperature': self.temperature}

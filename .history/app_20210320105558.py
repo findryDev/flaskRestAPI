@@ -18,7 +18,7 @@ migrate = Migrate(app, db, compare_type=True)
 
 
 class Apicheck:
-    def checkingApiKey():
+    def chekingApiKey():
         try:
             if request.headers['keyApi'] == Config.APIAUTH:
                 return {'check': True}
@@ -34,7 +34,7 @@ class Apicheck:
 class TemperaturesView(Resource, Apicheck):
     def get(self):
 
-        checkDict = Apicheck.checkingApiKey()
+        checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             if request.endpoint == "temperatures/sensor1":
                 temperatures = TemperatureModelSensor1.query.all()
@@ -53,7 +53,7 @@ class TemperaturesView(Resource, Apicheck):
 
     def post(self):
         # date format dd.mm.yyyy hh:mm:ss
-        checkDict = Apicheck.checkingApiKey()
+        checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             data = request.get_json(force=True)
             if request.endpoint == "temperatures/sensor1":
@@ -71,7 +71,7 @@ class TemperaturesView(Resource, Apicheck):
 
 class TemperatureView(Resource):
     def get(self):
-        checkDict = Apicheck.checkingApiKey()
+        checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             if request.endpoint == "temperature/sensor1":
                 temperature = TemperatureModelSensor1.query.order_by(
@@ -93,7 +93,7 @@ class TemperatureView(Resource):
 
 class TemperaturesDelete(Resource):
     def get(self):
-        checkDict = Apicheck.checkingApiKey()
+        checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             if request.endpoint == "deleteAll/sensor1":
                 delCount = db.session.query(TemperatureModelSensor1).delete()
@@ -157,5 +157,5 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
-    app.run(host='192.168.0.2', port=port)
-    #app.run(host='127.0.0.1', port=port)
+    #app.run(host='192.168.0.2', port=port)
+    app.run(host='127.0.0.1', port=port)

@@ -10,8 +10,8 @@ def timeZoneConverting(dateToConvert):
     from_zone = tz.gettz('UTC')
     to_zone = tz.gettz('Europe/Warsaw')
     utc = dateToConvert
-    utc = utc.replace(tzinfo=from_zone)
-    central = utc.astimezone(to_zone)
+    utc = datetime.datetime.utc.replace(tzinfo=from_zone)
+    central = datetime.datetime.utc.astimezone(to_zone)
     return str(central)
 
 
@@ -45,8 +45,7 @@ class TemperatureModelSensor2(db.Model):
         self.temperature = temperature
 
     def json(self):
-        date = timeZoneConverting(self.Date)
-        return {'date': date, 'temperature': self.temperature}
+        return {'date': str(self.Date), 'temperature': self.temperature}
 
 
 class TemperatureModelSensor3(db.Model):
@@ -62,5 +61,4 @@ class TemperatureModelSensor3(db.Model):
         self.temperature = temperature
 
     def json(self):
-        date = timeZoneConverting(self.Date)
-        return {'date': date, 'temperature': self.temperature}
+        return {'date': str(self.Date), 'temperature': self.temperature}
