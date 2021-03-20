@@ -65,7 +65,7 @@ class TemperaturesView(Resource, Apicheck):
                 new_temperature = TemperatureModelSensor3(data['temperature'])
             db.session.add(new_temperature)
             db.session.commit()
-            return {'temperature': data['temperature']}
+            return new_temperature.json()
         else:
             return checkDict['text'], checkDict['status']
 

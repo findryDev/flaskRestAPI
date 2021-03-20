@@ -15,9 +15,6 @@ class TemperatureModelSensor1(db.Model):
     def __init__(self, temperature) -> None:
         self.temperature = temperature
 
-    def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}
-
 
 class TemperatureModelSensor2(db.Model):
     __tablename__ = 'temperature_sensor2'
@@ -31,9 +28,6 @@ class TemperatureModelSensor2(db.Model):
     def __init__(self, temperature) -> None:
         self.temperature = temperature
 
-    def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}
-
 
 class TemperatureModelSensor3(db.Model):
     __tablename__ = 'temperature_sensor3'
@@ -46,6 +40,3 @@ class TemperatureModelSensor3(db.Model):
 
     def __init__(self, temperature) -> None:
         self.temperature = temperature
-
-    def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}

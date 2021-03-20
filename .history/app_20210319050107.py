@@ -57,15 +57,20 @@ class TemperaturesView(Resource, Apicheck):
         checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             data = request.get_json(force=True)
+            data.update({'DateTime': dt.datetime.now()})
             if request.endpoint == "temperatures/sensor1":
-                new_temperature = TemperatureModelSensor1(data['temperature'])
+                new_temperature = TemperatureModelSensor1(data['DateTime'],
+                                                          data['temperature'])
             if request.endpoint == "temperatures/sensor2":
-                new_temperature = TemperatureModelSensor2(data['temperature'])
+                new_temperature = TemperatureModelSensor2(data['DateTime'],
+                                                          data['temperature'])
             if request.endpoint == "temperatures/sensor3":
-                new_temperature = TemperatureModelSensor3(data['temperature'])
+                new_temperature = TemperatureModelSensor3(data['DateTime'],
+                                                          data['temperature'])
             db.session.add(new_temperature)
             db.session.commit()
-            return {'temperature': data['temperature']}
+            print(new_temperature)
+            return new_temperature.json()
         else:
             return checkDict['text'], checkDict['status']
 

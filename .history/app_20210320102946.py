@@ -84,9 +84,9 @@ class TemperatureView(Resource):
                 temperature = TemperatureModelSensor3.query.order_by(
                     sqlalchemy.desc(TemperatureModelSensor3.id)).first()
             dictDateTemp = {}
-            temporeDict = temperature.json()
-            dictDateTemp.update({temporeDict['date']:
-                                temporeDict['temperature']})
+            for e in temperature:
+                dictDateTemp.update({str(e.date):
+                                    e.temperature})
             return dictDateTemp
         else:
             return checkDict['text'], checkDict['status']

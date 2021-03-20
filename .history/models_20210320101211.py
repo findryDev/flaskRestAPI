@@ -16,7 +16,7 @@ class TemperatureModelSensor1(db.Model):
         self.temperature = temperature
 
     def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}
+        return {'date': self.Date, 'temperature': self.temperature}
 
 
 class TemperatureModelSensor2(db.Model):
@@ -28,11 +28,12 @@ class TemperatureModelSensor2(db.Model):
                      onupdate=datetime.datetime.utcnow)
     temperature = db.Column(db.Float)
 
-    def __init__(self, temperature) -> None:
+    def __init__(self, DateTime, temperature) -> None:
+        self.Date = DateTime
         self.temperature = temperature
 
     def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}
+        return {'date': self.Date, 'temperature': self.temperature}
 
 
 class TemperatureModelSensor3(db.Model):
@@ -44,8 +45,9 @@ class TemperatureModelSensor3(db.Model):
                      onupdate=datetime.datetime.utcnow)
     temperature = db.Column(db.Float)
 
-    def __init__(self, temperature) -> None:
+    def __init__(self, DateTime, temperature) -> None:
+        self.Date = DateTime
         self.temperature = temperature
 
     def json(self):
-        return {'date': str(self.Date), 'temperature': self.temperature}
+        return {'date': self.Date, 'temperature': self.temperature}

@@ -9,7 +9,8 @@ class TemperatureModelSensor1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Date = db.Column(db.DateTime,
                      default=datetime.datetime.utcnow,
-                     onupdate=datetime.datetime.utcnow)
+                     onupdate=datetime.datetime.utcnow,
+                     timezone=True)
     temperature = db.Column(db.Float)
 
     def __init__(self, temperature) -> None:

@@ -15,7 +15,7 @@ app.config.from_object('config.DevConfig')
 
 api = Api(app)
 db.init_app(app)
-migrate = Migrate(app, db, compare_type=True)
+migrate = Migrate(app, db, compare_typ=True)
 
 
 class Apicheck:
@@ -24,10 +24,10 @@ class Apicheck:
             if request.headers['keyApi'] == Config.APIAUTH:
                 return {'check': True}
             else:
-                return {'check': False, 'text': 'ACCESS DENY', 'status': 401}
+                return {'check': False, 'text': 'ACCESS DENY', 'status': 400}
         except KeyError as e:
             if e.args[0] == 'HTTP_KEYAPI':
-                return {'check': False, 'text': 'ACCESS DENY', 'status': 401}
+                return {'check': False, 'text': 'ACCESS DENY', 'status': 400}
             else:
                 return {'check': False, 'text': 'KEY ERROR', 'status': 400}
 
@@ -57,15 +57,19 @@ class TemperaturesView(Resource, Apicheck):
         checkDict = Apicheck.chekingApiKey()
         if checkDict['check']:
             data = request.get_json(force=True)
+            data.update({'DateTime': dt.datetime.now()})
             if request.endpoint == "temperatures/sensor1":
-                new_temperature = TemperatureModelSensor1(data['temperature'])
+                new_temperature = TemperatureModelSensor1(data['DateTime'],
+                                                          data['temperature'])
             if request.endpoint == "temperatures/sensor2":
-                new_temperature = TemperatureModelSensor2(data['temperature'])
+                new_temperature = TemperatureModelSensor2(data['DateTime'],
+                                                          data['temperature'])
             if request.endpoint == "temperatures/sensor3":
-                new_temperature = TemperatureModelSensor3(data['temperature'])
+                new_temperature = TemperatureModelSensor3(data['DateTime'],
+                                                          data['temperature'])
             db.session.add(new_temperature)
             db.session.commit()
-            return {'temperature': data['temperature']}
+            return new_temperature.json()
         else:
             return checkDict['text'], checkDict['status']
 
