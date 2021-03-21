@@ -12,7 +12,7 @@ def timeZoneConverting(dateToConvert):
     utc = dateToConvert
     utc = utc.replace(tzinfo=from_zone)
     central = utc.astimezone(to_zone)
-    return central.strftime("%d-%m-%y %H:%M:%S")
+    return datetime.datetime.strftime
 
 
 class TemperatureModelSensor1(db.Model):

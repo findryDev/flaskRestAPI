@@ -1,6 +1,7 @@
 body
   {
-    background-color: rgb(255, 253, 127);
+    background-color: gray;
+    color: black;
   }
 
 #container
@@ -9,7 +10,7 @@ body
     height: 80%;
     margin-right: auto;
     margin-left: auto;
-    background-color: rgb(18, 22, 83);
+    border: solid 1px;
   }
 
 #title
@@ -17,8 +18,8 @@ body
     width: 100%;
     height: 40px;
     text-align: center;
-    color: rgb(0, 0, 0);
     font-size: 35px;
+    border: solid 1px;
   }
 
 .temperatureList
@@ -30,6 +31,7 @@ body
 {
   float: left;
   border: solid 1px;
-  width: 33%;
+  width: 33,3%;
   height: 80%;
+  border: solid 1px;
 }

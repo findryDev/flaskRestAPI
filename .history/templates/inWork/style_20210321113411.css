@@ -1,6 +1,7 @@
 body
   {
-    background-color: rgb(255, 253, 127);
+    background-color: gray;
+    color: black;
   }
 
 #container
