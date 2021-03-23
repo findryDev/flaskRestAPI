@@ -10,26 +10,14 @@
 </head>
 <body>
     <div id="title">Pomiar temperatury kotła CO</div>
-    <div class="squerTemp">temperatureS1 </br>
-        {% for key, value in temperatureS1.items() %}
-        {{key}} : {{value}}
-        {% endfor %}
-    </div>
-    <div class="squerTemp">temperatureS2 </br>
-        {% for key, value in temperatureS2.items() %}
-        {{key}} : {{value}}
-        {% endfor %}
-    </div>
-    <div class="squerTemp">temperatureS3 </br>
-        {% for key, value in temperatureS3.items() %}
-        {{key}} : {{value}}
-        {% endfor %}
-    </div>
+    <div class="squerTemp">temperatureS1 </br> {{temperatureS1 }} </div>
+    <div class="squerTemp">temperatureS2 </br> {{temperatureS2}}</div>
+    <div class="squerTemp">temperatureS3 </br>  {{temperatureS3}}</div>
 
 
     <div class="squerTemp">
         {% for key, value in temperaturesS1.items() %}
-        {{key}} {{value}}
+        {{key}}{{value}}
         </br>
         {% endfor %}
     </div>
@@ -43,10 +31,9 @@
 
     <div class="squerTemp">
         {% for key, value in temperaturesS3.items() %}
-        {{key}} {{value}}
-        </br>
+        {{key}}{{value}}
         {% endfor %}
-
+        </br>
     </div>
 
 

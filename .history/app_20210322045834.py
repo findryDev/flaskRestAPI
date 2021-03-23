@@ -113,41 +113,36 @@ def index():
 
 @app.route("/web/temperature")
 def temperature():
-    def getLastRecordToDict(tempModel):
-        temperature = ((tempModel.
-                        query.order_by(sqlalchemy.
-                        desc(tempModel.id)).first()).
-                        json())
-        return temperature
+    temperatureS1 = ((TemperatureModelSensor1.
+                     query.order_by(sqlalchemy.
+                                    desc(TemperatureModelSensor1.id)).first()).
+                     json())
+    temperatureS2 = ((TemperatureModelSensor2.
+                     query.order_by(sqlalchemy.
+                                    desc(TemperatureModelSensor2.id)).first()).
+                     json())
+    temperatureS3 = ((TemperatureModelSensor3.
+                     query.order_by(sqlalchemy.
+                                    desc(TemperatureModelSensor3.id)).first()).
+                     json())
 
-    def getLastFiveRecordToDict(tempModel):
-        temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
-                                desc(tempModel.id)).limit(5).all()))
-        temperatureLastFive.reverse()
-        dictDateTemp = {}
-        for x in temperatureLastFive:
-            temporeDict = x.json()
-            dictDateTemp.update(
-                {temporeDict['date']: temporeDict['temperature']})
-        return dictDateTemp
-
-    temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
-    temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
-    temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
-
-    temperaturesS1 = getLastFiveRecordToDict(TemperatureModelSensor1)
-    temperaturesS2 = getLastFiveRecordToDict(TemperatureModelSensor2)
-    temperaturesS3 = getLastFiveRecordToDict(TemperatureModelSensor3)
-
-
+    temperatureS1LastFive = ((TemperatureModelSensor1.query.order_by(sqlalchemy.
+                             desc(TemperatureModelSensor1.id)).limit(5).all()))
+    temperatureS1LastFive.reverse()
+    dictDateTemp = {}
+    for x in temperatureS1LastFive:
+        temporeDict = x.json()
+        dictDateTemp.update(
+            {temporeDict['date']: temporeDict['temperature']})
+    for key in  dictDateTemp:
+        print(key)
     return render_template("temperature.html",
-                           temperatureS1 = temperatureS1,
-                           temperatureS2 = temperatureS2,
-                           temperatureS3 = temperatureS3,
-                           temperaturesS1 = temperaturesS1,
-                           temperaturesS2 = temperaturesS2,
-                           temperaturesS3 = temperaturesS3)
-
+                           temperatureS1=(f'{temperatureS1["date"]}:\
+                                           {temperatureS1["temperature"]}'),
+                           temperatureS2=(f'{temperatureS2["date"]}:\
+                                           {temperatureS2["temperature"]}'),
+                           temperatureS3=(f'{temperatureS3["date"]}:\
+                                           {temperatureS3["temperature"]}'))
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',

@@ -119,7 +119,7 @@ def temperature():
                         desc(tempModel.id)).first()).
                         json())
         return temperature
-
+    
     def getLastFiveRecordToDict(tempModel):
         temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
                                 desc(tempModel.id)).limit(5).all()))
@@ -130,24 +130,23 @@ def temperature():
             dictDateTemp.update(
                 {temporeDict['date']: temporeDict['temperature']})
         return dictDateTemp
-
+    
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
-
+    
     temperaturesS1 = getLastFiveRecordToDict(TemperatureModelSensor1)
     temperaturesS2 = getLastFiveRecordToDict(TemperatureModelSensor2)
     temperaturesS3 = getLastFiveRecordToDict(TemperatureModelSensor3)
-
+    
 
     return render_template("temperature.html",
-                           temperatureS1 = temperatureS1,
-                           temperatureS2 = temperatureS2,
-                           temperatureS3 = temperatureS3,
-                           temperaturesS1 = temperaturesS1,
-                           temperaturesS2 = temperaturesS2,
-                           temperaturesS3 = temperaturesS3)
-
+                           temperatureS1=(f'{temperatureS1["date"]}\n\
+                                           {temperatureS1["temperature"]}'),
+                           temperatureS2=(f'{temperatureS2["date"]}\n\
+                                           {temperatureS2["temperature"]}'),
+                           temperatureS3=(f'{temperatureS3["date"]}\n\
+                                           {temperatureS3["temperature"]}'))
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',

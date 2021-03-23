@@ -141,13 +141,12 @@ def temperature():
 
 
     return render_template("temperature.html",
-                           temperatureS1 = temperatureS1,
-                           temperatureS2 = temperatureS2,
-                           temperatureS3 = temperatureS3,
-                           temperaturesS1 = temperaturesS1,
-                           temperaturesS2 = temperaturesS2,
-                           temperaturesS3 = temperaturesS3)
-
+                           temperatureS1=(f'{temperatureS1["date"]}\n\
+                                           {temperatureS1["temperature"]}'),
+                           temperatureS2=(f'{temperatureS2["date"]}\n\
+                                           {temperatureS2["temperature"]}'),
+                           temperatureS3=(f'{temperatureS3["date"]}\n\
+                                           {temperatureS3["temperature"]}'))
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
