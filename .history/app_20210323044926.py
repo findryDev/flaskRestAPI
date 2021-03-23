@@ -120,9 +120,9 @@ def temperature():
                         json())
         return temperature
 
-    def getLastRecordsToDict(tempModel, howMany):
+    def getLastFiveRecordToDict(tempModel):
         temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
-                                desc(tempModel.id)).limit(howMany).all()))
+                                desc(tempModel.id)).limit(5).all()))
         temperatureLastFive.reverse()
         dictDateTemp = {}
         for x in temperatureLastFive:
@@ -135,9 +135,9 @@ def temperature():
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
 
-    temperaturesS1 = getLastRecordsToDict(TemperatureModelSensor1, 10)
-    temperaturesS2 = getLastRecordsToDict(TemperatureModelSensor2, 10)
-    temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
+    temperaturesS1 = getLastFiveRecordToDict(TemperatureModelSensor1)
+    temperaturesS2 = getLastFiveRecordToDict(TemperatureModelSensor2)
+    temperaturesS3 = getLastFiveRecordToDict(TemperatureModelSensor3)
 
 
     return render_template("temperature.html",
