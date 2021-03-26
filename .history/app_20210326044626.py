@@ -142,8 +142,8 @@ def temperature():
             x.append(m.Date)
             y.append(m.temperature)
         return x,y
-    print(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
 
+    print(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
 
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
@@ -154,7 +154,7 @@ def temperature():
     temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
 
 
-    bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
+    #bokeh_plot(temperaturesS1)
 
 
     return render_template("temperature.html",

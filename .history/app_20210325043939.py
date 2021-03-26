@@ -6,7 +6,6 @@ from models import TemperatureModelSensor2
 from models import TemperatureModelSensor3
 from flask_migrate import Migrate
 from config import Config
-from plot import bokeh_plot
 import os
 
 
@@ -118,7 +117,7 @@ def temperature():
         temperature = ((tempModel.
                        query.order_by(sqlalchemy.
                         desc(tempModel.id)).first()).
-                       json())
+                        json())
         return temperature
 
     def getLastRecordsToDict(tempModel, howMany):
@@ -132,19 +131,6 @@ def temperature():
                 {temporeDict['date']: temporeDict['temperature']})
         return dictDateTemp
 
-    def getLastRecordsToPlotData(tempModel, howMany):
-        temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
-                                desc(tempModel.id)).limit(howMany).all()))
-        temperatureLastFive.reverse()
-        x = []
-        y = []
-        for m in temperatureLastFive:
-            x.append(m.Date)
-            y.append(m.temperature)
-        return x,y
-    print(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
-
-
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
@@ -152,9 +138,6 @@ def temperature():
     temperaturesS1 = getLastRecordsToDict(TemperatureModelSensor1, 10)
     temperaturesS2 = getLastRecordsToDict(TemperatureModelSensor2, 10)
     temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
-
-
-    bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
 
 
     return render_template("temperature.html",

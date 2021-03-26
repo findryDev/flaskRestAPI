@@ -132,17 +132,6 @@ def temperature():
                 {temporeDict['date']: temporeDict['temperature']})
         return dictDateTemp
 
-    def getLastRecordsToPlotData(tempModel, howMany):
-        temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
-                                desc(tempModel.id)).limit(howMany).all()))
-        temperatureLastFive.reverse()
-        x = []
-        y = []
-        for m in temperatureLastFive:
-            x.append(m.Date)
-            y.append(m.temperature)
-        return x,y
-    print(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
 
 
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
@@ -153,8 +142,9 @@ def temperature():
     temperaturesS2 = getLastRecordsToDict(TemperatureModelSensor2, 10)
     temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
 
+    print(temperatureS1)
 
-    bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
+    #bokeh_plot(temperaturesS1)
 
 
     return render_template("temperature.html",

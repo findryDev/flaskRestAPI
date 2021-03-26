@@ -143,7 +143,7 @@ def temperature():
             y.append(m.temperature)
         return x,y
     print(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
-
+)
 
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
