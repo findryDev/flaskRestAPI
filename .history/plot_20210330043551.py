@@ -30,4 +30,6 @@ def bokeh_plot(tupleData):
 
     script, div = components(p)
 
-    return script, div, CDN.js_files
+    return script, div, CDN.css_files, CDN.js_files
+
+print(bokeh_plot(data))

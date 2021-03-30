@@ -152,7 +152,9 @@ def temperature():
     temperaturesS2 = getLastRecordsToDict(TemperatureModelSensor2, 10)
     temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
 
-    script,div,cdn = bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
+    script, div, CDN = bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10))
+
+
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,
@@ -162,8 +164,7 @@ def temperature():
                            temperaturesS2=temperaturesS2,
                            temperaturesS3=temperaturesS3,
                            div=div,
-                           script=script,
-                           cdn=cdn[0])
+                           script=script)
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
