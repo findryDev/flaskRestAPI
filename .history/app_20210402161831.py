@@ -141,6 +141,7 @@ def temperature():
               TemperatureModelSensor3]
     legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
 
+
     scriptsDiv = []
     scriptsDiv.append(bokeh_plot([TemperatureModelSensor1], 100, ["Sensor1"],
                                  "Temperature sensor 1", colors=['blue']))
@@ -149,8 +150,7 @@ def temperature():
     scriptsDiv.append(bokeh_plot([TemperatureModelSensor3], 100, ["Sensor3"],
                                  "Temperature sensor 3", colors=['yellow']))
     scriptsDiv.append(bokeh_plot(models, 100, legendLabels,
-                                 "All sensors temperature",
-                                 colors=['blue', 'green', 'yellow']))
+                                 "All sensors temperature", colors=['blue','green', 'yellow']))
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,

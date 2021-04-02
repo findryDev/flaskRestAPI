@@ -25,20 +25,17 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
-               x_axis_type='datetime')
+               x_axis_type='datetime',
+               title_text_font_size = '8pt')
     p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(minutes=["%H:%M"],
                                               hours=["%H"])
     i = 0
     for e in y:
-        p.title.text = titles
-        p.title.text_font_size = "25px"
-        p.xaxis.axis_label_text_font_size = "20px"
-        p.yaxis.axis_label_text_font_size = "20px"
-        p.line(x[0], e, legend_label=legend_labels[i],
-               line_width=2,
-               color=colors[i])
+
+        p.title = titles
+        p.line(x[0], e, legend_label=legend_labels[i], line_width=2, color=colors[i])
         i += 1
 
     '''

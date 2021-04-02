@@ -6,6 +6,22 @@ from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
 
+Plot property title_text_font_size was deprecated in 0.12.0 and will be removed. As of bokeh version 0.12.0, one should use Plot.title.text_font_size instead. Updated example is below:
+
+
+
+bp.output_notebook()
+
+x_points = np.random.rand(100)
+y_points = np.random.rand(100)
+
+p = bp.figure(title='My Title', x_axis_label='X axis', y_axis_label='Y axis')
+
+p.title.text_font_size = '8pt'
+
+p.scatter(x_points, y_points)
+bp.show(p)
+You can change the font size of axis labels similarly:
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
     x = []
@@ -32,13 +48,9 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
                                               hours=["%H"])
     i = 0
     for e in y:
-        p.title.text = titles
-        p.title.text_font_size = "25px"
-        p.xaxis.axis_label_text_font_size = "20px"
-        p.yaxis.axis_label_text_font_size = "20px"
-        p.line(x[0], e, legend_label=legend_labels[i],
-               line_width=2,
-               color=colors[i])
+        p.title.text_font_size = '8pt'
+        p.title = titles
+        p.line(x[0], e, legend_label=legend_labels[i], line_width=2, color=colors[i])
         i += 1
 
     '''

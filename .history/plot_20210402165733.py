@@ -34,11 +34,7 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
     for e in y:
         p.title.text = titles
         p.title.text_font_size = "25px"
-        p.xaxis.axis_label_text_font_size = "20px"
-        p.yaxis.axis_label_text_font_size = "20px"
-        p.line(x[0], e, legend_label=legend_labels[i],
-               line_width=2,
-               color=colors[i])
+        p.line(x[0], e, legend_label=legend_labels[i], line_width=2, color=colors[i])
         i += 1
 
     '''
