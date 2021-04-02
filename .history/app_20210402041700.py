@@ -145,10 +145,10 @@ def temperature():
               TemperatureModelSensor3]
     titles = ["Sensor1", "Sensor2", "Sensor3"]
     scriptsDiv = []
-    scriptsDiv.append(bokeh_plot([TemperatureModelSensor1], 10, ["Sensor1"]))
+    scriptsDiv.append(bokeh_plot([TemperatureModelSensor1], 100, ["Sensor1"]))
     scriptsDiv.append(bokeh_plot([TemperatureModelSensor2], 100, ["Sensor2"]))
-    scriptsDiv.append(bokeh_plot([TemperatureModelSensor3], 10, ["Sensor3"]))
-    scriptsDiv.append(bokeh_plot(models, 50, titles))
+    scriptsDiv.append(bokeh_plot([TemperatureModelSensor3], 100, ["Sensor3"]))
+    scriptsDiv.append(bokeh_plot(models, 100, titles))
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,
@@ -165,7 +165,7 @@ def temperature():
                            script2=scriptsDiv[1][0],
                            script3=scriptsDiv[2][0],
                            scriptAll=scriptsDiv[3][0],
-                           cdn=CDN_js())
+                           cdn=CDN_js)
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
@@ -191,4 +191,4 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
     app.run(host='192.168.0.2', port=port)
-    # app.run(host='127.0.0.1', port=port)
+#app.run(host='127.0.0.1', port=port)

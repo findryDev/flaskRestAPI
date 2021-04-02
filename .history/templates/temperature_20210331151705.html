@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
-    {{script1 | safe}}
-    {{script2 | safe}}
-    {{script3 | safe}}
-    {{scriptAll | safe}}
+    {{script | safe}}
     {% for c in cdn %}
     <script src="{{c | safe}}"></script>
     {% endfor %}
     <title>Document</title>
+
+
 </head>
 <body>
     <div id="title">Pomiar temperatury kotła CO</div>
@@ -34,10 +33,7 @@
     </div>
     <div class="squerTemp"><div class="squerTempTitle">esp2688 info</div><div class=squerTempCont>espeContent</div></div>
     <div style="clear:both"></div>
-    {{div1 | safe}}
-    {{div2 | safe}}
-    {{div3 | safe}}
-    {{divAll | safe}}
+    {{div | safe}}
 
 </body>
 

@@ -29,7 +29,8 @@ def bokeh_plot(listOfModels, howMany, titles):
     p.title = "simple line example"
     p.sizing_mode = "stretch_width"
     p.plot_height = 400
-    p.xaxis.formatter = DatetimeTickFormatter(minutes=["%H:%M"],
+    p.xaxis.formatter = DatetimeTickFormatter(seconds=["%S"],
+                                              minutes=["%M"],
                                               hours=["%H"])
     i = 0
     for e in y:

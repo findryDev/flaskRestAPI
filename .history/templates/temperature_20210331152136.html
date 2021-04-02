@@ -12,11 +12,13 @@
     {{script1 | safe}}
     {{script2 | safe}}
     {{script3 | safe}}
-    {{scriptAll | safe}}
+
     {% for c in cdn %}
     <script src="{{c | safe}}"></script>
     {% endfor %}
     <title>Document</title>
+
+
 </head>
 <body>
     <div id="title">Pomiar temperatury kotła CO</div>
@@ -37,7 +39,6 @@
     {{div1 | safe}}
     {{div2 | safe}}
     {{div3 | safe}}
-    {{divAll | safe}}
 
 </body>
 

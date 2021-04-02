@@ -19,9 +19,9 @@ def bokeh_plot(listOfModels, howMany, titles):
         for m in lastsElements:
             dates.append(m.Date)
             temperatures.append(m.temperature)
-        if len(x) < howMany:
-            x.append(dates)
-        y.append(temperatures)
+    if len(x) < howMany:
+        x.append(dates)
+    y.append(temperatures)
 
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
@@ -29,24 +29,17 @@ def bokeh_plot(listOfModels, howMany, titles):
     p.title = "simple line example"
     p.sizing_mode = "stretch_width"
     p.plot_height = 400
-    p.xaxis.formatter = DatetimeTickFormatter(minutes=["%H:%M"],
-                                              hours=["%H"])
+    p.xaxis.formatter = DatetimeTickFormatter(seconds=["%M:%S"],
+                                              minutes=["%M:%S"],
+                                              minsec=["%M:%S"],
+                                              hours=["%M:%S"])
+
     i = 0
     for e in y:
+        p.children.append(line(x[0], e, legend_label=titles[i], line_width=2))
         p.line(x[0], e, legend_label=titles[i], line_width=2)
-        i += 1
+        i = i+1
 
-    '''
-    if len(listOfModels) == 1:
-        p.line(x[0], y[0], legend_label=titles[0], line_width=2)
-    elif len(listOfModels) == 2:
-        p.line(x[0], y[0], legend_label=titles[0], line_width=2)
-        p.line(x[0], y[1], legend_label=titles[0], line_width=2)
-    elif len(listOfModels) == 3:
-        p.line(x[0], y[0], legend_label=titles[0], line_width=2)
-        p.line(x[0], y[1], legend_label=titles[1], line_width=2)
-        p.line(x[0], y[2], legend_label=titles[2], line_width=2)
-    '''
     curdoc().theme = 'dark_minimal'
     curdoc().add_root(p)
     script, div = components(p)

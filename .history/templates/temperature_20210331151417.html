@@ -9,35 +9,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
-    {{script1 | safe}}
-    {{script2 | safe}}
-    {{script3 | safe}}
-    {{scriptAll | safe}}
+    {{script | safe}}
     {% for c in cdn %}
     <script src="{{c | safe}}"></script>
     {% endfor %}
     <title>Document</title>
+
+
 </head>
 <body>
     <div id="title">Pomiar temperatury kotła CO</div>
     <div class="squerTemp">
         <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor1</div>
-        <div class=squerTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
+        <div class=squerTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}&#8451</div>
     </div>
-    <div class="squerTemp">
-        <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor2</div>
-        <div class=squerTempCont>{{temperatureS2.date}}</br>{{temperatureS2.temperature}}<span>&#8451;</span></div>
-    </div>
-        <div class="squerTemp">
-        <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor3</div>
-        <div class=squerTempCont>{{temperatureS3.date}}</br>{{temperatureS3.temperature}}<span>&#8451;</span></div>
-    </div>
+    <div class="squerTemp"><div class="squerTempTitle"><i class="icon-thermometer"></i> sensor2</div><div class=squerTempCont>{{temperatureS2}}</div></div>
+    <div class="squerTemp"><div class="squerTempTitle"><i class="icon-thermometer"></i> sensor3</div><div class=squerTempCont>{{temperatureS3}}</div></div>
     <div class="squerTemp"><div class="squerTempTitle">esp2688 info</div><div class=squerTempCont>espeContent</div></div>
     <div style="clear:both"></div>
-    {{div1 | safe}}
-    {{div2 | safe}}
-    {{div3 | safe}}
-    {{divAll | safe}}
+    {{div | safe}}
 
 </body>
 

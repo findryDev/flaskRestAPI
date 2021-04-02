@@ -6,7 +6,7 @@ from models import TemperatureModelSensor2
 from models import TemperatureModelSensor3
 from flask_migrate import Migrate
 from config import Config
-from plot import bokeh_plot, CDN_js
+from plot import bokeh_plot
 import os
 
 
@@ -132,6 +132,18 @@ def temperature():
                 {temporeDict['date']: temporeDict['temperature']})
         return dictDateTemp
 
+    def getLastRecordsToPlotData(tempModel, howMany):
+        temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
+                                desc(tempModel.id)).limit(howMany).all()))
+        temperatureLastFive.reverse()
+        x = []
+        y = []
+        for m in temperatureLastFive:
+            x.append(m.Date)
+            y.append(m.temperature)
+        return x, y
+
+
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
@@ -140,15 +152,11 @@ def temperature():
     temperaturesS2 = getLastRecordsToDict(TemperatureModelSensor2, 10)
     temperaturesS3 = getLastRecordsToDict(TemperatureModelSensor3, 10)
 
-    models = [TemperatureModelSensor1,
-              TemperatureModelSensor2,
-              TemperatureModelSensor3]
-    titles = ["Sensor1", "Sensor2", "Sensor3"]
+
+
     scriptsDiv = []
-    scriptsDiv.append(bokeh_plot([TemperatureModelSensor1], 10, ["Sensor1"]))
-    scriptsDiv.append(bokeh_plot([TemperatureModelSensor2], 100, ["Sensor2"]))
-    scriptsDiv.append(bokeh_plot([TemperatureModelSensor3], 10, ["Sensor3"]))
-    scriptsDiv.append(bokeh_plot(models, 50, titles))
+    scriptsDiv.append(bokeh_plot(getLastRecordsToPlotData(TemperatureModelSensor1, 10)))
+
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,
@@ -157,15 +165,17 @@ def temperature():
                            temperaturesS1=temperaturesS1,
                            temperaturesS2=temperaturesS2,
                            temperaturesS3=temperaturesS3,
-                           div1=scriptsDiv[0][1],
+                           div=scriptsDiv[0][1],
+                           '''
                            div2=scriptsDiv[1][1],
-                           div3=scriptsDiv[2][1],
-                           divAll=scriptsDiv[3][1],
-                           script1=scriptsDiv[0][0],
+                           div3=scriptsDiv[2][1]
+                           ''',
+                           script=scriptsDiv[0][0],
+                           '''
                            script2=scriptsDiv[1][0],
                            script3=scriptsDiv[2][0],
-                           scriptAll=scriptsDiv[3][0],
-                           cdn=CDN_js())
+                           '''
+                           cdn=scriptsDiv[0][2])
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
@@ -191,4 +201,4 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))
     app.run(host='192.168.0.2', port=port)
-    # app.run(host='127.0.0.1', port=port)
+    #app.run(host='127.0.0.1', port=port)
