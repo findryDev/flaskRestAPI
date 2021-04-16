@@ -32,6 +32,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+    #correct time zone in labels
     x = []
     y = []
     for e in listOfModels:
@@ -88,3 +89,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+

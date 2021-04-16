@@ -5,13 +5,7 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
-import pytz
-local_tz = pytz.timezone('Europe/Warsaw')
-
-
-def utc_to_local(utc_dt):
-    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+import datetime
 
 
 def reduceTimePause(x, y):
@@ -21,7 +15,7 @@ def reduceTimePause(x, y):
     newListStart = 0
 
     for i in range(len(x)-1):
-        if (abs((x[i+1] - x[i]).total_seconds())) > 60*60*2:
+        if (abs((x[i+1] - x[i]).total_seconds())) > 60*60*24:
             newListStart = i + 1
 
     for k in range(newListStart, len(x)):
@@ -32,6 +26,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+
     x = []
     y = []
     for e in listOfModels:
@@ -41,22 +36,21 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
         dates = []
         temperatures = []
         for m in lastsElements:
-            dates.append(utc_to_local(m.Date))
+            dates.append(m.Date)
             temperatures.append(m.temperature)
-        dates, temperatures = reduceTimePause(dates, temperatures)
-
         if len(x) < howMany:
             x.append(dates)
         y.append(temperatures)
+
+    x,y = reduceTimePause(x,y)
 
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
     p.sizing_mode = "stretch_width"
     p.plot_height = 400
-    p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
-                                              minutes=["%H:%M"]
-                                              )
+    p.xaxis.formatter = DatetimeTickFormatter(minutes=["%H:%M"],
+                                              hours=["%H"])
     i = 0
     for e in y:
         p.title.text = titles

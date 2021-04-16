@@ -5,13 +5,7 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
-import pytz
-local_tz = pytz.timezone('Europe/Warsaw')
-
-
-def utc_to_local(utc_dt):
-    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+import datetime
 
 
 def reduceTimePause(x, y):
@@ -32,6 +26,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+
     x = []
     y = []
     for e in listOfModels:
@@ -41,7 +36,7 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
         dates = []
         temperatures = []
         for m in lastsElements:
-            dates.append(utc_to_local(m.Date))
+            dates.append(m.Date)
             temperatures.append(m.temperature)
         dates, temperatures = reduceTimePause(dates, temperatures)
 
@@ -88,3 +83,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+

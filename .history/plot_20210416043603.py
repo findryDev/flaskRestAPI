@@ -5,13 +5,14 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
+import datetime
 import pytz
 local_tz = pytz.timezone('Europe/Warsaw')
 
 
 def utc_to_local(utc_dt):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+    return local_tz.normalize(local_dt) # .normalize might be unnecessary
 
 
 def reduceTimePause(x, y):
@@ -32,6 +33,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+    #correct time zone in labels
     x = []
     y = []
     for e in listOfModels:
@@ -57,7 +59,6 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
                                               )
-    i = 0
     for e in y:
         p.title.text = titles
         p.title.text_font_size = "25px"
@@ -88,3 +89,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+

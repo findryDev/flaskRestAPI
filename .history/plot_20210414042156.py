@@ -5,33 +5,36 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
-import pytz
-local_tz = pytz.timezone('Europe/Warsaw')
+import datetime
 
 
-def utc_to_local(utc_dt):
-    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+def reduceTimePause(x,y):
+
+newListDate= []
+newListTemp= []
 
 
-def reduceTimePause(x, y):
-    newListDate = []
-    newListTemp = []
+newListStart = 0
+dateList = [datetime.date(2021 ,4 ,11), datetime.date(2021, 4, 12),
+            datetime.date(2021,4,18), datetime.date(2021,4,19),
+            datetime.date(2021,4,20), datetime.date(2021,4,21),
+            datetime.date(2021,4,24), datetime.date(2021,4,25),
+            datetime.date(2021,4,26), datetime.date(2021,4,27)]
+tempList = [12,23,25,27,14,31, 18, 19, 22, 23]
 
-    newListStart = 0
 
-    for i in range(len(x)-1):
-        if (abs((x[i+1] - x[i]).total_seconds())) > 60*60*2:
-            newListStart = i + 1
+for i in range(len(dateList)-1):
+    if (abs((dateList[i+1] - dateList[i]).total_seconds())) > 86400:
+        newListStart = i + 1
 
-    for k in range(newListStart, len(x)):
-        newListDate.append(x[k])
-        newListTemp.append(y[k])
+for k in range(newListStart,len(dateList)):
+    newListDate.append(dateList[k])
+    newListTemp.append(tempList[k])
 
-    return newListDate, newListTemp
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+
     x = []
     y = []
     for e in listOfModels:
@@ -41,22 +44,21 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
         dates = []
         temperatures = []
         for m in lastsElements:
-            dates.append(utc_to_local(m.Date))
+            dates.append(m.Date)
             temperatures.append(m.temperature)
-        dates, temperatures = reduceTimePause(dates, temperatures)
-
         if len(x) < howMany:
             x.append(dates)
         y.append(temperatures)
+
+
 
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
     p.sizing_mode = "stretch_width"
     p.plot_height = 400
-    p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
-                                              minutes=["%H:%M"]
-                                              )
+    p.xaxis.formatter = DatetimeTickFormatter(minutes=["%H:%M"],
+                                              hours=["%H"])
     i = 0
     for e in y:
         p.title.text = titles

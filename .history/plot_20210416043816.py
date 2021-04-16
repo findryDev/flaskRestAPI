@@ -88,3 +88,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+

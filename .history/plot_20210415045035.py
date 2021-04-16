@@ -5,13 +5,29 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
-import pytz
-local_tz = pytz.timezone('Europe/Warsaw')
+import datetime
 
+from datetime import datetime
+from pytz import timezone
+format = "%Y-%m-%d %H:%M:%S %Z%z"
+# Current time in UTC
+now_utc = datetime.now(timezone('UTC'))
+print(now_utc.strftime(format))
+# Convert to Asia/Kolkata time zone
+now_asia = now_utc.astimezone(timezone('Asia/Kolkata'))
+print(now_asia.strftime(format))
 
-def utc_to_local(utc_dt):
-    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+IST = pytz.timezone('Europe/Warsaw')
+now = dt.datetime.now(IST)
+
+IST = pytz.timezone('Europe/Warsaw')
+now = dt.datetime.now(IST)
+i = dt.datetime(hour=hour, minute=0, second=0,
+                    year=dt.datetime.now().year,
+                    month=dt.datetime.now().month,
+                    day=dt.datetime.now().day) + dt.timedelta(days=1)
+    i = pytz.timezone('Europe/Warsaw').localize(i)
+    return (int((i - now).total_seconds()))
 
 
 def reduceTimePause(x, y):
@@ -32,6 +48,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+    #correct time zone in labels
     x = []
     y = []
     for e in listOfModels:
@@ -41,7 +58,7 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
         dates = []
         temperatures = []
         for m in lastsElements:
-            dates.append(utc_to_local(m.Date))
+            dates.append(m.Date)
             temperatures.append(m.temperature)
         dates, temperatures = reduceTimePause(dates, temperatures)
 
@@ -88,3 +105,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+

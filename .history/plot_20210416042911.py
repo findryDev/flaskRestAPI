@@ -5,13 +5,13 @@ from bokeh.embed import components
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter
 import sqlalchemy
+import datetime
 import pytz
 local_tz = pytz.timezone('Europe/Warsaw')
 
-
 def utc_to_local(utc_dt):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt)
+    return local_tz.normalize(local_dt) # .normalize might be unnecessary
 
 
 def reduceTimePause(x, y):
@@ -32,6 +32,7 @@ def reduceTimePause(x, y):
 
 
 def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
+    #correct time zone in labels
     x = []
     y = []
     for e in listOfModels:
@@ -41,7 +42,8 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
         dates = []
         temperatures = []
         for m in lastsElements:
-            dates.append(utc_to_local(m.Date))
+            print(m.Date)
+            dates.append(m.Date)
             temperatures.append(m.temperature)
         dates, temperatures = reduceTimePause(dates, temperatures)
 
@@ -58,12 +60,13 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
                                               minutes=["%H:%M"]
                                               )
     i = 0
+    xLocal = [utc_to_local(e) for e in x]
     for e in y:
         p.title.text = titles
         p.title.text_font_size = "25px"
         p.xaxis.axis_label_text_font_size = "20px"
         p.yaxis.axis_label_text_font_size = "20px"
-        p.line(x[0], e, legend_label=legend_labels[i],
+        p.line(xLocal[0], e, legend_label=legend_labels[i],
                line_width=2,
                color=colors[i])
         i += 1
@@ -88,3 +91,4 @@ def bokeh_plot(listOfModels, howMany, legend_labels, titles, colors):
 
 def CDN_js():
     return CDN.js_files
+
