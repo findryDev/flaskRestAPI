@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5;url=/web/temperature">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <title>Document</title>
+    {{script}}
+</head>
+<body>
+    <div id="title">Pomiar temperatury kotła CO</div>
+    <div class="squerTemp">temperatureS1 </br>
+        {% for key, value in temperatureS1.items() %}
+        {{key}} : {{value}}
+        {% endfor %}
+    </div>
+    <div class="squerTemp">temperatureS2 </br>
+        {% for key, value in temperatureS2.items() %}
+        {{key}} : {{value}}
+        {% endfor %}
+    </div>
+    <div class="squerTemp">temperatureS3 </br>
+        {% for key, value in temperatureS3.items() %}
+        {{key}} : {{value}}
+        {% endfor %}
+    </div>
+
+
+    <div class="squerTemp">
+        {% for key, value in temperaturesS1.items() %}
+        {{key}} {{value}}
+        </br>
+        {% endfor %}
+    </div>
+
+    <div class="squerTemp">
+        {% for key, value in temperaturesS2.items() %}
+        {{key}} {{value}}
+        <br>
+        {% endfor %}
+    </div>
+
+    <div class="squerTemp">
+        {% for key, value in temperaturesS3.items() %}
+        {{key}} {{value}}
+        </br>
+        {% endfor %}
+
+    </div>
+
+
+    <div style="clear:both"></d>
+    {{div}}
+
+</body>
+
+</html>

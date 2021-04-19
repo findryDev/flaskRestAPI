@@ -1,0 +1,13 @@
+body
+  {
+    background-image: url("https://cdn.pixabay.com/photo/2016/08/02/07/45/the-polygon-1562743_960_720.jpg");
+  }
+
+  #container
+  {
+    width: 80%;
+    height: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
