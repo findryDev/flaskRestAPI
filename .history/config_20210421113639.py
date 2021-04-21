@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.env'))
 
-#raspiCongif SQLite
+
 class Config:
-    SQLALCHEMY_DATABASE_URI =f"sqlite:///{getenv('DATABASE')}.db"
+    SQLALCHEMY_DATABASE_URI =
 
     """f'postgresql://{getenv("DBUSERNAME")}:'\
                             f'{getenv("PASSWORD")}@'\
