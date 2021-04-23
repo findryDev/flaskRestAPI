@@ -7,7 +7,9 @@ from models import TemperatureModelSensor3
 from flask_migrate import Migrate
 from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
+import pytz
 import os
+import datetime
 
 
 app = Flask(__name__)
@@ -114,6 +116,12 @@ def index():
 
 @app.route("/web/temperature")
 def temperature():
+    start = datetime.datetime.now()
+    local_tz = pytz.timezone('Europe/Warsaw')
+
+    def utc_to_local(utc_dt):
+        local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
+        return local_tz.normalize(local_dt)
 
     def getLastRecordToDict(tempModel):
         temperature = ((tempModel.
@@ -130,6 +138,7 @@ def temperature():
     temperatureS1['date'] = temperatureS1['date'].strftime(dataFormat)
     temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
     temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
+    startD = datetime.datetime.now()
     howMany = 100
     temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
                      desc(TemperatureModelSensor1.id)).limit(howMany).all())
@@ -146,6 +155,7 @@ def temperature():
     temperaturesALL = [temperatures1, temperatures2, temperatures3]
 
     legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
+    print(f'data fetch time: {datetime.datetime.now()-startD}')
     scriptsDiv = []
     scriptsDiv.append(bokeh_plot(query=temperatures1,
                                  legend_label="Temperature sensor 1",
@@ -163,6 +173,7 @@ def temperature():
                                   legend_labels=legendLabels,
                                   titles="All sensors temperature",
                                   colors=['blue', 'green', 'yellow']))
+    print(datetime.datetime.now()-start)
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,

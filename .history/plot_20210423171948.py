@@ -10,7 +10,6 @@ import datetime as dt
 
 local_tz = pytz.timezone('Europe/Warsaw')
 
-
 def utc_to_local(utc_dt):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
     return local_tz.normalize(local_dt)
@@ -35,6 +34,7 @@ def reduceTimePause(x, y):
 
 def bokeh_plot(query, legend_label, title, color):
     reset_output()
+    start = dt.datetime.now()
     dates = []
     temperatures = []
     for m in query:
@@ -61,11 +61,13 @@ def bokeh_plot(query, legend_label, title, color):
     curdoc().theme = 'dark_minimal'
     curdoc().add_root(p)
     script, div = components(p)
+    print(f'plot make time: {dt.datetime.now()-start}')
     return script, div
 
 
 def bokeh_plots(queries, legend_labels, titles, colors):
     reset_output()
+    start = dt.datetime.now()
     x = []
     y = []
     for q in queries:
@@ -101,6 +103,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     curdoc().theme = 'dark_minimal'
     curdoc().add_root(p)
     script, div = components(p)
+    print(f'plots make time: {dt.datetime.now()-start}')
     return script, div
 
 

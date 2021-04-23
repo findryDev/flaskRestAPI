@@ -8,6 +8,7 @@ from flask_migrate import Migrate
 from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
 import os
+import datetime
 
 
 app = Flask(__name__)
