@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- -->
-    <meta http-equiv="refresh" content="5;url=/web/temperature">
+    <meta http-equiv="refresh" content="30;url=/web/temperature">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="container">
-    <div id="title">Pomiar temperatury kotła CO</div>
+    <div> id="title">Pomiar temperatury kotła CO</div>
     <div class="squerTemp">
         <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor1</div>
         <div class=squerTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
@@ -36,10 +36,10 @@
     </div>
     <div class="squerTemp"><div class="squerTempTitle">esp2688 info</div><div class=squerTempCont>espeContent</div></div>
     <div style="clear:both"></div>
-    <div class='plot'>{{div1 | safe}}</div>
-    <div class='plot'>{{div2 | safe}}</div>
-    <div class='plot'>{{div3 | safe}}</div>
-    <div class='plot'>{{divAll | safe}}</div>
+    <div id='plot1'>{{div1 | safe}}</div>
+    <div id='plot2'>{{div2 | safe}}</div>
+    <div id='plot3'>{{div3 | safe}}</div>
+    <div id='plot4'>{{divAll | safe}}</div>
     </div>
 </body>
 

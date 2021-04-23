@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 import datetime
 import pytz
 
+
 local_tz = pytz.timezone('Europe/Warsaw')
 db = SQLAlchemy()
 
@@ -9,6 +10,7 @@ db = SQLAlchemy()
 def utc_to_local(utc_dt):
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
     return local_tz.normalize(local_dt)
+
 
 
 class TemperatureModelSensor1(db.Model):

@@ -82,7 +82,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
-    p.sizing_mode = 'scale_width'
+    p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]

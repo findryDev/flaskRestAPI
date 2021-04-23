@@ -126,6 +126,7 @@ def temperature():
         local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
         return local_tz.normalize(local_dt)
 
+
     def getLastRecordToDict(tempModel):
         temperature = ((tempModel.
                        query.order_by(sqlalchemy.
@@ -137,10 +138,7 @@ def temperature():
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
 
-    dataFormat = '%d-%m-%Y %H:%M:%S'
-    temperatureS1['date'] = temperatureS1['date'].strftime(dataFormat)
-    temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
-    temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
+    print(temperatureS1)
 
     howMany = 100
     temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
@@ -177,7 +175,7 @@ def temperature():
                                   titles="All sensors temperature",
                                   colors=['blue', 'green', 'yellow']))
     print(datetime.datetime.now()-start)
-
+    dataFormat = '%d.%m.%Y %H:%M:%S,%f'
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,
                            temperatureS2=temperatureS2,

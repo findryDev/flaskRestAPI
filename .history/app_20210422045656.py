@@ -9,7 +9,6 @@ from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
 import pytz
 import os
-import datetime
 
 
 app = Flask(__name__)
@@ -119,12 +118,27 @@ def index():
 
 @app.route("/web/temperature")
 def temperature():
-    start = datetime.datetime.now()
     local_tz = pytz.timezone('Europe/Warsaw')
 
     def utc_to_local(utc_dt):
         local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
         return local_tz.normalize(local_dt)
+
+    def reduceTimePause(x, y):
+        newListDate = []
+        newListTemp = []
+
+        newListStart = 0
+
+        for i in range(len(x)-1):
+            if (abs((x[i+1] - x[i]).total_seconds())) > 60*60*2:
+                newListStart = i + 1
+
+        for k in range(newListStart, len(x)):
+            newListDate.append(x[k])
+            newListTemp.append(y[k])
+
+        return newListDate, newListTemp
 
     def getLastRecordToDict(tempModel):
         temperature = ((tempModel.
@@ -133,27 +147,33 @@ def temperature():
                        json())
         return temperature
 
+    def getLastRecordsToDict(tempModel, howMany):
+        temperatureLastFive = ((tempModel.query.order_by(sqlalchemy.
+                                desc(tempModel.id)).limit(howMany).all()))
+        temperatureLastFive.reverse()
+        dictDateTemp = {}
+        for x in temperatureLastFive:
+            temporeDict = x.json()
+            dictDateTemp.update(
+                {temporeDict['date']: temporeDict['temperature']})
+        return dictDateTemp
+
     temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
     temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
     temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
 
-    dataFormat = '%d-%m-%Y %H:%M:%S'
-    temperatureS1['date'] = temperatureS1['date'].strftime(dataFormat)
-    temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
-    temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
-
     howMany = 100
-    temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
-                     desc(TemperatureModelSensor1.id)).limit(howMany).all())
-    temperatures1.reverse()
+    temperatures1 = TemperatureModelSensor1.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor1.id)).limit(howMany).all()
+    temperatures1.order_by(sqlalchemy.asc(TemperatureModelSensor1.id))
 
-    temperatures2 = (TemperatureModelSensor2.query.order_by(sqlalchemy.
-                     desc(TemperatureModelSensor2.id)).limit(howMany).all())
-    temperatures2.reverse()
+    temperatures2 = TemperatureModelSensor2.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor2.id)).limit(howMany).all()
+    temperatures2.order_by(sqlalchemy.asc(TemperatureModelSensor2.id))
 
-    temperatures3 = (TemperatureModelSensor3.query.order_by(sqlalchemy.
-                     desc(TemperatureModelSensor3.id)).limit(howMany).all())
-    temperatures3.reverse()
+    temperatures3 = TemperatureModelSensor3.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor3.id)).limit(howMany).all()
+    temperatures3.order_by(sqlalchemy.asc(TemperatureModelSensor3.id))
 
     temperaturesALL = [temperatures1, temperatures2, temperatures3]
 
@@ -161,22 +181,21 @@ def temperature():
 
     scriptsDiv = []
     scriptsDiv.append(bokeh_plot(query=temperatures1,
-                                 legend_label="Temperature sensor 1",
+                                 legendLabel="Temperature sensor 1",
                                  title="Sensor 1",
                                  color='blue'))
     scriptsDiv.append(bokeh_plot(query=temperatures2,
-                                 legend_label="Temperature sensor 2",
+                                 legendLabel="Temperature sensor 2",
                                  title="Sensor 2",
-                                 color='green'))
+                                 colors='green'))
     scriptsDiv.append(bokeh_plot(query=temperatures3,
-                                 legend_label="Temperature sensor3",
+                                 legendLabel="Temperature sensor3",
                                  title="Sensor 3",
-                                 color='yellow'))
+                                 colors='yellow'))
     scriptsDiv.append(bokeh_plots(queries=temperaturesALL,
-                                  legend_labels=legendLabels,
+                                  legendLabels=legendLabels,
                                   titles="All sensors temperature",
                                   colors=['blue', 'green', 'yellow']))
-    print(datetime.datetime.now()-start)
 
     return render_template("temperature.html",
                            temperatureS1=temperatureS1,

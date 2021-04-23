@@ -11,6 +11,7 @@ def utc_to_local(utc_dt):
     return local_tz.normalize(local_dt)
 
 
+
 class TemperatureModelSensor1(db.Model):
     __tablename__ = 'temperature_sensor1'
 

@@ -43,7 +43,7 @@ def bokeh_plot(query, legend_label, title, color):
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
-    p.sizing_mode = 'scale_width'
+    p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
@@ -63,11 +63,10 @@ def bokeh_plot(query, legend_label, title, color):
     return script, div
 
 
-def bokeh_plots(queries, legend_labels, titles, colors):
+def bokeh_plots(queries, legend_label, titles, colors):
     x = []
     y = []
     for q in queries:
-
         queries.reverse()
         dates = []
         temperatures = []
@@ -82,7 +81,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
-    p.sizing_mode = 'scale_width'
+    p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
@@ -92,7 +91,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
         p.title.text_font_size = "25px"
         p.xaxis.axis_label_text_font_size = "20px"
         p.yaxis.axis_label_text_font_size = "20px"
-        p.line(x[0], y[i], legend_label=legend_labels[i],
+        p.line(dates, temperatures, legend_label=legend_labels[i],
                line_width=2,
                color=colors[i])
 

@@ -142,6 +142,7 @@ def temperature():
     temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
     temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
 
+
     howMany = 100
     temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
                      desc(TemperatureModelSensor1.id)).limit(howMany).all())

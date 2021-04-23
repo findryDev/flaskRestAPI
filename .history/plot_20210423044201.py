@@ -43,7 +43,7 @@ def bokeh_plot(query, legend_label, title, color):
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
-    p.sizing_mode = 'scale_width'
+    p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
@@ -54,7 +54,8 @@ def bokeh_plot(query, legend_label, title, color):
     p.yaxis.axis_label_text_font_size = "20px"
     p.line(dates, temperatures, legend_label=legend_label,
            line_width=2,
-           color=color)
+           color=color,
+           sizing_mode='scale_width')
 
     curdoc().theme = 'dark_minimal'
     curdoc().add_root(p)
@@ -66,6 +67,7 @@ def bokeh_plot(query, legend_label, title, color):
 def bokeh_plots(queries, legend_labels, titles, colors):
     x = []
     y = []
+    plotsData = []
     for q in queries:
 
         queries.reverse()
@@ -82,7 +84,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     p = figure(x_axis_label='time',
                y_axis_label='temperature',
                x_axis_type='datetime')
-    p.sizing_mode = 'scale_width'
+    p.sizing_mode = "stretch_width"
     p.plot_height = 400
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
