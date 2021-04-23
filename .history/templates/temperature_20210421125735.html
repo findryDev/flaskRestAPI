@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- -->
+    <meta http-equiv="refresh" content="30;url=/web/temperature">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+    {{script1 | safe}}
+    {{script2 | safe}}
+    {{script3 | safe}}
+    {{scriptAll | safe}}
+    {% for c in cdn %}
+    <script src="{{c | safe}}"></script>
+    {% endfor %}
+    <title>Kocioł CO</title>
+</head>
+<body>
+    <div id="container">
+    <div id="title">Pomiar temperatury kotła CO</div>
+    <div class="squerTemp">
+        <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor1</div>
+        <div class=squerTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
+    </div>
+    <div class="squerTemp">
+        <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor2</div>
+        <div class=squerTempCont>{{temperatureS2.date}}</br>{{temperatureS2.temperature}}<span>&#8451;</span></div>
+    </div>
+        <div class="squerTemp">
+        <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor3</div>
+        <div class=squerTempCont>{{temperatureS3.date}}</br>{{temperatureS3.temperature}}<span>&#8451;</span></div>
+    </div>
+    <div class="squerTemp"><div class="squerTempTitle">esp2688 info</div><div class=squerTempCont>espeContent</div></div>
+    <div style="clear:both"></div>
+    <div class='plot'>{{div1 | safe}}</div>
+    <div class='plot'>{{div2 | safe}}</div>
+    <div class='plot'>{{div3 | safe}}</div>
+    <div class='plot'>{{divAll | safe}}</div>
+    </div>
+</body>
+
+</html>
