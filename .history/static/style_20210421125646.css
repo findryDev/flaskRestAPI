@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body
   {
     background-color: gray;
@@ -52,4 +53,60 @@ body
   width: 100%;
   height: 50%;
   padding-top: 0%;
+=======
+body
+  {
+    background-color: gray;
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+    min-width: 800px;
+  }
+
+#plot
+  {
+    width: 90%;
+  }
+
+#container
+  {
+    width: 80%;
+    height: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    border: solid 1px;
+  }
+
+#title
+  {
+    width: 100%;
+    height: 65px;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 70px;
+  }
+
+.temperatureList
+{
+  float: left;
+}
+
+.squerTemp
+{
+  float: left;
+  width: 25%;
+  height: 80%;
+  text-align: center;
+}
+
+.squerTempTitle{
+  width: 100%;
+  height: 50%;
+  font-weight: bold;
+}
+
+.squerTempCont{
+  width: 100%;
+  height: 50%;
+  padding-top: 0%;
+>>>>>>> 0b75138e047af14274c183f7e76284f83985dc5d
 }
