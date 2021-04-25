@@ -10,18 +10,15 @@ from plot import bokeh_plot,  bokeh_plots, CDN_js
 import logging
 import os
 
-# create a custom logger for
+#create a custom logger for
 
 loggerError = logging.getLogger('flaskErr')
 loggerError.setLevel(logging.ERROR)
-loggerRequests = logging.getLogger('flaskRequests')
-loggerRequests.setLevel(logging.DEBUG)
 
 
-# create handlers
+#create handlers
 
-file_handler_err = logging.FileHandler('flaskErr.log')
-file_handler_deb = logging.FileHandler('flaskDeb.log')
+file_handler = logging.FileHandler('flaskErr.log')
 
 # create formatters and it to handlers
 
@@ -29,17 +26,13 @@ error_format = logging.Formatter('%(levelname)s'
                                  ' - %(asctime)s'
                                  ' - %(message)s'
                                  ' - %(name)s')
-file_handler_err.setFormatter(error_format)
-
-deb_format = logging.Formatter(' - %(asctime)s'
-                               ' - %(message)s'
-                               ' - %(name)s')
-file_handler_deb.setFormatter(deb_format)
+file_handler.setFormatter(error_format)
 
 # add handler to the logger
 
-loggerError.addHandler(file_handler_err)
-loggerRequests.addHandler(file_handler_deb)
+loggerError.addHandler(file_handler)
+
+
 
 
 app = Flask(__name__)
@@ -146,74 +139,69 @@ def index():
 
 @app.route("/web/temperature")
 def temperature():
-    try:
-        def getLastRecordToDict(tempModel):
-            temperature = ((tempModel.
-                           query.order_by(sqlalchemy.
-                            desc(tempModel.id)).first()).
-                           json())
-            return temperature
 
-        temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
-        temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
-        temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
+    def getLastRecordToDict(tempModel):
+        temperature = ((tempModel.
+                       query.order_by(sqlalchemy.
+                        desc(tempModel.id)).first()).
+                       json())
+        return temperature
 
-        dataFormat = '%d-%m-%Y %H:%M:%S'
-        temperatureS1['date'] = temperatureS1['date'].strftime(dataFormat)
-        temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
-        temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
-        howMany = 100
-        temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor1.id)).limit(howMany).all()
-                         )
-        temperatures1.reverse()
+    temperatureS1 = getLastRecordToDict(TemperatureModelSensor1)
+    temperatureS2 = getLastRecordToDict(TemperatureModelSensor2)
+    temperatureS3 = getLastRecordToDict(TemperatureModelSensor3)
 
-        temperatures2 = (TemperatureModelSensor2.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor2.id)).limit(howMany).all()
-                         )
-        temperatures2.reverse()
+    dataFormat = '%d-%m-%Y %H:%M:%S'
+    temperatureS1['date'] = temperatureS1['date'].strftime(dataFormat)
+    temperatureS2['date'] = temperatureS2['date'].strftime(dataFormat)
+    temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
+    howMany = 100
+    temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor1.id)).limit(howMany).all())
+    temperatures1.reverse()
 
-        temperatures3 = (TemperatureModelSensor3.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor3.id)).limit(howMany).all()
-                         )
-        temperatures3.reverse()
+    temperatures2 = (TemperatureModelSensor2.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor2.id)).limit(howMany).all())
+    temperatures2.reverse()
 
-        temperaturesALL = [temperatures1, temperatures2, temperatures3]
+    temperatures3 = (TemperatureModelSensor3.query.order_by(sqlalchemy.
+                     desc(TemperatureModelSensor3.id)).limit(howMany).all())
+    temperatures3.reverse()
 
-        legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
-        scriptsDiv = []
-        scriptsDiv.append(bokeh_plot(query=temperatures1,
-                                     legend_label="Temperature sensor 1",
-                                     title="Sensor 1",
-                                     color='blue'))
-        scriptsDiv.append(bokeh_plot(query=temperatures2,
-                                     legend_label="Temperature sensor 2",
-                                     title="Sensor 2",
-                                     color='green'))
-        scriptsDiv.append(bokeh_plot(query=temperatures3,
-                                     legend_label="Temperature sensor3",
-                                     title="Sensor 3",
-                                     color='yellow'))
-        scriptsDiv.append(bokeh_plots(queries=temperaturesALL,
-                                      legend_labels=legendLabels,
-                                      titles="All sensors temperature",
-                                      colors=['blue', 'green', 'yellow']))
-        loggerRequests.debug('flask requests')
-        return render_template("temperature.html",
-                               temperatureS1=temperatureS1,
-                               temperatureS2=temperatureS2,
-                               temperatureS3=temperatureS3,
-                               div1=scriptsDiv[0][1],
-                               div2=scriptsDiv[1][1],
-                               div3=scriptsDiv[2][1],
-                               divAll=scriptsDiv[3][1],
-                               script1=scriptsDiv[0][0],
-                               script2=scriptsDiv[1][0],
-                               script3=scriptsDiv[2][0],
-                               scriptAll=scriptsDiv[3][0],
-                               cdn=CDN_js())
-    except Exception as e:
-        loggerError.error(f'flask error: {e}')
+    temperaturesALL = [temperatures1, temperatures2, temperatures3]
+
+    legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
+    scriptsDiv = []
+    scriptsDiv.append(bokeh_plot(query=temperatures1,
+                                 legend_label="Temperature sensor 1",
+                                 title="Sensor 1",
+                                 color='blue'))
+    scriptsDiv.append(bokeh_plot(query=temperatures2,
+                                 legend_label="Temperature sensor 2",
+                                 title="Sensor 2",
+                                 color='green'))
+    scriptsDiv.append(bokeh_plot(query=temperatures3,
+                                 legend_label="Temperature sensor3",
+                                 title="Sensor 3",
+                                 color='yellow'))
+    scriptsDiv.append(bokeh_plots(queries=temperaturesALL,
+                                  legend_labels=legendLabels,
+                                  titles="All sensors temperature",
+                                  colors=['blue', 'green', 'yellow']))
+
+    return render_template("temperature.html",
+                           temperatureS1=temperatureS1,
+                           temperatureS2=temperatureS2,
+                           temperatureS3=temperatureS3,
+                           div1=scriptsDiv[0][1],
+                           div2=scriptsDiv[1][1],
+                           div3=scriptsDiv[2][1],
+                           divAll=scriptsDiv[3][1],
+                           script1=scriptsDiv[0][0],
+                           script2=scriptsDiv[1][0],
+                           script3=scriptsDiv[2][0],
+                           scriptAll=scriptsDiv[3][0],
+                           cdn=CDN_js())
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',

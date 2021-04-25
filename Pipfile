@@ -11,11 +11,11 @@ flask-sqlalchemy = "*"
 flake8 = "*"
 pylint = "*"
 requests = "*"
-gunicorn = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
 flask-migrate = "*"
 bokeh = "*"
+uwsgi = "*"
 
 [requires]
 python_version = "3.8"

@@ -10,7 +10,7 @@ from plot import bokeh_plot,  bokeh_plots, CDN_js
 import logging
 import os
 
-# create a custom logger for
+#create a custom logger for
 
 loggerError = logging.getLogger('flaskErr')
 loggerError.setLevel(logging.ERROR)
@@ -18,7 +18,7 @@ loggerRequests = logging.getLogger('flaskRequests')
 loggerRequests.setLevel(logging.DEBUG)
 
 
-# create handlers
+#create handlers
 
 file_handler_err = logging.FileHandler('flaskErr.log')
 file_handler_deb = logging.FileHandler('flaskDeb.log')
@@ -164,18 +164,15 @@ def temperature():
         temperatureS3['date'] = temperatureS3['date'].strftime(dataFormat)
         howMany = 100
         temperatures1 = (TemperatureModelSensor1.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor1.id)).limit(howMany).all()
-                         )
+                        desc(TemperatureModelSensor1.id)).limit(howMany).all())
         temperatures1.reverse()
 
         temperatures2 = (TemperatureModelSensor2.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor2.id)).limit(howMany).all()
-                         )
+                        desc(TemperatureModelSensor2.id)).limit(howMany).all())
         temperatures2.reverse()
 
         temperatures3 = (TemperatureModelSensor3.query.order_by(sqlalchemy.
-                         desc(TemperatureModelSensor3.id)).limit(howMany).all()
-                         )
+                        desc(TemperatureModelSensor3.id)).limit(howMany).all())
         temperatures3.reverse()
 
         temperaturesALL = [temperatures1, temperatures2, temperatures3]
@@ -183,22 +180,22 @@ def temperature():
         legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
         scriptsDiv = []
         scriptsDiv.append(bokeh_plot(query=temperatures1,
-                                     legend_label="Temperature sensor 1",
-                                     title="Sensor 1",
-                                     color='blue'))
+                                    legend_label="Temperature sensor 1",
+                                    title="Sensor 1",
+                                    color='blue'))
         scriptsDiv.append(bokeh_plot(query=temperatures2,
-                                     legend_label="Temperature sensor 2",
-                                     title="Sensor 2",
-                                     color='green'))
+                                    legend_label="Temperature sensor 2",
+                                    title="Sensor 2",
+                                    color='green'))
         scriptsDiv.append(bokeh_plot(query=temperatures3,
-                                     legend_label="Temperature sensor3",
-                                     title="Sensor 3",
-                                     color='yellow'))
+                                    legend_label="Temperature sensor3",
+                                    title="Sensor 3",
+                                    color='yellow'))
         scriptsDiv.append(bokeh_plots(queries=temperaturesALL,
-                                      legend_labels=legendLabels,
-                                      titles="All sensors temperature",
-                                      colors=['blue', 'green', 'yellow']))
-        loggerRequests.debug('flask requests')
+                                    legend_labels=legendLabels,
+                                    titles="All sensors temperature",
+                                    colors=['blue', 'green', 'yellow']))
+
         return render_template("temperature.html",
                                temperatureS1=temperatureS1,
                                temperatureS2=temperatureS2,

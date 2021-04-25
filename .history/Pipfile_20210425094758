@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+flask-restful = "*"
+flask-sqlalchemy = "*"
+flake8 = "*"
+pylint = "*"
+requests = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
+flask-migrate = "*"
+bokeh = "*"
+uwsgi = "*"
+
+[requires]
+python_version = "3.8"
