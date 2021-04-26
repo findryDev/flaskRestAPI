@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="5;url=/web/COtemperature">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+
     <title>WSCHODNIA4</title>
 
 </head>
 <body>
-    <div id="container">
-        <div id="title">Wschodnia 4</div>
-        <div id="main">
-            <div class="temperatureList">
-                <ul>
-                    <li><a href="web/temperature"> Piec CO temperatury</a></li>
-                    <li><a href="#"> placeholder 1</a></li>
-                    <li><a href="#"> placeholder 2</a></li>
-                </ul>
-            </div>
-            <div class="temperatureList">
-                <ul>
-                    <li><a href="#"> placeholder 1</a></li>
-                    <li><a href="#"> placeholder 2</a></li>
-                    <li><a href="#"> placeholder 3</a></li>
-                </ul>
-            </div>
-            <div style="clear:both"></div>
+    <div class="container">
+        <div class="title">Wschodnia 4</div>
+        <div class="main">
+            <a href="web/COtemperature"> <div class="mainLink">Piec CO temperatury</div></a>
+            <a href="web/homeTemperature"><div class="mainLink">Temperatura w domu</div> </a>
         </div>
     </div>
 </body>
