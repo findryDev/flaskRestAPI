@@ -66,77 +66,88 @@ class Apicheck:
 
 class TemperaturesView(Resource, Apicheck):
     def get(self):
-        checkDict = Apicheck.checkingApiKey()
-        if checkDict['check']:
-            if request.endpoint == "temperatures/sensor1":
-                temperatures = TemperatureModelSensor1.query.all()
-            if request.endpoint == "temperatures/sensor2":
-                temperatures = TemperatureModelSensor2.query.all()
-            if request.endpoint == "temperatures/sensor3":
-                temperatures = TemperatureModelSensor3.query.all()
-            dictDateTemp = {}
-            for x in temperatures:
-                temporeDict = x.json()
-                dictDateTemp.update(
-                    {temporeDict['date']: temporeDict['temperature']})
-            return dictDateTemp
-        else:
-            return checkDict['text'], checkDict['status']
+        try:
+            checkDict = Apicheck.checkingApiKey()
+            if checkDict['check']:
+                if request.endpoint == "temperatures/sensor1":
+                    temperatures = TemperatureModelSensor1.query.all()
+                if request.endpoint == "temperatures/sensor2":
+                    temperatures = TemperatureModelSensor2.query.all()
+                if request.endpoint == "temperatures/sensor3":
+                    temperatures = TemperatureModelSensor3.query.all()
+                dictDateTemp = {}
+                for x in temperatures:
+                    dictDateTemp.update(
+                        {str(x.Date) : x.temperature})
+                loggerRequests.debug('flaskAPI GET requests')
+                return dictDateTemp
+            else:
+                loggerRequests.debug('flaskAPI GET access deny')
+                return checkDict['text'], checkDict['status']
+        except Exception as e:
+            loggerError.error(f'flaskAPI error: {e}')
 
     def post(self):
-        # date format dd.mm.yyyy hh:mm:ss
-        checkDict = Apicheck.checkingApiKey()
-        if checkDict['check']:
-            data = request.get_json(force=True)
-            if request.endpoint == "temperatures/sensor1":
-                new_temperature = TemperatureModelSensor1(data['temperature'])
-            if request.endpoint == "temperatures/sensor2":
-                new_temperature = TemperatureModelSensor2(data['temperature'])
-            if request.endpoint == "temperatures/sensor3":
-                new_temperature = TemperatureModelSensor3(data['temperature'])
-            db.session.add(new_temperature)
-            db.session.commit()
-            return {'temperature': data['temperature']}
-        else:
-            return checkDict['text'], checkDict['status']
+        try:
+            # date format dd.mm.yyyy hh:mm:ss
+            checkDict = Apicheck.checkingApiKey()
+            if checkDict['check']:
+                data = request.get_json(force=True)
+                if request.endpoint == "temperatures/sensor1":
+                    new_temperature = TemperatureModelSensor1(data['temperature'])
+                if request.endpoint == "temperatures/sensor2":
+                    new_temperature = TemperatureModelSensor2(data['temperature'])
+                if request.endpoint == "temperatures/sensor3":
+                    new_temperature = TemperatureModelSensor3(data['temperature'])
+                db.session.add(new_temperature)
+                db.session.commit()
+                return {'temperature': data['temperature']}
+            else:
+                return checkDict['text'], checkDict['status']
+        except Exception as e:
+            loggerError.error(f'flaskAPI error: {e}')
 
 
 class TemperatureView(Resource):
     def get(self):
-        checkDict = Apicheck.checkingApiKey()
-        if checkDict['check']:
-            if request.endpoint == "temperature/sensor1":
-                temperature = TemperatureModelSensor1.query.order_by(
-                    sqlalchemy.desc(TemperatureModelSensor1.id)).first()
-            if request.endpoint == "temperature/sensor2":
-                temperature = TemperatureModelSensor2.query.order_by(
-                    sqlalchemy.desc(TemperatureModelSensor2.id)).first()
-            if request.endpoint == "temperature/sensor3":
-                temperature = TemperatureModelSensor3.query.order_by(
-                    sqlalchemy.desc(TemperatureModelSensor3.id)).first()
-            dictDateTemp = {}
-            temporeDict = temperature.json()
-            dictDateTemp.update({temporeDict['date']:
-                                temporeDict['temperature']})
-            return dictDateTemp
-        else:
-            return checkDict['text'], checkDict['status']
+        try:
+            checkDict = Apicheck.checkingApiKey()
+            if checkDict['check']:
+                if request.endpoint == "temperature/sensor1":
+                    temperature = TemperatureModelSensor1.query.order_by(
+                        sqlalchemy.desc(TemperatureModelSensor1.id)).first()
+                if request.endpoint == "temperature/sensor2":
+                    temperature = TemperatureModelSensor2.query.order_by(
+                        sqlalchemy.desc(TemperatureModelSensor2.id)).first()
+                if request.endpoint == "temperature/sensor3":
+                    temperature = TemperatureModelSensor3.query.order_by(
+                        sqlalchemy.desc(TemperatureModelSensor3.id)).first()
+                loggerRequests.debug('flaskAPI GET one request')
+                return {str(temperature.Date) : temperature.temperature}
+            else:
+                loggerRequests.debug('flaskAPI GET access deny')
+                return checkDict['text'], checkDict['status']
+        except Exception as e:
+            loggerError.error(f'flaskAPI error: {e}')
 
 
 class TemperaturesDelete(Resource):
     def get(self):
-        checkDict = Apicheck.checkingApiKey()
-        if checkDict['check']:
-            if request.endpoint == "deleteAll/sensor1":
-                delCount = db.session.query(TemperatureModelSensor1).delete()
-            if request.endpoint == "deleteAll/sensor2":
-                delCount = db.session.query(TemperatureModelSensor2).delete()
-            if request.endpoint == "deleteAll/sensor3":
-                delCount = db.session.query(TemperatureModelSensor3).delete()
-            db.session.commit()
-            return f"number of delete rows: {delCount}"
-        else:
-            return checkDict['text'], checkDict['status']
+        try:
+            checkDict = Apicheck.checkingApiKey()
+            if checkDict['check']:
+                if request.endpoint == "deleteAll/sensor1":
+                    delCount = db.session.query(TemperatureModelSensor1).delete()
+                if request.endpoint == "deleteAll/sensor2":
+                    delCount = db.session.query(TemperatureModelSensor2).delete()
+                if request.endpoint == "deleteAll/sensor3":
+                    delCount = db.session.query(TemperatureModelSensor3).delete()
+                db.session.commit()
+                return f"number of delete rows: {delCount}"
+            else:
+                return checkDict['text'], checkDict['status']
+        except Exception as e:
+            loggerError.error(f'flaskAPI error: {e}')
 
 
 @app.route("/")

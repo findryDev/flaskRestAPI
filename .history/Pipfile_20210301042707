@@ -9,13 +9,6 @@ verify_ssl = true
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flake8 = "*"
-pylint = "*"
-requests = "*"
-python-dotenv = "*"
-psycopg2-binary = "*"
-flask-migrate = "*"
-bokeh = "*"
-uwsgi = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
