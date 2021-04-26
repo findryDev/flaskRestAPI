@@ -44,9 +44,8 @@ def bokeh_plot(query, legend_label, title, color):
         dates.append(utc_to_local(m.Date))
         temperatures.append(m.temperature)
     dates, temperatures = reduceTimePause(dates, temperatures)
-
     lowBox = BoxAnnotation(top=30, fill_alpha=0.1, fill_color='blue')
-    #mediumBox = BoxAnnotation(bottom=30, top = 75, fill_alpha=0.1, fill_color='white')
+    mediumBox = BoxAnnotation(bottom=30, top = 75, fill_alpha=0.1, fill_color='white')
     highBox = BoxAnnotation(bottom=75, top = 100, fill_alpha=0.1, fill_color='red')
 
     p = figure(x_axis_label='time',
@@ -66,7 +65,7 @@ def bokeh_plot(query, legend_label, title, color):
            line_width=2,
            color=color)
     p.add_layout(lowBox)
-    #p.add_layout(mediumBox)
+    p.add_layout(mediumBox)
     p.add_layout(highBox)
 
     curdoc().theme = 'dark_minimal'
@@ -77,10 +76,6 @@ def bokeh_plot(query, legend_label, title, color):
 
 def bokeh_plots(queries, legend_labels, titles, colors):
     reset_output()
-    lowBox = BoxAnnotation(top=30, fill_alpha=0.1, fill_color='blue')
-    #mediumBox = BoxAnnotation(bottom=30, top = 75, fill_alpha=0.1, fill_color='white')
-    highBox = BoxAnnotation(bottom=75, top = 100, fill_alpha=0.1, fill_color='red')
-
     x = []
     y = []
     for q in queries:
@@ -104,19 +99,14 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
                                               )
-    p.title.text = titles
     for i in range(len(y)):
+        p.title.text = titles[i]
         p.title.text_font_size = "25px"
         p.xaxis.axis_label_text_font_size = "20px"
         p.yaxis.axis_label_text_font_size = "20px"
-        p.y_range = Range1d(0, 120)
         p.line(x[0], y[i], legend_label=legend_labels[i],
                line_width=2,
                color=colors[i])
-
-    p.add_layout(lowBox)
-    #p.add_layout(mediumBox)
-    p.add_layout(highBox)
 
     curdoc().theme = 'dark_minimal'
     curdoc().add_root(p)

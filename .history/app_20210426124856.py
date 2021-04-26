@@ -7,11 +7,11 @@ from models import TemperatureModelSensor3
 from flask_migrate import Migrate
 from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
-from requestDomoticz import getTempForDomoticzAPI
+from requestDomoticz import domoticzAPI
 import logging
 import os
 
-# create a custom logger foF
+# create a custom logger for
 
 loggerError = logging.getLogger('flaskErr')
 loggerError.setLevel(logging.ERROR)
@@ -229,11 +229,11 @@ def COtemperature():
 @app.route("/web/homeTemperature")
 def homeTemperature():
 
-    sypTemp = getTempForDomoticzAPI(3)
-    jadTemp = getTempForDomoticzAPI(6)
-    lazTemp = getTempForDomoticzAPI(7)
-    kotTemp = getTempForDomoticzAPI(8)
-    wejTemp = getTempForDomoticzAPI(36)
+    sypTemp = getTempforDomoticzAPI(3)
+    jadTemp = getTempforDomoticzAPI(6)
+    lazTemp = getTempforDomoticzAPI(7)
+    kotTemp = getTempforDomoticzAPI(8)
+    wejTemp = getTempforDomoticzAPI(36)
 
     return render_template('homeTemperature.html',
                            sypTemp=sypTemp,

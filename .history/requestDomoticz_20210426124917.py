@@ -5,7 +5,7 @@ username = 'ZmlsaXA='
 password = 'Rm42OTYxMjk2MDc='
 
 
-def getTempForDomoticzAPI(id):
+def getTempforDomoticzAPI(id):
     endpoint = f"http://192.168.0.4:8080/json.htm?username={username}&password={password}&type=devices&rid={id}"
     r = requests.get(endpoint)
     if r.status_code == 200:

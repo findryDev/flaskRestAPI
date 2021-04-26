@@ -104,8 +104,8 @@ def bokeh_plots(queries, legend_labels, titles, colors):
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
                                               minutes=["%H:%M"]
                                               )
-    p.title.text = titles
     for i in range(len(y)):
+        p.title.text = titles[i]
         p.title.text_font_size = "25px"
         p.xaxis.axis_label_text_font_size = "20px"
         p.yaxis.axis_label_text_font_size = "20px"

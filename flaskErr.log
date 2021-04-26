@@ -3,3 +3,5 @@ ERROR - 2021-04-25 14:47:55,591 - flaskAPI error: 'TemperatureModelSensor2' obje
 ERROR - 2021-04-25 14:48:03,242 - flaskAPI error: 'TemperatureModelSensor2' object has no attribute 'date' - flaskErr
 ERROR - 2021-04-25 14:48:21,691 - flaskAPI error: 'TemperatureModelSensor1' object has no attribute 'date' - flaskErr
 ERROR - 2021-04-26 10:41:09,211 - flask error: 'TemperatureModelSensor1' object is not subscriptable - flaskErr
+ERROR - 2021-04-26 13:12:25,831 - flask error: failed to validate Figure(id='1005', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
+ERROR - 2021-04-26 13:12:39,285 - flask error: failed to validate Figure(id='1043', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
