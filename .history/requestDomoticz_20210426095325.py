@@ -1,0 +1,21 @@
+import requests
+
+
+username = 'ZmlsaXA='
+password = 'Rm42OTYxMjk2MDc='
+http://domoticz-ip<:port>/json.htm?username=MkE=&password=OVM=&api-call
+
+def auth()
+    r = requests.get(f"http://192.168.0.4:8080/json.htm?username={username}&password={password}&api-call")
+
+
+def domoticzAPI(id):
+    r = requests.get(f"http://192.168.0.4:8080/json.htm?username={username}&password={password}&type=devices&rid={id}")
+    if r == 200:
+        data = r.json()
+        print(data)
+        return data['result'][0]['Temp']
+    else:
+        return ('NONE')
+
+print(auth)

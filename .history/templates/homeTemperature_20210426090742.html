@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="5;url=/web/COtemperature">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+    <title>Home temperature</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="title">Temperatura w domu</div>
+        <div class="main">
+            <div class="inHomeTempR1">
+                <div class="name">Sypialnia</div>
+                <div class="value">35 <span>&#8451;</span></div>
+            </div>
+            <div class="inHomeTempR1">
+                <div class="name">Jadalnia</div>
+                <div class="value">35 <span>&#8451;</span></div>
+            </div>
+            <div class="inHomeTempR1">
+                <div class="name">Łazienka</div>
+                <div class="value">35 <span>&#8451;</span></div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="inHomeTempR2">
+                <div class="name">Kotłownia</div>
+                <div class="value">35 <span>&#8451;</span></div>
+            </div>
+            <div class="inHomeTempR2">
+                <div class="name">Wejście</div>
+                <div class="value">35 <span>&#8451;</span></div>
+            </div>
+            <div style="clear:both"></div>
+
+        </div>
+    </div>
+</body>
+</html>

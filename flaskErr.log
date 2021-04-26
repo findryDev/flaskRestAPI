@@ -1,16 +1,7 @@
-ERROR - 2021-04-25 14:24:37,645 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:24:40,341 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:24:42,251 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:24:49,403 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:25:09,989 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:27:19,583 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:45:08,773 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:45:15,009 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:52:28,478 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:52:32,111 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:53:26,326 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 14:58:01,607 - flask error: 'str' object has no attribute 'strftime' - flaskErr
-ERROR - 2021-04-25 15:03:25,528 - flask error: 'NoneType' object has no attribute 'json' - flaskErr
-ERROR - 2021-04-25 15:04:31,093 - flask error: 'NoneType' object has no attribute 'json' - flaskErr
-ERROR - 2021-04-25 15:04:32,860 - flask error: 'NoneType' object has no attribute 'json' - flaskErr
-ERROR - 2021-04-25 15:04:35,205 - flask error: 'NoneType' object has no attribute 'json' - flaskErr
+ERROR - 2021-04-25 14:45:58,071 - flask error: 'str' object has no attribute 'strftime' - flaskErr
+ERROR - 2021-04-25 14:47:55,591 - flaskAPI error: 'TemperatureModelSensor2' object has no attribute 'date' - flaskErr
+ERROR - 2021-04-25 14:48:03,242 - flaskAPI error: 'TemperatureModelSensor2' object has no attribute 'date' - flaskErr
+ERROR - 2021-04-25 14:48:21,691 - flaskAPI error: 'TemperatureModelSensor1' object has no attribute 'date' - flaskErr
+ERROR - 2021-04-26 10:41:09,211 - flask error: 'TemperatureModelSensor1' object is not subscriptable - flaskErr
+ERROR - 2021-04-26 13:12:25,831 - flask error: failed to validate Figure(id='1005', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
+ERROR - 2021-04-26 13:12:39,285 - flask error: failed to validate Figure(id='1043', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
