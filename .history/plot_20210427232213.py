@@ -121,7 +121,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
                color=colors[i])
 
     p.add_layout(lowBox)
-    # p.add_layout(mediumBox)
+    #p.add_layout(mediumBox)
     p.add_layout(highBox)
 
     curdoc().theme = 'dark_minimal'

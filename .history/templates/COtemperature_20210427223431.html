@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- -->
-    <meta http-equiv="refresh" content="30;url=/web/COtemperature">
+    <meta http-equiv="refresh" content="300;url=/web/COtemperature">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
@@ -22,21 +22,21 @@
 <body>
     <div class="container">
         <a href="/"><div class="title">Pomiar temperatury kotła CO</div></a>
-        <div class="squareTemp">
-            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor1</div>
-            <div class=squareTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
+        <div class="squerTemp">
+            <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor1</div>
+            <div class=squerTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
         </div>
-        <div class="squareTemp">
-            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor2</div>
-            <div class=squareTempCont>{{temperatureS2.date}}</br>{{temperatureS2.temperature}}<span>&#8451;</span></div>
+        <div class="squerTemp">
+            <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor2</div>
+            <div class=squerTempCont>{{temperatureS2.date}}</br>{{temperatureS2.temperature}}<span>&#8451;</span></div>
         </div>
-        <div class="squareTemp">
-            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor3</div>
-            <div class=squareTempCont>{{temperatureS3.date}}</br>{{temperatureS3.temperature}}<span>&#8451;</span></div>
+        <div class="squerTemp">
+            <div class="squerTempTitle"><i class="icon-thermometer"></i> sensor3</div>
+            <div class=squerTempCont>{{temperatureS3.date}}</br>{{temperatureS3.temperature}}<span>&#8451;</span></div>
         </div>
-        <div class="squareTemp">
-            <div class="squareTempTitle">esp2688 info</div>
-            <div class=squareTempCont>espeContent</div>
+        <div class="squerTemp">
+            <div class="squerTempTitle">esp2688 info</div>
+            <div class=squerTempCont>espeContent</div>
         </div>
         <div style="clear:both"></div>
         <div class='plot'>{{div1 | safe}}</div>
