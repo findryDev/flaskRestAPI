@@ -147,8 +147,7 @@ class TemperaturesDelete(Resource):
                     delCount = (db.session.query(TemperatureModelSensor2)
                                 .delete())
                 if request.endpoint == "deleteAll/sensor3":
-                    delCount = (db.session.query(TemperatureModelSensor3)
-                                .delete())
+                    delCount = db.session.query(TemperatureModelSensor3).delete()
                 db.session.commit()
                 return f"number of delete rows: {delCount}"
             else:

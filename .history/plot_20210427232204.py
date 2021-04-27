@@ -104,7 +104,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
                x_axis_type='datetime')
     p.sizing_mode = 'stretch_both'
     p.plot_height = 200
-    # p.plot_width = 600
+    #p.plot_width = 600
     p.toolbar.logo = None
     p.toolbar_location = None
     p.xaxis.formatter = DatetimeTickFormatter(hours=["%H:%M"],
@@ -121,7 +121,7 @@ def bokeh_plots(queries, legend_labels, titles, colors):
                color=colors[i])
 
     p.add_layout(lowBox)
-    # p.add_layout(mediumBox)
+    #p.add_layout(mediumBox)
     p.add_layout(highBox)
 
     curdoc().theme = 'dark_minimal'

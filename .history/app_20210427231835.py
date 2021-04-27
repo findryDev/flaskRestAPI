@@ -127,7 +127,7 @@ class TemperatureView(Resource):
                     temperature = TemperatureModelSensor3.query.order_by(
                         sqlalchemy.desc(TemperatureModelSensor3.id)).first()
                 loggerRequests.debug('flaskAPI GET one request')
-                return {str(temperature.Date): temperature.temperature}
+                return {str(temperature.Date) : temperature.temperature}
             else:
                 loggerRequests.debug('flaskAPI GET access deny')
                 return checkDict['text'], checkDict['status']
@@ -141,14 +141,11 @@ class TemperaturesDelete(Resource):
             checkDict = Apicheck.checkingApiKey()
             if checkDict['check']:
                 if request.endpoint == "deleteAll/sensor1":
-                    delCount = (db.session.query(TemperatureModelSensor1)
-                                .delete())
+                    delCount = db.session.query(TemperatureModelSensor1).delete()
                 if request.endpoint == "deleteAll/sensor2":
-                    delCount = (db.session.query(TemperatureModelSensor2)
-                                .delete())
+                    delCount = db.session.query(TemperatureModelSensor2).delete()
                 if request.endpoint == "deleteAll/sensor3":
-                    delCount = (db.session.query(TemperatureModelSensor3)
-                                .delete())
+                    delCount = db.session.query(TemperatureModelSensor3).delete()
                 db.session.commit()
                 return f"number of delete rows: {delCount}"
             else:
