@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- -->
+    <meta http-equiv="refresh" content="30;url=/web/COtemperature">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+
+    <title>Temperatury CO</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/"><div class="title">Pomiar temperatury kotła CO</div></a>
+        <a href="/web/COtemperature/kociol"> <div class="coLink">Temperatura kotła</div></>
+        <a href="/web/COtemperature/wyjscie"><div class="coLink">Temperatura na wyjsciu</div> </a>
+        <a href="/web/COtemperature/powrot"> <div class="coLink">Temperatura na powrocie</div></a>
+        <a href="/web/homeTemperature/wszystkie"><div class="coLink">Wszystkie czujniki</div> </a>
+
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> Kocioł</div>
+            <div class="squareTempValue">{{temperatureS1.temperature}}<span>&#8451;</span></div>
+            <div class="squareTempLastUpdate">{{temperatureS1.date}}</div>
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> Wyjście z kotła</div>
+            <div class="squareTempValue">{{temperatureS2.temperature}}<span>&#8451;</span></div>
+            <div class="squareTempLastUpdate">{{temperatureS2.date}}</div>
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> Powrót do kotła</div>
+            <div class="squareTempValue">{{temperatureS3.temperature}}<span>&#8451;</span></div>
+            <div class="squareTempLastUpdate">{{temperatureS3.date}}</div>
+
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle">esp2688 info</div>
+            <div class=squareTempCont>espeContent</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</body>
+
+</html>

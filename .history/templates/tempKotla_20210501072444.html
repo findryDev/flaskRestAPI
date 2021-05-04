@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- -->
+    <meta http-equiv="refresh" content="30;url=/web/COtemperature">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+    {{script1 | safe}}
+    {% for c in cdn %}
+    <script src="{{c | safe}}"></script>
+    {% endfor %}
+    <title>Temperatura kotła</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/"><div class="title">Pomiar temperatury kotła CO</div></a>
+        <a href="web/COtemperature/kociol"> <div class="coLink">Temperatura kotła</div></>
+        <a href="web/COtemperature/wyjscie"><div class="coLink">Temperatura na wyjsciu</div> </a>
+        <a href="web/COtemperature/powrot"> <div class="coLink">Temperatura na powrocie</div></a>
+        <a href="web/homeTemperature/wszystkie"><div class="coLink">Wszystkie czujniki</div> </a>
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor1</div>
+            <div class=squareTempCont>{{temperatureS1.date}}</br>{{temperatureS1.temperature}}<span>&#8451;</span></div>
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor2</div>
+            <div class=squareTempCont>{{temperatureS2.date}}</br>{{temperatureS2.temperature}}<span>&#8451;</span></div>
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle"><i class="icon-thermometer"></i> sensor3</div>
+            <div class=squareTempCont>{{temperatureS3.date}}</br>{{temperatureS3.temperature}}<span>&#8451;</span></div>
+        </div>
+        <div class="squareTemp">
+            <div class="squareTempTitle">esp2688 info</div>
+            <div class=squareTempCont>espeContent</div>
+        </div>
+        <div style="clear:both"></div>
+    <div id="plot">
+        <div class="plots">{{div1 | safe}}</div>
+    </div>
+    </div>
+</body>
+
+</html>

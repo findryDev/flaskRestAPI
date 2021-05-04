@@ -1,0 +1,6 @@
+
+.icon-thermometer { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2c7;&nbsp;'); }
+.icon-thermometer-3 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2c8;&nbsp;'); }
+.icon-thermometer-2 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2c9;&nbsp;'); }
+.icon-thermometer-quarter { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2ca;&nbsp;'); }
+.icon-thermometer-0 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2cb;&nbsp;'); }
