@@ -439,7 +439,10 @@ def homeTemperature():
                            iconS2=getIconNameHome(jadTemp[0]),
                            iconS3=getIconNameHome(lazTemp[0]),
                            iconS4=getIconNameHome(kotTemp[0]),
-                           iconS5=getIconNameHome(wejTemp[0]))
+                           iconS5=getIconNameHome(wejTemp[0]),
+                           currentWeatherText=currentWeather['currentWeatherText'],
+                           currentWeatherTemperature=currentWeather['currentTemperature'],
+                           currentWeatherObserv=currentWeather['observTime']))
 
 
 api.add_resource(TemperaturesView, '/api/temperatures/sensor1',
