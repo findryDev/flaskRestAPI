@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}
+
+
+
+
+
+<div class="squareTemp">
+    <div class="squareTempTitle"><i class="{{iconS1}}"></i> Kocioł</div>
+    <div class="squareTempValue">{{temperatureS1.temperature}}<span>&#8451;</span></div>
+    <div class="squareTempLastUpdate">{{temperatureS1.date}}</div>
+</div>
+<div class="squareTemp">
+    <div class="squareTempTitle"><i class="{{iconS2}}"></i> Wyjście z kotła</div>
+    <div class="squareTempValue">{{temperatureS2.temperature}}<span>&#8451;</span></div>
+    <div class="squareTempLastUpdate">{{temperatureS2.date}}</div>
+</div>
+<div class="squareTemp">
+    <div class="squareTempTitle"><i class="{{iconS3}}"></i> Powrót do kotła</div>
+    <div class="squareTempValue">{{temperatureS3.temperature}}<span>&#8451;</span></div>
+    <div class="squareTempLastUpdate">{{temperatureS3.date}}</div>
+</div>
+
+
+<div class="squareWeather">
+    <div class="squareWeatherTitle">Pogoda</div>
+    <div class="squareWeatherValue">
+        Aktualna pogoda: {{currentWeatherText}}<br>
+        Aktualna temperatura: {{currentWeatherTemperature}}<span>&#8451;</span></div>
+    <div class="squareWeatherLastUpdate">Data aktualizacji: {{currentWeatherObserv}}</div>
+</div>

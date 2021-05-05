@@ -428,6 +428,8 @@ def homeTemperature():
     kotTemp = getTempForDomoticzAPI(8)
     wejTemp = getTempForDomoticzAPI(36)
 
+
+    print(getIconNameHome(sypTemp[0]))
     return render_template('homeTemperature.html',
                            refresh=refreshSiteHome,
                            sypTemp=sypTemp,
