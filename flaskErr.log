@@ -6,70 +6,6 @@ ERROR - 2021-04-26 10:41:09,211 - flask error: 'TemperatureModelSensor1' object 
 ERROR - 2021-04-26 13:12:25,831 - flask error: failed to validate Figure(id='1005', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
 ERROR - 2021-04-26 13:12:39,285 - flask error: failed to validate Figure(id='1043', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
 ERROR - 2021-04-27 23:07:45,696 - flask error: list index out of range - flaskErr
-<<<<<<< HEAD
-ERROR - 2021-04-29 16:05:54,318 - flaskAPI error: (psycopg2.DatabaseError) SSL SYSCALL error: Network is unreachable
-
-[SQL: INSERT INTO temperature_sensor2 ("Date", temperature) VALUES (%(Date)s, %(temperature)s) RETURNING temperature_sensor2.id]
-[parameters: {'Date': datetime.datetime(2021, 4, 29, 13, 49, 26, 481928), 'temperature': '16.44'}]
-(Background on this error at: http://sqlalche.me/e/14/4xp6) - flaskErr
-ERROR - 2021-04-29 16:05:54,329 - flaskAPI error: (psycopg2.DatabaseError) SSL SYSCALL error: Network is unreachable
-
-[SQL: INSERT INTO temperature_sensor1 ("Date", temperature) VALUES (%(Date)s, %(temperature)s) RETURNING temperature_sensor1.id]
-[parameters: {'Date': datetime.datetime(2021, 4, 29, 13, 49, 24, 465192), 'temperature': '16.63'}]
-(Background on this error at: http://sqlalche.me/e/14/4xp6) - flaskErr
-ERROR - 2021-04-29 16:05:54,342 - flaskAPI error: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
-
-[SQL: INSERT INTO temperature_sensor1 ("Date", temperature) VALUES (%(Date)s, %(temperature)s) RETURNING temperature_sensor1.id]
-[parameters: {'Date': datetime.datetime(2021, 4, 29, 14, 5, 54, 338583), 'temperature': '16.63'}]
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:05:54,343 - flaskAPI error: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
-
-[SQL: INSERT INTO temperature_sensor3 ("Date", temperature) VALUES (%(Date)s, %(temperature)s) RETURNING temperature_sensor3.id]
-[parameters: {'Date': datetime.datetime(2021, 4, 29, 14, 5, 54, 340150), 'temperature': '14.75'}]
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:04,363 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:04,372 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:14,382 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:14,391 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:24,402 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:24,410 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:34,417 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:34,427 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:44,433 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:44,447 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:54,452 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:06:54,462 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:07:04,469 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-ERROR - 2021-04-29 16:07:04,477 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
-
-(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
-=======
 ERROR - 2021-04-30 15:30:39,938 - flask error: (psycopg2.OperationalError) server closed the connection unexpectedly
 	This probably means the server terminated abnormally
 	before or while processing the request.
@@ -89,4 +25,3 @@ ERROR - 2021-05-04 07:12:38,063 - flask error: '<=' not supported between instan
 ERROR - 2021-05-04 07:12:38,343 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
 ERROR - 2021-05-04 07:14:09,055 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
 ERROR - 2021-05-04 07:14:09,192 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
->>>>>>> 055eb7c869f4fff2a87adbd3da3ec05d07874268
