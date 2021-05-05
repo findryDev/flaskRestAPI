@@ -428,6 +428,8 @@ def homeTemperature():
     kotTemp = getTempForDomoticzAPI(8)
     wejTemp = getTempForDomoticzAPI(36)
 
+    currentWeather = getCurrentWeather()
+    
     return render_template('homeTemperature.html',
                            refresh=refreshSiteHome,
                            sypTemp=sypTemp,
