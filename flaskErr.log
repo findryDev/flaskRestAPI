@@ -6,6 +6,7 @@ ERROR - 2021-04-26 10:41:09,211 - flask error: 'TemperatureModelSensor1' object 
 ERROR - 2021-04-26 13:12:25,831 - flask error: failed to validate Figure(id='1005', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
 ERROR - 2021-04-26 13:12:39,285 - flask error: failed to validate Figure(id='1043', ...).y_range: expected an instance of type Range, got (0, 120) of type tuple - flaskErr
 ERROR - 2021-04-27 23:07:45,696 - flask error: list index out of range - flaskErr
+<<<<<<< HEAD
 ERROR - 2021-04-29 16:05:54,318 - flaskAPI error: (psycopg2.DatabaseError) SSL SYSCALL error: Network is unreachable
 
 [SQL: INSERT INTO temperature_sensor2 ("Date", temperature) VALUES (%(Date)s, %(temperature)s) RETURNING temperature_sensor2.id]
@@ -68,3 +69,24 @@ ERROR - 2021-04-29 16:07:04,469 - flaskAPI error: (psycopg2.OperationalError) co
 ERROR - 2021-04-29 16:07:04,477 - flaskAPI error: (psycopg2.OperationalError) could not translate host name "wschodnia4.cjr5cphqsjsk.eu-west-1.rds.amazonaws.com" to address: Temporary failure in name resolution
 
 (Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
+=======
+ERROR - 2021-04-30 15:30:39,938 - flask error: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT temperature_sensor1.id AS temperature_sensor1_id, temperature_sensor1."Date" AS "temperature_sensor1_Date", temperature_sensor1.temperature AS temperature_sensor1_temperature 
+FROM temperature_sensor1 ORDER BY temperature_sensor1.id DESC 
+ LIMIT %(param_1)s]
+[parameters: {'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/14/e3q8) - flaskErr
+ERROR - 2021-05-01 17:14:26,905 - flask error: 0 - flaskErr
+ERROR - 2021-05-01 17:19:13,856 - flask error: 0 - flaskErr
+ERROR - 2021-05-01 17:19:53,631 - flask error: 0 - flaskErr
+ERROR - 2021-05-01 17:21:09,751 - flask error: 0 - flaskErr
+ERROR - 2021-05-04 07:04:33,539 - flask error: 'dict' object has no attribute 'temperature' - flaskErr
+ERROR - 2021-05-04 07:07:46,972 - flask error: 'dict' object has no attribute 'temperature' - flaskErr
+ERROR - 2021-05-04 07:12:38,063 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
+ERROR - 2021-05-04 07:12:38,343 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
+ERROR - 2021-05-04 07:14:09,055 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
+ERROR - 2021-05-04 07:14:09,192 - flask error: '<=' not supported between instances of 'str' and 'int' - flaskErr
+>>>>>>> 055eb7c869f4fff2a87adbd3da3ec05d07874268
