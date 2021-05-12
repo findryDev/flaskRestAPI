@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 flask-migrate = "*"
 bokeh = "*"
 uwsgi = "*"
+flask-caching = "*"
 
 [requires]
 python_version = "3.8"
