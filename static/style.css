@@ -131,6 +131,23 @@ img {
   float: left;
 }
 
+.name{
+  font-weight: bold;
+  font-size: 2vw;
+  margin-bottom: 5%;
+}
+
+.value{
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.lastUpdate{
+  margin-top: 5%;
+  font-weight:lighter;
+  font-size: 1vw;
+}
+
 @media screen and (max-width: 600px) {
   .inHomeTempR1{
     width: 100%;
@@ -149,40 +166,63 @@ img {
   }
   .name{
     font-weight: bold;
-    font-size: 25px;
+    font-size: 40px;
     margin-bottom: 10%;
   }
 
   .value{
     font-weight: bold;
-    font-size: 25px;
+    font-size: 40px;
   }
 
   .lastUpdate{
     margin-top: 10%;
     font-weight:lighter;
-    font-size: 20px;
+    font-size: 25px;
   }
 
-}
+  .title{
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 2%;
+  }
+  .squareWeatherTitle{
+    width: 100%;
+    height: 50%;
+    font-weight: bold;
+    font-size: 2vw;
+  }
 
-.name{
-  font-weight: bold;
-  font-size: 2vw;
-  margin-bottom: 5%;
-}
+  .squareWeatherValue{
+    width: 50%;
+    height: 50%;
+    padding-top: 0%;
+    font-size: 20px;
+    float: left;
+  }
+  .squareWeatherImage{
+    width: 50%;
+    height: 50%;
+    padding-top: 0%;
+    float: left;
+  }
 
-.value{
-  font-weight: bold;
-  font-size: 2vw;
-}
+  .squareWeatherLastUpdate{
+    width: 100%;
+    height: 50%;
+    padding-top: 0%;
+    font-size: 15px;
+  }
 
-.lastUpdate{
-  margin-top: 5%;
-  font-weight:lighter;
-  font-size: 1vw;
-}
+  img {
+    width: 50%;
+    height: 100%;
+  }
 
+
+}
 
 .mainLink{
   font-size: 4vw;

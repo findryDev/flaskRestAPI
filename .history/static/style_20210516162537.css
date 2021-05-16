@@ -1,0 +1,286 @@
+body{
+    background-color: gray;
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+    width: 100%;
+    height: 100%;
+
+  }
+
+a:link, a:visited{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+img {
+  width: 25%;
+  height: 25%;
+}
+.container{
+    width: 80%;
+    height: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+.title{
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    font-size: 5vw;
+    margin-bottom: 2%;
+  }
+
+.main{
+    width: 80%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.temperatureList{
+  float: left;
+}
+
+.squareTemp{
+  float: left;
+  width: 30%;
+  height: 150%;
+  text-align: center;
+}
+
+.squareTempTitle{
+  width: 100%;
+  height: 50%;
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.squareTempValue{
+  width: 100%;
+  height: 50%;
+  padding-top: 0%;
+  font-size: 3vw;
+}
+
+.squareTempLastUpdate{
+  width: 100%;
+  height: 50%;
+  padding-top: 0%;
+  font-size: 1vw;
+}
+
+.squareWeather{
+  width: 100%;
+  height: 100%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+
+.squareWeatherTitle{
+  width: 100%;
+  height: 50%;
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.squareWeatherValue{
+  width: 50%;
+  height: 50%;
+  padding-top: 0%;
+  font-size: 1.5vw;
+  float: left;
+}
+.squareWeatherImage{
+  width: 50%;
+  height: 50%;
+  padding-top: 0%;
+  float: left;
+}
+
+.squareWeatherLastUpdate{
+  width: 100%;
+  height: 50%;
+  padding-top: 0%;
+  font-size: 1vw;
+}
+
+.temperatureContainer{
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  margin-top: 1%;
+}
+
+.inHomeTempR1{
+  width: 30%;
+  height: 300%;
+  text-align: center;
+  float: left;
+  padding-bottom: 50px;
+}
+
+.inHomeTempR2{
+  width: 50%;
+  height: 300%;
+  text-align: center;
+  float: left;
+}
+
+.name{
+  font-weight: bold;
+  font-size: 2vw;
+  margin-bottom: 5%;
+}
+
+.value{
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.lastUpdate{
+  margin-top: 5%;
+  font-weight:lighter;
+  font-size: 1vw;
+}
+
+@media screen and (max-width: 600px) {
+  .inHomeTempR1{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    clear:both;
+    padding-bottom: 10px;
+  }
+
+  .inHomeTempR2{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    clear:both;
+    padding-bottom: 10px;
+  }
+  .name{
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 10%;
+  }
+
+  .value{
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  .lastUpdate{
+    margin-top: 10%;
+    font-weight:lighter;
+    font-size: 25px;
+  }
+
+  .title{
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 2%;
+  }
+  .squareWeatherTitle{
+    width: 100%;
+    height: 50%;
+    font-weight: bold;
+    font-size: 2vw;
+  }
+
+  .squareWeatherValue{
+    width: 50%;
+    height: 50%;
+    padding-top: 0%;
+    font-size: 20px;
+    float: left;
+  }
+  .squareWeatherImage{
+    width: 50%;
+    height: 50%;
+    padding-top: 0%;
+    float: left;
+  }
+
+  .squareWeatherLastUpdate{
+    width: 100%;
+    height: 50%;
+    padding-top: 0%;
+    font-size: 15px;
+  }
+
+
+
+}
+
+.mainLink{
+  font-size: 4vw;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px;
+  border-radius: 5px;
+}
+
+.coLinkContainer{
+  margin-left: auto;
+  margin-right: auto;
+  height: 25%;
+  width: 80%;
+}
+
+
+.coLink{
+  font-size: 2vw;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  width: 49%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px;
+  border-radius: 5px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  float: left;
+}
+
+.plots{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 300px;
+}
+
+#plot{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 100%;
+}
+
+#errorContainer{
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vw;
+}
+
+
