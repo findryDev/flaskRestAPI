@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300;url=/web/homeTemperature">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
+    <link rel="preconnect" href="https://fonts.gstatic.com"\>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='ico/termo/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='ico/termo/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='ico/termo/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='ico/termo/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='ico/termo/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Home temperature</title>
+
+</head>
+<body>
+    <div class="container">
+        <a href="/"><div class="title">Temperatura w domu</div></a>
+        <div class="main">
+            <div class="inHomeTempR1">
+                <div class="name">Sypialnia</div>
+                <div class="value"><i class="{{iconS1}}"></i>{{sypTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{sypTemp[1]}}</div>
+            </div>
+            <div class="inHomeTempR1">
+                <div class="name">Jadalnia</div>
+                <div class="value"><i class="{{iconS2}}"></i>{{jadTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{jadTemp[1]}}</div>
+            </div>
+            <div class="inHomeTempR1">
+                <div class="name">Łazienka</div>
+                <div class="value"><i class="{{iconS3}}"></i>{{lazTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{lazTemp[1]}}</div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="inHomeTempR2">
+                <div class="name">Kotłownia</div>
+                <div class="value"><i class="{{iconS4}}"></i>{{kotTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{kotTemp[1]}}</div>
+            </div>
+            <div class="inHomeTempR2">
+                <div class="name">Wejście</div>
+                <div class="value"><i class="{{iconS5}}"></i>{{wejTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{wejTemp[1]}}</div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="squareWeather">
+                <div class="squareWeatherTitle">Pogoda</div>
+                
+                <div class="squareWeatherValue">
+                    Aktualna pogoda: {{currentWeatherText}}<br>
+                    Wiatr: {{windSpeed}}
+                    Aktualna temperatura: {{currentWeatherTemperature}}<span>&#8451;</span>
+                    PM2,5: {{pm25}}<br>
+                    PM10: {{pm10}}<br>
+                    
+                </div>
+                <div class="squareWeatherImage">
+                    <img src={{weatherImg}} alt="usp....">
+                </div>
+                <div style="clear:both"></div>
+
+                <div class="squareWeatherLastUpdate">Data aktualizacji: {{currentWeatherObserv}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

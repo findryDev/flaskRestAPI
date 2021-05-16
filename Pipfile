@@ -15,7 +15,7 @@ python-dotenv = "*"
 psycopg2-binary = "*"
 flask-migrate = "*"
 bokeh = "*"
-uwsgi = "*"
+#uwsgi = "*"
 flask-caching = "*"
 
 [requires]
