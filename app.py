@@ -359,7 +359,7 @@ def tempAll():
 
         temperaturesALL = [temperatures1, temperatures2, temperatures3]
 
-        legendLabels = ["Sensor1", "Sensor2", "Sensor3"]
+        legendLabels = ["Kocioł", "Wyjscie", "Powrót"]
         scriptsDiv = []
         scriptsDiv.append(bokeh_plots(queries=temperaturesALL,
                                       legend_labels=legendLabels,
