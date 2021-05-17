@@ -245,10 +245,8 @@ def COtemperature():
                                iconS3=getIconNameCO(temperatureS3['temperature']),
                                currentWeatherText=(currentWeather
                                                    ['currentWeatherText']),
-                               currentWeatherTemperature=(currentWeather
-                                                          ['currentTemperature']),
-                               currentWeatherObserv=(currentWeather
-                                                     ['observTime']),
+                               currentWeatherTemperature=(currentWeather['currentTemperature']),
+                               currentWeatherObserv=(currentWeather['observTime']),
                                pm25=(currentWeather['pm25']),
                                pm10=(currentWeather['pm10']),
                                weatherImage=(currentWeather['iconWeather']),

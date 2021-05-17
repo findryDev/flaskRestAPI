@@ -243,12 +243,9 @@ def COtemperature():
                                iconS1=getIconNameCO(temperatureS1['temperature']),
                                iconS2=getIconNameCO(temperatureS2['temperature']),
                                iconS3=getIconNameCO(temperatureS3['temperature']),
-                               currentWeatherText=(currentWeather
-                                                   ['currentWeatherText']),
-                               currentWeatherTemperature=(currentWeather
-                                                          ['currentTemperature']),
-                               currentWeatherObserv=(currentWeather
-                                                     ['observTime']),
+                               currentWeatherText=(currentWeather['currentWeatherText']),
+                               currentWeatherTemperature=(currentWeather['currentTemperature']),
+                               currentWeatherObserv=(currentWeather['observTime']),
                                pm25=(currentWeather['pm25']),
                                pm10=(currentWeather['pm10']),
                                weatherImage=(currentWeather['iconWeather']),

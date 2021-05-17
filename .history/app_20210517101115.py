@@ -247,8 +247,7 @@ def COtemperature():
                                                    ['currentWeatherText']),
                                currentWeatherTemperature=(currentWeather
                                                           ['currentTemperature']),
-                               currentWeatherObserv=(currentWeather
-                                                     ['observTime']),
+                               currentWeatherObserv=(currentWeather['observTime']),
                                pm25=(currentWeather['pm25']),
                                pm10=(currentWeather['pm10']),
                                weatherImage=(currentWeather['iconWeather']),

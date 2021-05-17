@@ -48,8 +48,8 @@ def bokeh_plot(query, legend_label, title, color):
     highBox = BoxAnnotation(bottom=75, top=100, fill_alpha=0.1,
                             fill_color='red')
 
-    p = figure(x_axis_label='Czas',
-               y_axis_label='Temperatura',
+    p = figure(x_axis_label='time',
+               y_axis_label='temperature',
                x_axis_type='datetime')
     p.sizing_mode = 'stretch_both'
     # p.plot_height = 200
@@ -101,8 +101,8 @@ def bokeh_plots(queries, legend_labels, titles, colors):
         if len(x) == 0:
             x.append(dates)
         y.append(temperatures)
-    p = figure(x_axis_label='Czas',
-               y_axis_label='Temperatura',
+    p = figure(x_axis_label='time',
+               y_axis_label='temperature',
                x_axis_type='datetime')
     p.sizing_mode = 'stretch_both'
     # p.plot_height = 200
