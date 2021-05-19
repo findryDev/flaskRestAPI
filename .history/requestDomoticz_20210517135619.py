@@ -1,5 +1,5 @@
 import requests
-from fontelloStyle import getIconNameHome
+
 
 username = 'ZmlsaXA='
 password = 'Rm42OTYxMjk2MDc='
@@ -11,13 +11,10 @@ def getTempForDomoticzAPI(id):
     r = requests.get(endpoint)
     if r.status_code == 200:
         data = r.json()
-        icon = getIconNameHome(data['result'][0]['Temp'])
         results = {"temperature": data['result'][0]['Temp'],
-                   "humidity": data['result'][0]['Humidity'],
-                   "lastUpdate": data['result'][0]['LastUpdate'],
-                   "batteryLevel": data['result'][0]['BatteryLevel'],
-                   "icon": icon}
-
-        return results
+                   "humidity": data['result'][0]['']}
+        
+        
+        return data['result'][0]['Temp'], data['result'][0]['LastUpdate']
     else:
         return ('NONE', r.status_code)

@@ -26,29 +26,29 @@
         <div class="main">
             <div class="inHomeTempR1">
                 <div class="name">Sypialnia</div>
-                <div class="value"><i class="{{syp.icon}}"></i>{{syp.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{syp.lastUpdate}}</div>
+                <div class="value"><i class="{{iconS1}}"></i>{{sypTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{sypTemp[1]}}</div>
             </div>
             <div class="inHomeTempR1">
                 <div class="name">Jadalnia</div>
-                <div class="value"><i class="{{jad.icon}}"></i>{{jad.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{jad.lastUpdate}}</div>
+                <div class="value"><i class="{{iconS2}}"></i>{{jadTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{jadTemp[1]}}</div>
             </div>
             <div class="inHomeTempR1">
                 <div class="name">Łazienka</div>
-                <div class="value"><i class="{{laz.icon}}"></i>{{laz.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{laz.lastUpdate}}</div>
+                <div class="value"><i class="{{iconS3}}"></i>{{lazTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{lazTemp[1]}}</div>
             </div>
             <div style="clear:both"></div>
             <div class="inHomeTempR2">
                 <div class="name">Kotłownia</div>
-                <div class="value"><i class="{{kot.icon}}"></i>{{kot.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{kot.lastUpdate}}</div>
+                <div class="value"><i class="{{iconS4}}"></i>{{kotTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{kotTemp[1]}}</div>
             </div>
             <div class="inHomeTempR2">
                 <div class="name">Wejście</div>
-                <div class="value"><i class="{{wej.icon}}"></i>{{wej.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{wej.lastUpdate}}</div>
+                <div class="value"><i class="{{iconS5}}"></i>{{wejTemp[0]}} <span>&#8451;</span></div>
+                <div class="lastUpdate">{{wejTemp[1]}}</div>
             </div>
             <div style="clear:both"></div>
             <div class="squareWeather">
@@ -57,8 +57,8 @@
                     Aktualna pogoda: {{currentWeather.currentWeatherText}}<br>
                     Aktualna temperatura: {{currentWeather.currentTemperature}}<span>&#8451;</span><br>
                     Wiatr: {{currentWeather.windKMH}} km/h<br>
-                    PM2,5: {{currentWeather.pm25}} µg/m3<br>
-                    PM10: {{currentWeather.pm10}} µg/m3<br>
+                    PM2,5: {{currentWeather.pm25}}<br>
+                    PM10: {{currentWeather.pm10}}<br>
                 </div>
                 <div class="squareWeatherImage">
                     <img src={{currentWeather.iconWeather}} alt="usp....">

@@ -10,6 +10,7 @@ from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
 from requestDomoticz import getTempForDomoticzAPI
 from requestApiWether import getCurrentWeather
+from fontelloStyle import getIconNameCO, getIconNameHome
 from queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
 from requestsIFTTT import iftttOverheat
 import logging

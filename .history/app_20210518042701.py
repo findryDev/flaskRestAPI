@@ -10,6 +10,7 @@ from config import Config
 from plot import bokeh_plot,  bokeh_plots, CDN_js
 from requestDomoticz import getTempForDomoticzAPI
 from requestApiWether import getCurrentWeather
+from fontelloStyle import getIconNameCO, getIconNameHome
 from queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
 from requestsIFTTT import iftttOverheat
 import logging
@@ -248,9 +249,9 @@ def COtemperature():
 @app.route("/web/COtemperature/kociol")
 def tempKotla():
     try:
-        sensor1 = sensorQueries(TemperatureModelSensor1)
-        sensor2 = sensorQueries(TemperatureModelSensor2)
-        sensor3 = sensorQueries(TemperatureModelSensor3)
+        temperatureS1 = sensorQueries(TemperatureModelSensor1)
+        temperatureS2 = sensorQueries(TemperatureModelSensor2)
+        temperatureS3 = sensorQueries(TemperatureModelSensor3)
 
         temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1, howMany)
 
@@ -262,9 +263,12 @@ def tempKotla():
         loggerRequests.debug('flask requests')
         return render_template("tempKotla.html",
                                refresh=refreshSiteCO,
-                               sensor1=sensor1,
-                               sensor2=sensor2,
-                               sensor3=sensor3,
+                               temperatureS1=temperatureS1,
+                               temperatureS2=temperatureS2,
+                               temperatureS3=temperatureS3,
+                               iconS1=getIconNameCO(temperatureS1['temperature']),
+                               iconS2=getIconNameCO(temperatureS2['temperature']),
+                               iconS3=getIconNameCO(temperatureS3['temperature']),
                                div1=scriptsDiv[0][1],
                                script1=scriptsDiv[0][0],
                                cdn=CDN_js())
@@ -276,9 +280,9 @@ def tempKotla():
 @app.route("/web/COtemperature/wyjscie")
 def tempWyjscie():
     try:
-        sensor1 = sensorQueries(TemperatureModelSensor1)
-        sensor2 = sensorQueries(TemperatureModelSensor2)
-        sensor3 = sensorQueries(TemperatureModelSensor3)
+        temperatureS1 = sensorQueries(TemperatureModelSensor1)
+        temperatureS2 = sensorQueries(TemperatureModelSensor2)
+        temperatureS3 = sensorQueries(TemperatureModelSensor3)
 
         temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2, howMany)
 
@@ -291,9 +295,12 @@ def tempWyjscie():
         loggerRequests.debug('flask requests')
         return render_template("tempWyjscie.html",
                                refresh=refreshSiteCO,
-                               sensor1=sensor1,
-                               sensor2=sensor2,
-                               sensor3=sensor3,
+                               temperatureS1=temperatureS1,
+                               temperatureS2=temperatureS2,
+                               temperatureS3=temperatureS3,
+                               iconS1=getIconNameCO(temperatureS1['temperature']),
+                               iconS2=getIconNameCO(temperatureS2['temperature']),
+                               iconS3=getIconNameCO(temperatureS3['temperature']),
                                div2=scriptsDiv[0][1],
                                script2=scriptsDiv[0][0],
                                cdn=CDN_js())
@@ -305,9 +312,9 @@ def tempWyjscie():
 @app.route("/web/COtemperature/powrot")
 def tempPowrot():
     try:
-        sensor1 = sensorQueries(TemperatureModelSensor1)
-        sensor2 = sensorQueries(TemperatureModelSensor2)
-        sensor3 = sensorQueries(TemperatureModelSensor3)
+        temperatureS1 = sensorQueries(TemperatureModelSensor1)
+        temperatureS2 = sensorQueries(TemperatureModelSensor2)
+        temperatureS3 = sensorQueries(TemperatureModelSensor3)
 
         temperatures3 = sensorQueriesToPlot(TemperatureModelSensor3, howMany)
 
@@ -320,9 +327,12 @@ def tempPowrot():
         loggerRequests.debug('flask requests')
         return render_template("tempPowrot.html",
                                refresh=refreshSiteCO,
-                               sensor1=sensor1,
-                               sensor2=sensor2,
-                               sensor3=sensor3,
+                               temperatureS1=temperatureS1,
+                               temperatureS2=temperatureS2,
+                               temperatureS3=temperatureS3,
+                               iconS1=getIconNameCO(temperatureS1['temperature']),
+                               iconS2=getIconNameCO(temperatureS2['temperature']),
+                               iconS3=getIconNameCO(temperatureS3['temperature']),
                                div3=scriptsDiv[0][1],
                                script3=scriptsDiv[0][0],
                                cdn=CDN_js())
@@ -334,9 +344,9 @@ def tempPowrot():
 @app.route("/web/COtemperature/wszystkie")
 def tempAll():
     try:
-        sensor1 = sensorQueries(TemperatureModelSensor1)
-        sensor2 = sensorQueries(TemperatureModelSensor2)
-        sensor3 = sensorQueries(TemperatureModelSensor3)
+        temperatureS1 = sensorQueries(TemperatureModelSensor1)
+        temperatureS2 = sensorQueries(TemperatureModelSensor2)
+        temperatureS3 = sensorQueries(TemperatureModelSensor3)
 
         temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1, howMany)
         temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2, howMany)
@@ -353,9 +363,12 @@ def tempAll():
         loggerRequests.debug('flask requests')
         return render_template("tempAll.html",
                                refresh=refreshSiteCO,
-                               sensor1=sensor1,
-                               sensor2=sensor2,
-                               sensor3=sensor3,
+                               temperatureS1=temperatureS1,
+                               temperatureS2=temperatureS2,
+                               temperatureS3=temperatureS3,
+                               iconS1=getIconNameCO(temperatureS1['temperature']),
+                               iconS2=getIconNameCO(temperatureS2['temperature']),
+                               iconS3=getIconNameCO(temperatureS3['temperature']),
                                divAll=scriptsDiv[0][1],
                                scriptAll=scriptsDiv[0][0],
                                cdn=CDN_js())

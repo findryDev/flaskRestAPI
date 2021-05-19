@@ -1,3 +1,5 @@
+# FIXME: improve border value
+
 
 def getIconNameCO(temp):
     icon = ""
@@ -12,6 +14,8 @@ def getIconNameCO(temp):
     elif temp >= 50:
         icon = "icon-thermometer"
     return icon
+
+# FIXME: improve border value
 
 
 def getIconNameHome(temp):

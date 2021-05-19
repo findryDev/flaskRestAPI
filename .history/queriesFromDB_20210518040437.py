@@ -1,7 +1,6 @@
 import sqlalchemy
 import datetime
 from models import db
-from fontelloStyle import getIconNameCO
 
 
 def getLastRecordToDict(tempModel):
@@ -15,8 +14,7 @@ def sensorQueries(modelDB):
 
     dataFormat = '%d-%m-%Y %H:%M:%S'
     temperatureQuery['date'] = temperatureQuery['date'].strftime(dataFormat)
-    icon = getIconNameCO(temperatureQuery['temperature'])
-    temperatureQuery.update({"icon": icon})
+
     return temperatureQuery
 
 
