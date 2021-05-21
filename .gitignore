@@ -1,4 +1,5 @@
 *.db
 *.env
 *.log
-/__pycache__
+.history/
+__pycache__/

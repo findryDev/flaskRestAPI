@@ -31,17 +31,23 @@
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł</div>
                 <div class="squareTempValue">{{sensor1.temperature}}<span>&#8451;</span></div>
-                <div class="squareTempLastUpdate">{{sensor1.date}}</div>
+                <div class="squareTempLastUpdate">Aktualizacja: {{sensor1.date}}</div>
+                <div id="squareTempMax">temperatura max: {{sensor1.max.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{sensor1.min.temperature}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła</div>
                 <div class="squareTempValue">{{sensor2.temperature}}<span>&#8451;</span></div>
-                <div class="squareTempLastUpdate">{{sensor2.date}}</div>
+                <div class="squareTempLastUpdate">Aktualizacja: {{sensor2.date}}</div>
+                <div id="squareTempMax">temperatura max: {{sensor2.max.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{sensor2.min.temperature}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła</div>
                 <div class="squareTempValue">{{sensor3.temperature}}<span>&#8451;</span></div>
-                <div class="squareTempLastUpdate">{{sensor3.date}}</div>
+                <div class="squareTempLastUpdate">Aktualizacja: {{sensor3.date}}</div>
+                <div id="squareTempMax">temperatura max: {{sensor3.max.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{sensor3.min.temperature}}<span>&#8451;</span></div>
             </div>
             <div style="clear:both"></div>
         </div>

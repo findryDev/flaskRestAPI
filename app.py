@@ -11,6 +11,7 @@ from plot import bokeh_plot,  bokeh_plots, CDN_js
 from requestDomoticz import getTempForDomoticzAPI
 from requestApiWether import getCurrentWeather
 from queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
+from queriesFromDB import getMaxValue, getMinValue
 from requestsIFTTT import iftttOverheat
 import logging
 import os
@@ -248,6 +249,10 @@ def COtemperature():
 @app.route("/web/COtemperature/kociol")
 def tempKotla():
     try:
+        titleHead = 'Temperatura instalacji CO'
+        titleBody = 'Temperatura kotła'
+        mainURL = '/web/COtemperature/kociol'
+
         sensor1 = sensorQueries(TemperatureModelSensor1)
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
@@ -260,13 +265,18 @@ def tempKotla():
                                      title="Temperatura kotła",
                                      color='blue'))
         loggerRequests.debug('flask requests')
-        return render_template("tempKotla.html",
+        print(getMaxValue(TemperatureModelSensor1))
+        print(getMinValue(TemperatureModelSensor1))
+        return render_template('tempCOtemplate.html',
+                               titleHead=titleHead,
+                               titleBody=titleBody,
+                               mainURL=mainURL,
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
                                sensor2=sensor2,
                                sensor3=sensor3,
-                               div1=scriptsDiv[0][1],
-                               script1=scriptsDiv[0][0],
+                               divPlot=scriptsDiv[0][1],
+                               scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
         loggerError.error(f'flask error: {e}')
@@ -276,6 +286,10 @@ def tempKotla():
 @app.route("/web/COtemperature/wyjscie")
 def tempWyjscie():
     try:
+        titleHead = 'Temperatura instalacji CO'
+        titleBody = 'Temperatura na wyjściu'
+        mainURL = '/web/COtemperature/wyjscie'
+
         sensor1 = sensorQueries(TemperatureModelSensor1)
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
@@ -289,13 +303,16 @@ def tempWyjscie():
                                      color='green'))
 
         loggerRequests.debug('flask requests')
-        return render_template("tempWyjscie.html",
+        return render_template('tempCOtemplate.html',
+                               titleHead=titleHead,
+                               titleBody=titleBody,
+                               mainURL=mainURL,
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
                                sensor2=sensor2,
                                sensor3=sensor3,
-                               div2=scriptsDiv[0][1],
-                               script2=scriptsDiv[0][0],
+                               divPlot=scriptsDiv[0][1],
+                               scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
         loggerError.error(f'flask error: {e}')
@@ -305,6 +322,10 @@ def tempWyjscie():
 @app.route("/web/COtemperature/powrot")
 def tempPowrot():
     try:
+        titleHead = 'Temperatura instalacji CO'
+        titleBody = 'Temperatura na powrocie'
+        mainURL = '/web/COtemperature/powrot'
+
         sensor1 = sensorQueries(TemperatureModelSensor1)
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
@@ -318,13 +339,16 @@ def tempPowrot():
                                      title="Temperatura powrót",
                                      color='yellow'))
         loggerRequests.debug('flask requests')
-        return render_template("tempPowrot.html",
+        return render_template('tempCOtemplate.html',
+                               titleHead=titleHead,
+                               titleBody=titleBody,
+                               mainURL=mainURL,
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
                                sensor2=sensor2,
                                sensor3=sensor3,
-                               div3=scriptsDiv[0][1],
-                               script3=scriptsDiv[0][0],
+                               divPlot=scriptsDiv[0][1],
+                               scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
         loggerError.error(f'flask error: {e}')
@@ -334,6 +358,9 @@ def tempPowrot():
 @app.route("/web/COtemperature/wszystkie")
 def tempAll():
     try:
+        titleHead = 'Temperatura instalacji CO'
+        titleBody = 'Wykres zbiorczy'
+        mainURL = '/web/COtemperature/wszystkie'
         sensor1 = sensorQueries(TemperatureModelSensor1)
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
@@ -351,13 +378,17 @@ def tempAll():
                                       titles="Temperatura instalacji",
                                       colors=['blue', 'green', 'yellow']))
         loggerRequests.debug('flask requests')
-        return render_template("tempAll.html",
+
+        return render_template("tempCOtemplate.html",
+                               titleHead=titleHead,
+                               titleBody=titleBody,
+                               mainURL=mainURL,
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
                                sensor2=sensor2,
                                sensor3=sensor3,
-                               divAll=scriptsDiv[0][1],
-                               scriptAll=scriptsDiv[0][0],
+                               divPlot=scriptsDiv[0][1],
+                               scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
         loggerError.error(f'flask error: {e}')
