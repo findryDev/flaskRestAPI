@@ -111,7 +111,7 @@ class TemperaturesView(Resource, Apicheck):
                 dictDateTemp = {}
                 for x in temperatures:
                     dictDateTemp.update(
-                        {str(x.Date): x.temperature})
+                        {str(x.date): x.temperature})
                 loggerRequests.debug('flaskAPI GET requests')
                 return dictDateTemp
             else:
@@ -186,7 +186,7 @@ class TemperatureView(Resource):
                     temperature = TemperatureModelSensor3.query.order_by(
                         sqlalchemy.desc(TemperatureModelSensor3.id)).first()
                 loggerRequests.debug('flaskAPI GET one request')
-                return {str(temperature.Date): temperature.temperature}
+                return {str(temperature.date): temperature.temperature}
             else:
                 loggerRequests.debug('flaskAPI GET access deny')
                 return checkDict['text'], checkDict['status']
