@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """empty message
 
 Revision ID: fb5929650536
@@ -48,3 +49,29 @@ def downgrade():
                type_=sa.VARCHAR(),
                existing_nullable=True)
     # ### end Alembic commands ###
+=======
+"""empty message
+
+Revision ID: fb5929650536
+Revises: 
+Create Date: 2021-05-25 21:32:44.640940
+
+"""
+from alembic import op
+import sqlalchemy as sa
+
+
+# revision identifiers, used by Alembic.
+revision = 'fb5929650536'
+down_revision = None
+branch_labels = None
+depends_on = None
+
+
+def upgrade():
+    pass
+
+
+def downgrade():
+    pass
+>>>>>>> e8b10cfd35497fe50e5f0edfb82c639e28ede3b0

@@ -1,18 +1,19 @@
 from flask import Flask, request, render_template
 from flask_restful import Api, Resource
 import sqlalchemy
-from models import db, TemperatureModelSensor1
-from models import TemperatureModelSensor2
-from models import TemperatureModelSensor3
+from appLib.models import db
+from appLib.models import TemperatureModelSensor1
+from appLib.models import TemperatureModelSensor2
+from appLib.models import TemperatureModelSensor3
 from flask_migrate import Migrate
-from common import cache
+from appLib.common import cache
 from config import Config
-from plot import bokeh_plot,  bokeh_plots, CDN_js
-from requestDomoticz import getTempForDomoticzAPI
-from requestApiWether import getCurrentWeather
-from queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
-from queriesFromDB import getMaxValue, getMinValue
-from requestsIFTTT import iftttOverheat
+from appLib.plot import bokeh_plot,  bokeh_plots, CDN_js
+from appLib.requestDomoticz import getTempForDomoticzAPI
+from appLib.requestApiWether import getCurrentWeather
+from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
+from appLib.queriesFromDB import getMaxValue, getMinValue
+from appLib.requestsIFTTT import iftttOverheat
 import logging
 import os
 
@@ -96,7 +97,8 @@ class Apicheck:
             else:
                 return {'check': False, 'text': 'KEY ERROR', 'status': 400}
 
-
+# TODO add request ip visitor request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+# request.remote_addr
 class TemperaturesView(Resource, Apicheck):
     def get(self):
         try:
@@ -248,7 +250,7 @@ def COtemperature():
 
 @app.route("/web/COtemperature/kociol")
 def tempKotla():
-    try:
+    #try:
         titleHead = 'Temperatura instalacji CO'
         titleBody = 'Temperatura kotła'
         mainURL = '/web/COtemperature/kociol'
@@ -278,9 +280,9 @@ def tempKotla():
                                divPlot=scriptsDiv[0][1],
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
-    except Exception as e:
-        loggerError.error(f'flask error: {e}')
-        return render_template('error.html')
+    #except Exception as e:
+        #loggerError.error(f'flask error: {e}')
+        #return render_template('error.html')
 
 
 @app.route("/web/COtemperature/wyjscie")
