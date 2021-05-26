@@ -7,7 +7,9 @@ password = 'Rm42OTYxMjk2MDc='
 
 def getTempForDomoticzAPI(id):
     results = {}
-    endpoint = f"http://192.168.0.4:8080/json.htm?username={username}&password={password}&type=devices&rid={id}"
+    endpoint = (("http://192.168.0.4:8080/json.htm?") +
+                (f"username={username}") +
+                (f"&password={password}&type=devices&rid={id}"))
     r = requests.get(endpoint)
     if r.status_code == 200:
         data = r.json()

@@ -38,7 +38,8 @@ def sensorQueriesToPlot(modelDB, howMany):
 def deleteOldData(daysLimit, model):
     try:
         oldPeriod = datetime.datetime.now() - datetime.timedelta(daysLimit)
-        delCount = db.session.query(model).filter(model.date <= oldPeriod).delete()
+        delCount = (db.session.query(model)
+                    .filter(model.date <= oldPeriod).delete())
         db.session.commit()
         return delCount
     except Exception as e:

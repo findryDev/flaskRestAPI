@@ -11,8 +11,8 @@ from config import Config
 from appLib.plot import bokeh_plot,  bokeh_plots, CDN_js
 from appLib.requestDomoticz import getTempForDomoticzAPI
 from appLib.requestApiWether import getCurrentWeather
-from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot, deleteOldData
-from appLib.queriesFromDB import getMaxValue, getMinValue
+from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
+from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
 import logging
 import os
@@ -97,8 +97,11 @@ class Apicheck:
             else:
                 return {'check': False, 'text': 'KEY ERROR', 'status': 400}
 
-# TODO add request ip visitor request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+# TODO: add request ip visitor request.environ.get('HTTP_X_REAL_IP'
+# , request.remote_addr)
 # request.remote_addr
+
+
 class TemperaturesView(Resource, Apicheck):
     def get(self):
         try:
@@ -250,7 +253,7 @@ def COtemperature():
 
 @app.route("/web/COtemperature/kociol")
 def tempKotla():
-    #try:
+    try:
         titleHead = 'Temperatura instalacji CO'
         titleBody = 'Temperatura kotła'
         mainURL = '/web/COtemperature/kociol'
@@ -267,8 +270,6 @@ def tempKotla():
                                      title="Temperatura kotła",
                                      color='blue'))
         loggerRequests.debug('flask requests')
-        print(getMaxValue(TemperatureModelSensor1))
-        print(getMinValue(TemperatureModelSensor1))
         return render_template('tempCOtemplate.html',
                                titleHead=titleHead,
                                titleBody=titleBody,
@@ -280,9 +281,9 @@ def tempKotla():
                                divPlot=scriptsDiv[0][1],
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
-    #except Exception as e:
-        #loggerError.error(f'flask error: {e}')
-        #return render_template('error.html')
+    except Exception as e:
+        loggerError.error(f'flask error: {e}')
+        return render_template('error.html')
 
 
 @app.route("/web/COtemperature/wyjscie")
