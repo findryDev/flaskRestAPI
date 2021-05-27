@@ -117,7 +117,7 @@ class TemperaturesView(Resource, Apicheck):
                 for x in temperatures:
                     dictDateTemp.update(
                         {str(x.date): x.temperature})
-                loggerRequests.debug('flaskAPI GET requests')
+                loggerRequests.debug(f'flaskAPI GET requests, IP: {request.remote_addr}')
                 return dictDateTemp
             else:
                 loggerRequests.debug('flaskAPI GET access deny')
@@ -193,7 +193,7 @@ class TemperatureView(Resource):
                 loggerRequests.debug('flaskAPI GET one request')
                 return {str(temperature.date): temperature.temperature}
             else:
-                loggerRequests.debug('flaskAPI GET access deny')
+                loggerRequests.debug(f'flaskAPI GET access deny, IP: {request.remote_addr}')
                 return checkDict['text'], checkDict['status']
         except Exception as e:
             loggerError.error(f'flaskAPI error: {e}')
@@ -239,7 +239,7 @@ def COtemperature():
 
         currentWeather = getCurrentWeather()
 
-        loggerRequests.debug('flask requests')
+        loggerRequests.debug(f'flask requests, IP: {request.remote_addr}')
         return render_template("COtemperature.html",
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
