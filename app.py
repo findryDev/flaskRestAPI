@@ -14,6 +14,7 @@ from appLib.requestApiWether import getCurrentWeather
 from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
+from appLib.requestFromApp import getIp
 import logging
 import os
 
@@ -43,6 +44,7 @@ file_handler_err.setFormatter(error_format)
 
 deb_format = logging.Formatter(' - %(asctime)s'
                                ' - %(message)s'
+                               ' - IP:%(ip)s'
                                ' - %(name)s')
 file_handler_deb.setFormatter(deb_format)
 
@@ -117,7 +119,7 @@ class TemperaturesView(Resource, Apicheck):
                 for x in temperatures:
                     dictDateTemp.update(
                         {str(x.date): x.temperature})
-                loggerRequests.debug(f'flaskAPI GET requests, IP: {request.remote_addr}')
+                loggerRequests.debug(f'flaskAPI GET requests', {'ip': getIp()})
                 return dictDateTemp
             else:
                 loggerRequests.debug('flaskAPI GET access deny')
@@ -239,7 +241,7 @@ def COtemperature():
 
         currentWeather = getCurrentWeather()
 
-        loggerRequests.debug(f'flask requests, IP: {request.remote_addr}')
+        loggerRequests.debug('flask requests', {'ip': getIp()})
         return render_template("COtemperature.html",
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
