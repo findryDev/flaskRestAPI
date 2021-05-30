@@ -1,4 +1,7 @@
-from flask import Flask, request
+from flask import request
 
-def getIp():
-    return request.remote_addr
+
+def getInfo():
+    return {'ip': request.remote_addr,
+            'met': request.method,
+            'end': request.endpoint}
