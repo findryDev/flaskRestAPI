@@ -14,51 +14,10 @@ from appLib.requestApiWether import getCurrentWeather
 from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
-import logging
+from appLib.appLogger import appLogger
 import os
 
-# create a custom logger foF
-
-loggerError = logging.getLogger('flaskErr')
-loggerError.setLevel(logging.ERROR)
-loggerRequests = logging.getLogger('flaskRequests')
-loggerRequests.setLevel(logging.DEBUG)
-loggerDB = logging.getLogger('dbOperation')
-loggerDB.setLevel(logging.DEBUG)
-
-
-# create handlers
-
-file_handler_err = logging.FileHandler('flaskErr.log')
-file_handler_deb = logging.FileHandler('flaskDeb.log')
-file_handler_db = logging.FileHandler('dbLogger.log')
-
-# create formatters and it to handlers
-
-error_format = logging.Formatter('%(levelname)s'
-                                 ' - %(asctime)s'
-                                 ' - %(message)s'
-                                 ' - %(name)s')
-file_handler_err.setFormatter(error_format)
-
-deb_format = logging.Formatter(' - %(asctime)s'
-                               ' - %(message)s'
-                               ' - %(name)s')
-file_handler_deb.setFormatter(deb_format)
-
-db_format = logging.Formatter(' - %(asctime)s'
-                              ' - %(message)s'
-                              ' - %(name)s'
-                              ' - %(funcName)s')
-file_handler_db.setFormatter(db_format)
-
-
-# add handler to the logger
-
-loggerError.addHandler(file_handler_err)
-loggerRequests.addHandler(file_handler_deb)
-loggerDB.addHandler(file_handler_db)
-
+appLogger = appLogger()
 app = Flask(__name__)
 cache.init_app(app=app,
                config={'CACHE_TYPE': 'filesystem',
@@ -117,13 +76,14 @@ class TemperaturesView(Resource, Apicheck):
                 for x in temperatures:
                     dictDateTemp.update(
                         {str(x.date): x.temperature})
-                loggerRequests.debug(f'flaskAPI GET requests, IP: {request.remote_addr}')
+                appLogger.createDebLog()
                 return dictDateTemp
             else:
-                loggerRequests.debug('flaskAPI GET access deny')
+                appLogger.createDebLog(checkDict['text'] + " " +
+                                       checkDict['status'])
                 return checkDict['text'], checkDict['status']
         except Exception as e:
-            loggerError.error(f'flaskAPI error: {e}')
+            appLogger.createErrLog(e)
 
     def post(self):
         try:
@@ -131,6 +91,7 @@ class TemperaturesView(Resource, Apicheck):
             checkDict = Apicheck.checkingApiKey()
             if checkDict['check']:
                 data = request.get_json(force=True)
+                appLogger.createDBLog('post', len(data))
                 if request.endpoint == "temperatures/sensor1":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
@@ -138,9 +99,8 @@ class TemperaturesView(Resource, Apicheck):
                                   "overheatTime1")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor1)
-                    loggerDB.debug(f'deleted records:'
-                                   f' {delCount}'
-                                   f'in modelSensor1')
+                    if delCount > 0:
+                        appLogger.createDBLog('del sensor1', delCount)
                     new_temperature = (TemperatureModelSensor1
                                        (data['temperature']))
                 if request.endpoint == "temperatures/sensor2":
@@ -150,9 +110,8 @@ class TemperaturesView(Resource, Apicheck):
                                   "overheatTime2")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor2)
-                    loggerDB.debug(f'deleted records:'
-                                   f'{delCount}'
-                                   f'in modelSensor2')
+                    if delCount > 0:
+                        appLogger.createDBLog('del sensor2', len(data))
                     new_temperature = (TemperatureModelSensor2
                                        (data['temperature']))
                 if request.endpoint == "temperatures/sensor3":
@@ -162,18 +121,20 @@ class TemperaturesView(Resource, Apicheck):
                                   "overheatTime3")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor3)
-                    loggerDB.debug(f'deleted records:'
-                                   f' {delCount}'
-                                   f'in modelSensor3')
+                    if delCount > 0:
+                        appLogger.createDBLog('del sensor3', len(data))
                     new_temperature = (TemperatureModelSensor3
                                        (data['temperature']))
                 db.session.add(new_temperature)
                 db.session.commit()
                 return {'temperature': data['temperature']}
             else:
+                appLogger.createDebLog(checkDict['text'] + " " +
+                                       checkDict['status'])
                 return checkDict['text'], checkDict['status']
+
         except Exception as e:
-            loggerError.error(f'flaskAPI error: {e}')
+            appLogger.createErrLog(e)
 
 
 class TemperatureView(Resource):
@@ -190,13 +151,14 @@ class TemperatureView(Resource):
                 if request.endpoint == "temperature/sensor3":
                     temperature = TemperatureModelSensor3.query.order_by(
                         sqlalchemy.desc(TemperatureModelSensor3.id)).first()
-                loggerRequests.debug('flaskAPI GET one request')
+                appLogger.createDebLog()
                 return {str(temperature.date): temperature.temperature}
             else:
-                loggerRequests.debug(f'flaskAPI GET access deny, IP: {request.remote_addr}')
+                appLogger.createDebLog(checkDict['text'] + " " +
+                                       checkDict['status'])
                 return checkDict['text'], checkDict['status']
         except Exception as e:
-            loggerError.error(f'flaskAPI error: {e}')
+            appLogger.createErrLog(e)
 
 
 class TemperaturesDelete(Resource):
@@ -207,18 +169,23 @@ class TemperaturesDelete(Resource):
                 if request.endpoint == "deleteAll/sensor1":
                     delCount = (db.session.query(TemperatureModelSensor1)
                                 .delete())
+                    appLogger.createDBLog('del sensor1', delCount)
                 if request.endpoint == "deleteAll/sensor2":
                     delCount = (db.session.query(TemperatureModelSensor2)
                                 .delete())
+                    appLogger.createDBLog('del sensor2', delCount)
                 if request.endpoint == "deleteAll/sensor3":
                     delCount = (db.session.query(TemperatureModelSensor3)
                                 .delete())
+                    appLogger.createDBLog('del sensor3', delCount)
                 db.session.commit()
                 return f"number of delete rows: {delCount}"
             else:
+                appLogger.createDebLog(checkDict['text'] + " " +
+                                       checkDict['status'])
                 return checkDict['text'], checkDict['status']
         except Exception as e:
-            loggerError.error(f'flaskAPI error: {e}')
+            appLogger.createErrLog(e)
 
 
 @app.route("/")
@@ -226,7 +193,7 @@ def index():
     try:
         return render_template("index.html")
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -239,7 +206,8 @@ def COtemperature():
 
         currentWeather = getCurrentWeather()
 
-        loggerRequests.debug(f'flask requests, IP: {request.remote_addr}')
+        appLogger.createDebLog()
+
         return render_template("COtemperature.html",
                                refresh=refreshSiteCO,
                                sensor1=sensor1,
@@ -247,7 +215,7 @@ def COtemperature():
                                sensor3=sensor3,
                                currentWeather=currentWeather)
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -269,7 +237,7 @@ def tempKotla():
                                      legend_label="Temperatura kotła",
                                      title="Temperatura kotła",
                                      color='blue'))
-        loggerRequests.debug('flask requests')
+        appLogger.createDebLog()
         return render_template('tempCOtemplate.html',
                                titleHead=titleHead,
                                titleBody=titleBody,
@@ -282,7 +250,7 @@ def tempKotla():
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -305,7 +273,7 @@ def tempWyjscie():
                                      title="Temperatura wyjście",
                                      color='green'))
 
-        loggerRequests.debug('flask requests')
+        appLogger.createDebLog()
         return render_template('tempCOtemplate.html',
                                titleHead=titleHead,
                                titleBody=titleBody,
@@ -318,7 +286,7 @@ def tempWyjscie():
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -341,7 +309,7 @@ def tempPowrot():
                                      legend_label="Temperatura powrót",
                                      title="Temperatura powrót",
                                      color='yellow'))
-        loggerRequests.debug('flask requests')
+        appLogger.createDebLog()
         return render_template('tempCOtemplate.html',
                                titleHead=titleHead,
                                titleBody=titleBody,
@@ -354,7 +322,7 @@ def tempPowrot():
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -380,7 +348,7 @@ def tempAll():
                                       legend_labels=legendLabels,
                                       titles="Temperatura instalacji",
                                       colors=['blue', 'green', 'yellow']))
-        loggerRequests.debug('flask requests')
+        appLogger.createDebLog()
 
         return render_template("tempCOtemplate.html",
                                titleHead=titleHead,
@@ -394,7 +362,7 @@ def tempAll():
                                scriptPlot=scriptsDiv[0][0],
                                cdn=CDN_js())
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
@@ -408,7 +376,7 @@ def homeTemperature():
         wej = getTempForDomoticzAPI(36)
 
         currentWeather = getCurrentWeather()
-
+        appLogger.createDebLog()
         return render_template('homeTemperature.html',
                                refresh=refreshSiteHome,
                                syp=syp,
@@ -419,7 +387,7 @@ def homeTemperature():
                                currentWeather=currentWeather)
 
     except Exception as e:
-        loggerError.error(f'flask error: {e}')
+        appLogger.createErrLog(e)
         return render_template('error.html')
 
 
