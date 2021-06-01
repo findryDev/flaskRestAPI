@@ -43,8 +43,10 @@ class appLogger:
         self.loggerDB.addHandler(self.file_handler_db)
 
     def createDebLog(self, mess=''):
-        self.loggerRequests.debug('flaskApp request ' + mess,
-                                  extra=getInfo())
+        extra = getInfo()
+        if extra['ip'] != "192.168.0.6":
+            self.loggerRequests.debug('flaskApp request ' + mess,
+                                      extra=extra)
 
     def createErrLog(self, err='---'):
         self.loggerError.error(f'flaskApp error: {err}',

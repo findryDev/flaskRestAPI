@@ -35,12 +35,12 @@ migrate = Migrate(app, db, compare_type=True)
 refreshSiteCO = "30"
 refreshSiteHome = "600"
 dayLimitDB = 14
-howMany = 800
+howManyRecords = 800
 overHeatTemp = 75
 
-cache.set("overheatTime1", None)
-cache.set("overheatTime2", None)
-cache.set("overheatTime3", None)
+cache.set("overheatSensor1", None)
+cache.set("overheatSensor2", None)
+cache.set("overheatSensor3", None)
 
 
 class Apicheck:
@@ -55,10 +55,6 @@ class Apicheck:
                 return {'check': False, 'text': 'ACCESS DENY', 'status': 401}
             else:
                 return {'check': False, 'text': 'KEY ERROR', 'status': 400}
-
-# TODO: add request ip visitor request.environ.get('HTTP_X_REAL_IP'
-# , request.remote_addr)
-# request.remote_addr
 
 
 class TemperaturesView(Resource, Apicheck):
@@ -91,12 +87,12 @@ class TemperaturesView(Resource, Apicheck):
             checkDict = Apicheck.checkingApiKey()
             if checkDict['check']:
                 data = request.get_json(force=True)
-                appLogger.createDBLog('post', len(data))
+                appLogger.createDebLog()
                 if request.endpoint == "temperatures/sensor1":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
                                   "piec CO",
-                                  "overheatTime1")
+                                  "overheatSensor1")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor1)
                     if delCount > 0:
@@ -107,7 +103,7 @@ class TemperaturesView(Resource, Apicheck):
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
                                   "wyjscie",
-                                  "overheatTime2")
+                                  "overheatSensor2")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor2)
                     if delCount > 0:
@@ -118,7 +114,7 @@ class TemperaturesView(Resource, Apicheck):
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
                                   "powrót",
-                                  "overheatTime3")
+                                  "overheatSensor3")
                     delCount = deleteOldData(dayLimitDB,
                                              TemperatureModelSensor3)
                     if delCount > 0:
@@ -191,6 +187,7 @@ class TemperaturesDelete(Resource):
 @app.route("/")
 def index():
     try:
+        appLogger.createDebLog()
         return render_template("index.html")
     except Exception as e:
         appLogger.createErrLog(e)
@@ -230,7 +227,8 @@ def tempKotla():
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
 
-        temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1, howMany)
+        temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1,
+                                            howManyRecords)
 
         scriptsDiv = []
         scriptsDiv.append(bokeh_plot(query=temperatures1,
@@ -265,7 +263,8 @@ def tempWyjscie():
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
 
-        temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2, howMany)
+        temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2,
+                                            howManyRecords)
 
         scriptsDiv = []
         scriptsDiv.append(bokeh_plot(query=temperatures2,
@@ -301,7 +300,8 @@ def tempPowrot():
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
 
-        temperatures3 = sensorQueriesToPlot(TemperatureModelSensor3, howMany)
+        temperatures3 = sensorQueriesToPlot(TemperatureModelSensor3,
+                                            howManyRecords)
 
         scriptsDiv = []
 
@@ -336,9 +336,12 @@ def tempAll():
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
 
-        temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1, howMany)
-        temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2, howMany)
-        temperatures3 = sensorQueriesToPlot(TemperatureModelSensor3, howMany)
+        temperatures1 = sensorQueriesToPlot(TemperatureModelSensor1,
+                                            howManyRecords)
+        temperatures2 = sensorQueriesToPlot(TemperatureModelSensor2,
+                                            howManyRecords)
+        temperatures3 = sensorQueriesToPlot(TemperatureModelSensor3,
+                                            howManyRecords)
 
         temperaturesALL = [temperatures1, temperatures2, temperatures3]
 

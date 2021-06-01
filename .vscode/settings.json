@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/filip/.local/share/virtualenvs/apiFlask-2z_u5KDm/bin/python",
+    "python.pythonPath": "C:\\Users\\filip\\.virtualenvs\\apiFlask-EUzw1Egn\\Scripts\\python.exe",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pycodestyleEnabled": false,
