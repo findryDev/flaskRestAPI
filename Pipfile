@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-Flask=="1.1.2"
+Flask= "1.1.2"
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flake8 = "*"
@@ -16,8 +16,9 @@ python-dotenv = "*"
 psycopg2-binary = "*"
 flask-migrate = "*"
 bokeh = "*"
-#uwsgi = "*"
+uwsgi = "*"
 flask-caching = "*"
+vcgencmd = "*"
 
 [requires]
 python_version = "3.8"

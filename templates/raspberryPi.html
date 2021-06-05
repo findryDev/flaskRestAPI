@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="300;url=/web/homeTemperature">
+    <meta http-equiv="refresh" content="300;url=/web/raspberryPi">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"\>
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
@@ -17,40 +17,37 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Home temperature</title>
+    <title>RaspberryPi</title>
 
 </head>
 <body>
     <div class="container">
-        <a href="/"><div class="title">Temperatura w domu</div></a>
+        <a href="/"><div class="title">Moja malina pi4</div></a>
         <div class="main">
-            <div class="inHomeTempR1">
-                <div class="name">Sypialnia</div>
-                <div class="value"><i class="{{syp.icon}}"></i>{{syp.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{syp.lastUpdate}}</div>
+            <div class="raspberryStatistic">
+                <div class="name">Temperatura</div>
+                <div class="value">{{pi.temperature}} <span>&#8451;</span></div>
             </div>
-            <div class="inHomeTempR1">
-                <div class="name">Jadalnia</div>
-                <div class="value"><i class="{{jad.icon}}"></i>{{jad.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{jad.lastUpdate}}</div>
+            <div class="raspberryStatistic">
+                <div class="name">Taktowanie procesora</div>
+                <div class="value">{{pi.clockCPU}} GHz</div>
             </div>
-            <div class="inHomeTempR1">
-                <div class="name">Łazienka</div>
-                <div class="value"><i class="{{laz.icon}}"></i>{{laz.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{laz.lastUpdate}}</div>
+            <div class="raspberryStatistic">
+                <div class="name">Mam ramu w sobie</div>
+                <div class="value">{{pi.allRam}} GB</div>
             </div>
-            <div style="clear:both"></div>
-            <div class="inHomeTempR2">
-                <div class="name">Kotłownia</div>
-                <div class="value"><i class="{{kot.icon}}"></i>{{kot.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{kot.lastUpdate}}</div>
+            <div class="raspberryStatistic">
+                <div class="name">Dostępna pamięć RAM</div>
+                <div class="value">{{pi.availableRam}} GB</div>
             </div>
-            <div class="inHomeTempR2">
-                <div class="name">Wejście</div>
-                <div class="value"><i class="{{wej.icon}}"></i>{{wej.temperature}} <span>&#8451;</span></div>
-                <div class="lastUpdate">{{wej.lastUpdate}}</div>
+            <div class="raspberryStatistic">
+                <div class="name">Ram do Twojej dyspozycji</div>
+                <div class="value">{{pi.freeRam}} GB</div>
             </div>
-
+            <div class="raspberryStatistic">
+                <div class="name">Procent zużycia ramu</div>
+                <div class="value">{{pi.usedRamPercent}} %</div>
+            </div>
             <div class="squareWeather">
                 <div class="squareWeatherTitle">Pogoda</div>
                 <div class="squareWeatherValue">

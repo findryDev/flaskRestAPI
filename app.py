@@ -15,6 +15,7 @@ from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
 from appLib.appLogger import appLogger
+from appLib.requestRaspberry import getRaspberryInfo
 import os
 
 appLogger = appLogger()
@@ -387,6 +388,22 @@ def homeTemperature():
                                laz=laz,
                                kot=kot,
                                wej=wej,
+                               currentWeather=currentWeather)
+
+    except Exception as e:
+        appLogger.createErrLog(e)
+        return render_template('error.html')
+
+
+@app.route("/web/raspberryPi")
+def piStatistic():
+    try:
+        raspberryPi = getRaspberryInfo()
+        currentWeather = getCurrentWeather()
+        appLogger.createDebLog()
+        return render_template('raspberryPi.html',
+                               refresh=refreshSiteHome,
+                               pi=raspberryPi,
                                currentWeather=currentWeather)
 
     except Exception as e:

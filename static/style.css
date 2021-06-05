@@ -138,6 +138,15 @@ img {
   margin-top: 1%;
 }
 
+.raspberryStatistic{
+  width: 30%;
+  height: 300%;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 50px;
+  padding-left: 5px;
+}
+
 .inHomeTempR1{
   width: 30%;
   height: 300%;
@@ -145,7 +154,6 @@ img {
   float: left;
   padding-bottom: 50px;
 }
-
 .inHomeTempR2{
   width: 50%;
   height: 300%;
@@ -177,6 +185,9 @@ img {
     text-align: center;
     clear:both;
     padding-bottom: 10px;
+    border: solid 1px;
+    border-radius: 5px; 
+    
   }
 
   .inHomeTempR2{
@@ -185,7 +196,20 @@ img {
     text-align: center;
     clear:both;
     padding-bottom: 10px;
+    border: solid 1px;
+    border-radius: 5px; 
   }
+
+  .raspberryStatistic{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: block;
+    padding-bottom: 10px;
+    border: solid 1px;
+    border-radius: 5px; 
+  }
+
   .name{
     font-weight: bold;
     font-size: 40px;
@@ -195,6 +219,7 @@ img {
   .value{
     font-weight: bold;
     font-size: 40px;
+    color: darkblue;
   }
 
   .lastUpdate{
@@ -222,7 +247,7 @@ img {
     width: 50%;
     height: 50%;
     padding-top: 0%;
-    font-size: 20px;
+    font-size: 18px;
     float: left;
     text-align: left;
   }
@@ -244,7 +269,6 @@ img {
     width: 50%;
     height: 100%;
   }
-
 
 }
 
