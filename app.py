@@ -15,7 +15,7 @@ from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
 from appLib.appLogger import appLogger
-from appLib.requestRaspberry import getRaspberryInfo
+#from appLib.requestRaspberry import getRaspberryInfo
 import os
 
 appLogger = appLogger()
@@ -429,7 +429,6 @@ api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor2',
                  endpoint="deleteAll/sensor2")
 api.add_resource(TemperaturesDelete, '/api/deleteAll/sensor3',
                  endpoint="deleteAll/sensor3")
-
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT'))

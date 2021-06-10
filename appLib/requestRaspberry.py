@@ -1,9 +1,39 @@
 # TODO: Backend raspberry pi: temperatura, cpu, GPU
+'''
+    id 14 - CPU temperature	
+    id 15 - GPU temperature	
+    id 16 - Memory usage	
+    id 17 - CPU usage	
+    id 18 - CPU speed	
+    id 23 - Connections	
+    id 28 - Domoticz memory
+    id 19 - Up time
+    id 33 - Clock ARM
+	id 34 - Clock V3D
+    id 35 - Clock Core
+'''
 
-from vcgencmd import Vcgencmd
-import subprocess
+import requests
+
+username = 'ZmlsaXA='
+password = 'Rm42OTYxMjk2MDc='
 
 
+def getTempForDomoticzAPI(id, paramiter):
+    results = {}
+    endpoint = (("http://192.168.0.4:8080/json.htm?") +
+                (f"username={username}") +
+                (f"&password={password}&type=devices&rid={id}"))
+    r = requests.get(endpoint)
+    if r.status_code == 200:
+        data = r.json()
+        results = {f'paramiter': }
+
+        return results
+    else:
+        return ('NONE', r.status_code)
+
+'''
 def getRaspberryInfo():
     vcgm = Vcgencmd()
     temperaturePi = vcgm.measure_temp()
@@ -19,3 +49,4 @@ def getRaspberryInfo():
             'freeRam': round(ram[2]/1000, 2),
             'usedRamPercent': round((ram[2]/ram[0]*100), 2)
             }
+'''
