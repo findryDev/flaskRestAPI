@@ -15,7 +15,7 @@ from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
 from appLib.appLogger import appLogger
-#from appLib.requestRaspberry import getRaspberryInfo
+from appLib.requestRaspberry import getRaspberryInfo
 import os
 
 appLogger = appLogger()
