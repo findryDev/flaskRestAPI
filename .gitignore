@@ -3,3 +3,4 @@
 *.log
 .history/
 __pycache__/
+.vscode/
