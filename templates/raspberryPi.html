@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='fontello.css') }}"\>
     <link rel="preconnect" href="https://fonts.gstatic.com"\>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"\>
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='ico/termo/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='ico/termo/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='ico/termo/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ url_for('static', filename='ico/termo/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ url_for('static', filename='ico/termo/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='ico/pi/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='ico/pi/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='ico/pi/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='ico/pi/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='ico/pi/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -24,41 +24,29 @@
     <div class="container">
         <a href="/"><div class="title">Moja malina pi4</div></a>
         <div class="main">
-            <div class="raspberryStatistic">
-                <div class="name">Temperatura</div>
-                <div class="value">{{pi.temperature}}</div>
-            </div>
-            <div class="raspberryStatistic">
-                <div class="name">Taktowanie procesora</div>
-                <div class="value">{{pi.clockCPU}}</div>
-            </div>
-            <div class="raspberryStatistic">
-                <div class="name">Działam już</div>
-                <div class="value">{{pi.upTime}}</div>
-            </div>
-            <div class="raspberryStatistic">
-                <div class="name">Procent zużycia ramu</div>
-                <div class="value">{{pi.usedRamPercent}}</div>
-            </div>
-            <div class="raspberryStatistic">
-                <div class="name">Informacje sprzęcie</div>
-                <div class="value">{{pi.info}}</div>
-            </div>
-            <div class="squareWeather">
-                <div class="squareWeatherTitle">Pogoda</div>
-                <div class="squareWeatherValue">
-                    Aktualna pogoda: {{currentWeather.currentWeatherText}}<br>
-                    Aktualna temperatura: {{currentWeather.currentTemperature}}<span>&#8451;</span><br>
-                    Wiatr: {{currentWeather.windKMH}} km/h<br>
-                    PM2,5: {{currentWeather.pm25}} µg/m3<br>
-                    PM10: {{currentWeather.pm10}} µg/m3<br>
+            <div id="first_row">
+                <div class="raspberryStatistic">
+                    <div class="name">Temperatura</div>
+                    <div class="value">{{pi.temperature}}</div>
                 </div>
-                <div class="squareWeatherImage">
-                    <img src={{currentWeather.iconWeather}} alt="usp....">
+                <div class="raspberryStatistic">
+                    <div class="name">Taktowanie procesora</div>
+                    <div class="value">{{pi.clockCPU}}</div>
                 </div>
-                <div style="clear:both"></div>
-
-                <div class="squareWeatherLastUpdate">Data aktualizacji: {{currentWeather.observTime}}</div>
+                <div class="raspberryStatistic">
+                    <div class="name">Działam już</div>
+                    <div class="value">{{pi.upTime}}</div>
+                </div>
+            </div>
+            <div id="second_row">
+                <div class="raspberryStatistic">
+                    <div class="name">Procent zużycia ramu</div>
+                    <div class="value">{{pi.usedRamPercent}}</div>
+                </div>
+                <div class="raspberryStatistic">
+                    <div class="name">Informacje o sprzęcie</div>
+                    <div class="value">{{pi.info}}</div>
+                </div>
             </div>
         </div>
     </div>

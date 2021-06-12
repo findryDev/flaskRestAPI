@@ -139,12 +139,24 @@ img {
 }
 
 .raspberryStatistic{
-  width: 30%;
-  height: 300%;
+  width: 250px;
+  height: 100px;
   text-align: center;
   display: inline-block;
-  padding-bottom: 50px;
-  padding-left: 5px;
+  padding-bottom: 25px;
+  padding-left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#first_row{
+  padding: 0px;
+}
+
+#second_row{
+  padding-left: 20%;
+  padding-right: 20%;
+  margin: 0px;
 }
 
 .inHomeTempR1{
@@ -186,8 +198,8 @@ img {
     clear:both;
     padding-bottom: 10px;
     border: solid 1px;
-    border-radius: 5px; 
-    
+    border-radius: 5px;
+
   }
 
   .inHomeTempR2{
@@ -197,7 +209,7 @@ img {
     clear:both;
     padding-bottom: 10px;
     border: solid 1px;
-    border-radius: 5px; 
+    border-radius: 5px;
   }
 
   .raspberryStatistic{
@@ -207,7 +219,17 @@ img {
     display: block;
     padding-bottom: 10px;
     border: solid 1px;
-    border-radius: 5px; 
+    border-radius: 5px;
+  }
+
+  #first_row{
+    padding: 0px;
+  }
+
+  #second_row{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
   }
 
   .name{

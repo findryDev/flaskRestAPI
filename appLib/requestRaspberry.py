@@ -1,17 +1,17 @@
 
 '''
 id of sensors pi
-    id 14 - CPU temperature
-    id 15 - GPU temperature
-    id 16 - Memory usage
-    id 17 - CPU usage
-    id 18 - CPU speed
-    id 23 - Connections
-    id 28 - Domoticz memory
-    id 19 - Up_time
-    id 33 - Clock ARM
-	id 34 - Clock V3D
-    id 35 - Clock Core
+id 14 - CPU temperature
+id 15 - GPU temperature
+id 16 - Memory usage
+id 17 - CPU usage
+id 18 - CPU speed
+id 23 - Connections
+id 28 - Domoticz memory
+id 19 - Up_time
+id 33 - Clock ARM
+id 34 - Clock V3D
+id 35 - Clock Core
 '''
 
 import requests
@@ -36,5 +36,3 @@ def getRaspberryInfo():
             data = r.json()
             results.update({n[0]: data['result'][0]["Data"]})
     return results
-
-
