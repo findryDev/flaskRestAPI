@@ -30,24 +30,32 @@
         <div class="temperatureContainer">
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł</div>
-                <div class="squareTempValue">{{sensor1.temperature}}<span>&#8451;</span></div>
+                <!--{% set flot_string_temperature1 = sensor1.temperature|string%}
+                {% set unity_digit, decimal_digit = flot_string_temperature1.split('.') %}
+                {% if decimal_digit|length < 2 %}
+                    <div class="squareTempValue">{{unity_digit}}.{{decimal_digit}}0<span>&#8451;</span></div>
+                {% else %}
+                    <div class="squareTempValue">{{unity_digit}}.{{decimal_digit}}<span>&#8451;</span></div>
+                {% endif %}
+                -->
+                <div class="squareTempValue">{{to_two_decimal(sensor1.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor1.date}}</div>
-                <div id="squareTempMax">temperatura max: {{sensor1.max.temperature}}<span>&#8451;</span></div>
-                <div id="squareTempMin">temperatura min: {{sensor1.min.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor1.max.temperature)}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor1.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła</div>
-                <div class="squareTempValue">{{sensor2.temperature}}<span>&#8451;</span></div>
+                <div class="squareTempValue">{{to_two_decimal(sensor2.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor2.date}}</div>
-                <div id="squareTempMax">temperatura max: {{sensor2.max.temperature}}<span>&#8451;</span></div>
-                <div id="squareTempMin">temperatura min: {{sensor2.min.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor2.max.temperature)}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor2.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła</div>
-                <div class="squareTempValue">{{sensor3.temperature}}<span>&#8451;</span></div>
+                <div class="squareTempValue">{{to_two_decimal(sensor3.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor3.date}}</div>
-                <div id="squareTempMax">temperatura max: {{sensor3.max.temperature}}<span>&#8451;</span></div>
-                <div id="squareTempMin">temperatura min: {{sensor3.min.temperature}}<span>&#8451;</span></div>
+                <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor3.max.temperature)}}<span>&#8451;</span></div>
+                <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor3.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div style="clear:both"></div>
         </div>

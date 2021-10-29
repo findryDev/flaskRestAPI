@@ -44,6 +44,16 @@ cache.set("overheatSensor2", None)
 cache.set("overheatSensor3", None)
 
 
+@app.context_processor
+def utility_processor():
+    def to_two_decimal(float_number):
+        unity_digit, decimal_digit = str(float_number).split(".")
+        if len(decimal_digit) < 2:
+            decimal_digit = decimal_digit + "0"
+        return unity_digit + "." + decimal_digit
+    return dict(to_two_decimal=to_two_decimal)
+
+
 class Apicheck:
     def checkingApiKey():
         try:

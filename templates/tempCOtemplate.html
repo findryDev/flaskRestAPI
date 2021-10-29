@@ -38,17 +38,17 @@
         <div class="temperatureContainer">
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł</div>
-                <div class="squareTempValue">{{sensor1.temperature}}<span>&#8451;</span></div>
+                <div class="squareTempValue">{{to_two_decimal(sensor1.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">{{sensor1.date}}</div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła</div>
-                <div class="squareTempValue">{{sensor2.temperature}}<span>&#8451;</span></div>
+                <div class="squareTempValue">{{to_two_decimal(sensor2.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">{{sensor2.date}}</div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła</div>
-                <div class="squareTempValue">{{sensor3.temperature}}<span>&#8451;</span></div>
+                <div class="squareTempValue">{{to_two_decimal(sensor3.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">{{sensor3.date}}</div>
             </div>
             <div style="clear:both"></div>
