@@ -88,6 +88,7 @@ class TemperaturesView(Resource, Apicheck):
             checkDict = Apicheck.checkingApiKey()
             if checkDict['check']:
                 data = request.get_json(force=True)
+
                 appLogger.createDebLog()
                 if request.endpoint == "temperatures/sensor1":
                     iftttOverheat(float(data['temperature']),
@@ -98,8 +99,9 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor1)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor1', delCount)
-                    new_temperature = format(float(TemperatureModelSensor1
-                                       (data['temperature'])), '.2f')
+
+                    temperature_two_place = format((float(data['temperature'])), '.2f')
+                    new_temperature = TemperatureModelSensor1(temperature_two_place)
                 if request.endpoint == "temperatures/sensor2":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
@@ -109,8 +111,9 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor2)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor2', len(data))
-                    new_temperature = format(float(TemperatureModelSensor2
-                                       (data['temperature'])), '.2f')
+
+                    temperature_two_place = format((float(data['temperature'])), '.2f')
+                    new_temperature = TemperatureModelSensor2(temperature_two_place)
                 if request.endpoint == "temperatures/sensor3":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
@@ -120,8 +123,8 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor3)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor3', len(data))
-                    new_temperature = format(float(TemperatureModelSensor3
-                                       (data['temperature'])), '.2f')
+                    temperature_two_place = format((float(data['temperature'])), '.2f')
+                    new_temperature = TemperatureModelSensor3(temperature_two_place)
                 db.session.add(new_temperature)
                 db.session.commit()
                 return {'temperature': data['temperature']}
