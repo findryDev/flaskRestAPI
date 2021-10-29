@@ -98,8 +98,8 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor1)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor1', delCount)
-                    new_temperature = (TemperatureModelSensor1
-                                       (data['temperature']))
+                    new_temperature = format(float(TemperatureModelSensor1
+                                       (data['temperature'])), '.2f')
                 if request.endpoint == "temperatures/sensor2":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
@@ -109,8 +109,8 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor2)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor2', len(data))
-                    new_temperature = (TemperatureModelSensor2
-                                       (data['temperature']))
+                    new_temperature = format(float(TemperatureModelSensor2
+                                       (data['temperature'])), '.2f')
                 if request.endpoint == "temperatures/sensor3":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
@@ -120,8 +120,8 @@ class TemperaturesView(Resource, Apicheck):
                                              TemperatureModelSensor3)
                     if delCount > 0:
                         appLogger.createDBLog('del sensor3', len(data))
-                    new_temperature = (TemperatureModelSensor3
-                                       (data['temperature']))
+                    new_temperature = format(float(TemperatureModelSensor3
+                                       (data['temperature'])), '.2f')
                 db.session.add(new_temperature)
                 db.session.commit()
                 return {'temperature': data['temperature']}
