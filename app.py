@@ -36,7 +36,7 @@ migrate = Migrate(app, db, compare_type=True)
 refreshSiteCO = "30"
 refreshSiteHome = "600"
 dayLimitDB = 14
-howManyRecords = 800
+howManyRecords = 1600
 overHeatTemp = 75
 
 cache.set("overheatSensor1", None)
@@ -44,6 +44,7 @@ cache.set("overheatSensor2", None)
 cache.set("overheatSensor3", None)
 
 
+# function using in template
 @app.context_processor
 def utility_processor():
     def to_two_decimal(float_number):
@@ -105,36 +106,33 @@ class TemperaturesView(Resource, Apicheck):
                                   float(overHeatTemp),
                                   "piec CO",
                                   "overheatSensor1")
-                    delCount = deleteOldData(dayLimitDB,
-                                             TemperatureModelSensor1)
-                    if delCount > 0:
-                        appLogger.createDBLog('del sensor1', delCount)
+                    deleteOldData(dayLimitDB, TemperatureModelSensor1)
 
-                    temperature_two_place = format((float(data['temperature'])), '.2f')
-                    new_temperature = TemperatureModelSensor1(temperature_two_place)
+                    # if delCount > 0: appLogger.createDBLog('del sensor1'
+                    # , delCount)
+                    new_temperature = TemperatureModelSensor1(
+                        data['temperature'])
                 if request.endpoint == "temperatures/sensor2":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
                                   "wyjscie",
                                   "overheatSensor2")
-                    delCount = deleteOldData(dayLimitDB,
-                                             TemperatureModelSensor2)
-                    if delCount > 0:
-                        appLogger.createDBLog('del sensor2', len(data))
-
-                    temperature_two_place = format((float(data['temperature'])), '.2f')
-                    new_temperature = TemperatureModelSensor2(temperature_two_place)
+                    deleteOldData(dayLimitDB, TemperatureModelSensor2)
+                    # if delCount > 0: appLogger.createDBLog('del sensor2',
+                    # len(data))
+                    new_temperature = TemperatureModelSensor2(
+                        data['temperature'])
                 if request.endpoint == "temperatures/sensor3":
                     iftttOverheat(float(data['temperature']),
                                   float(overHeatTemp),
                                   "powrót",
                                   "overheatSensor3")
-                    delCount = deleteOldData(dayLimitDB,
-                                             TemperatureModelSensor3)
-                    if delCount > 0:
-                        appLogger.createDBLog('del sensor3', len(data))
-                    temperature_two_place = format((float(data['temperature'])), '.2f')
-                    new_temperature = TemperatureModelSensor3(temperature_two_place)
+                    deleteOldData(dayLimitDB, TemperatureModelSensor3)
+                    # if delCount > 0: appLogger.createDBLog('del sensor3',
+                    # len(data))
+
+                    new_temperature = TemperatureModelSensor3(
+                        data['temperature'])
                 db.session.add(new_temperature)
                 db.session.commit()
                 return {'temperature': data['temperature']}
@@ -179,15 +177,15 @@ class TemperaturesDelete(Resource):
                 if request.endpoint == "deleteAll/sensor1":
                     delCount = (db.session.query(TemperatureModelSensor1)
                                 .delete())
-                    appLogger.createDBLog('del sensor1', delCount)
+                    # appLogger.createDBLog('del sensor1', delCount)
                 if request.endpoint == "deleteAll/sensor2":
                     delCount = (db.session.query(TemperatureModelSensor2)
                                 .delete())
-                    appLogger.createDBLog('del sensor2', delCount)
+                    # appLogger.createDBLog('del sensor2', delCount)
                 if request.endpoint == "deleteAll/sensor3":
                     delCount = (db.session.query(TemperatureModelSensor3)
                                 .delete())
-                    appLogger.createDBLog('del sensor3', delCount)
+                    # appLogger.createDBLog('del sensor3', delCount)
                 db.session.commit()
                 return f"number of delete rows: {delCount}"
             else:
