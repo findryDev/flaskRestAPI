@@ -1,5 +1,6 @@
 
 .icon-droplet:before { content: '\e800'; } /* '' */
+.icon-battery:before { content: '\e801'; } /* '' */
 .icon-thermometer:before { content: '\f2c7'; } /* '' */
 .icon-thermometer-3:before { content: '\f2c8'; } /* '' */
 .icon-thermometer-2:before { content: '\f2c9'; } /* '' */
