@@ -1,7 +1,7 @@
 import sqlalchemy
 import datetime
 from appLib.models import db
-from appLib.fontelloStyle import getIconNameCO
+from appLib.fontelloStyle import getIconNameCO, get_temperature_trend
 
 
 def getLastRecordToDict(tempModel):
@@ -16,7 +16,9 @@ def sensorQueries(modelDB):
     dateFormat = '%d-%m-%Y %H:%M:%S'
     temperatureQuery['date'] = temperatureQuery['date'].strftime(dateFormat)
     icon = getIconNameCO(temperatureQuery['temperature'])
+    trend = get_temperature_trend(get_temperature_delta(10, modelDB))
     temperatureQuery.update({"icon": icon})
+    temperatureQuery.update({"trend": trend})
     temperatureQuery.update({"max": getMaxValue(modelDB)})
     temperatureQuery['max']['date'] = (temperatureQuery['max']['date'].
                                        strftime(dateFormat))
@@ -60,3 +62,14 @@ def getMinValue(model):
            order_by(sqlalchemy.asc(model.temperature)).
            first().json())
     return min
+
+
+def get_temperature_delta(n, model):
+    temp_list = []
+    query = model.query.order_by(sqlalchemy.desc(model.id)).limit(n).all()
+    query.reverse()
+    trend = ""
+    for e in query:
+        temp_list.append(e.temperature)
+    trend = temp_list[n-1] - (sum(temp_list)/len(temp_list))
+    return trend

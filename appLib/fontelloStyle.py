@@ -27,3 +27,12 @@ def getIconNameHome(temp):
     elif temp >= 25:
         icon = "icon-thermometer"
     return icon
+
+
+def get_temperature_trend(temp_delta):
+    if temp_delta > 0:
+        return 'icon-up'
+    if temp_delta == 0:
+        return 'icon-exchange'
+    if temp_delta < 0:
+        return 'icon-down'

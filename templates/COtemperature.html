@@ -29,7 +29,7 @@
         </div>
         <div class="temperatureContainer">
             <div class="squareTemp">
-                <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł</div>
+                <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł <i class="{{sensor1.trend}}"></i></div>
                 <!--{% set flot_string_temperature1 = sensor1.temperature|string%}
                 {% set unity_digit, decimal_digit = flot_string_temperature1.split('.') %}
                 {% if decimal_digit|length < 2 %}
@@ -44,14 +44,14 @@
                 <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor1.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
-                <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła</div>
+                <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła <i class="{{sensor2.trend}}"></i></div>
                 <div class="squareTempValue">{{to_two_decimal(sensor2.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor2.date}}</div>
                 <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor2.max.temperature)}}<span>&#8451;</span></div>
                 <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor2.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
-                <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła</div>
+                <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła <i class="{{sensor3.trend}}"></i></div>
                 <div class="squareTempValue">{{to_two_decimal(sensor3.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor3.date}}</div>
                 <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor3.max.temperature)}}<span>&#8451;</span></div>

@@ -11,7 +11,7 @@ from config import Config
 from appLib.plot import bokeh_plot,  bokeh_plots, CDN_js
 from appLib.requestDomoticz import getTempForDomoticzAPI
 from appLib.requestApiWether import getCurrentWeather
-from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot
+from appLib.queriesFromDB import sensorQueries, sensorQueriesToPlot, get_temperature_trend
 from appLib.queriesFromDB import deleteOldData
 from appLib.requestsIFTTT import iftttOverheat
 from appLib.appLogger import appLogger
@@ -212,7 +212,6 @@ def COtemperature():
         sensor1 = sensorQueries(TemperatureModelSensor1)
         sensor2 = sensorQueries(TemperatureModelSensor2)
         sensor3 = sensorQueries(TemperatureModelSensor3)
-
         currentWeather = getCurrentWeather()
 
         appLogger.createDebLog()
