@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,21 +29,31 @@
         <div class="temperatureContainer">
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor1.icon}}"></i> Kocioł <br> <i class="{{sensor1.trend}}"></i></div>
-                <!--{% set flot_string_temperature1 = sensor1.temperature|string%}
-                {% set unity_digit, decimal_digit = flot_string_temperature1.split('.') %}
-                {% if decimal_digit|length < 2 %}
-                    <div class="squareTempValue">{{unity_digit}}.{{decimal_digit}}0<span>&#8451;</span></div>
-                {% else %}
-                    <div class="squareTempValue">{{unity_digit}}.{{decimal_digit}}<span>&#8451;</span></div>
+                {% if sensor1.temperature < 75 %}
+                <style>
+                    .squareTempValue_s1 {color: black};
+                </style>
+                {% elif sensor1.temperature > 75 %}
+                    <style>
+                        .squareTempValue_s1 {color: red};
+                    </style>
                 {% endif %}
-                -->
-                <div class="squareTempValue">{{to_two_decimal(sensor1.temperature)}}<span>&#8451;</span></div>
+                <div class="squareTempValue_s1">{{to_two_decimal(sensor1.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor1.date}}</div>
                 <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor1.max.temperature)}}<span>&#8451;</span></div>
                 <div id="squareTempMin">temperatura min: {{to_two_decimal(sensor1.min.temperature)}}<span>&#8451;</span></div>
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor2.icon}}"></i> Wyjście z kotła <br><i class="{{sensor2.trend}}"></i></div>
+                {% if sensor2.temperature < 75 %}
+                <style>
+                    .squareTempValue_s2 {color: black};
+                </style>
+                {% elif sensor2.temperature > 75 %}
+                    <style>
+                        .squareTempValue_s2 {color: red};
+                    </style>
+                {% endif %}
                 <div class="squareTempValue">{{to_two_decimal(sensor2.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor2.date}}</div>
                 <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor2.max.temperature)}}<span>&#8451;</span></div>
@@ -52,6 +61,15 @@
             </div>
             <div class="squareTemp">
                 <div class="squareTempTitle"><i class="{{sensor3.icon}}"></i> Powrót do kotła <br><i class="{{sensor3.trend}}"></i></div>
+                {% if sensor3.temperature < 75 %}
+                <style>
+                    .squareTempValue_s3 {color: black};
+                </style>
+                {% elif sensor3.temperature > 75 %}
+                    <style>
+                        .squareTempValue_s3 {color: red};
+                    </style>
+                {% endif %}
                 <div class="squareTempValue">{{to_two_decimal(sensor3.temperature)}}<span>&#8451;</span></div>
                 <div class="squareTempLastUpdate">Aktualizacja: {{sensor3.date}}</div>
                 <div id="squareTempMax">temperatura max: {{to_two_decimal(sensor3.max.temperature)}}<span>&#8451;</span></div>
